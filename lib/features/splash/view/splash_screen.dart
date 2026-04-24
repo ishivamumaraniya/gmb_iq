@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
             const SizedBox(height: 16),
             Text(text, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             const SizedBox(height: 24),
-            ElevatedButton(onPressed: () => context.goNamed(AppRoutes.home), child: const Text('Go to Home')),
+            ElevatedButton(onPressed: () => context.goNamed(AppRoutes.home), child: const Text('Go to Hasome')),
           ],
         ),
       ),
