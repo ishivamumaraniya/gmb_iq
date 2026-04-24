@@ -1,0 +1,60 @@
+import 'package:flutter/material.dart';
+import 'app_colors.dart';
+
+class AppTheme {
+  // ======================
+  // LIGHT THEME
+  // ======================
+  static ThemeData get lightTheme {
+    return ThemeData(
+      useMaterial3: true,
+      scaffoldBackgroundColor: AppColors.scaffoldBackground,
+      primaryColor: AppColors.primary,
+
+      // Default color scheme
+      colorScheme: const ColorScheme.light(
+        primary: AppColors.primary,
+        surface: AppColors.scaffoldBackground,
+        onSurface: AppColors.textPrimary, // Sets default text color on surfaces
+        error: AppColors.redText,
+      ),
+
+      // Set the default text color without overriding font sizes or weights
+      textTheme: ThemeData.light().textTheme.apply(
+        bodyColor: AppColors.textPrimary,
+        displayColor: AppColors.textPrimary,
+      ),
+
+      // Icon Theme
+      iconTheme: const IconThemeData(color: AppColors.primary),
+    );
+  }
+
+  // ======================
+  // DARK THEME
+  // ======================
+  static ThemeData get darkTheme {
+    return ThemeData(
+      useMaterial3: true,
+      scaffoldBackgroundColor: AppColors.darkScaffoldBackground,
+      primaryColor: AppColors.darkPrimary,
+
+      // Default dark color scheme
+      colorScheme: const ColorScheme.dark(
+        primary: AppColors.darkPrimary,
+        surface: AppColors.darkScaffoldBackground,
+        onSurface: AppColors.darkTextPrimary,
+        error: AppColors.redText, // Red works on dark too, or you can use a lighter red like #F28B82
+      ),
+
+      // Set the default dark text color
+      textTheme: ThemeData.dark().textTheme.apply(
+        bodyColor: AppColors.darkTextPrimary,
+        displayColor: AppColors.darkTextPrimary,
+      ),
+
+      // Icon Theme
+      iconTheme: const IconThemeData(color: AppColors.darkPrimary),
+    );
+  }
+}
