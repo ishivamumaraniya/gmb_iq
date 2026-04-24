@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/theme/app_theme.dart';
 import 'core/router/app_router.dart';
@@ -18,19 +19,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Wrap with ScreenUtilInit for any ScreenUtil usages
-    return ScreenUtilInit(
-      designSize: const Size(375, 812), // standard mobile design size
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp.router(
-          title: 'GMB IQ',
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: ThemeMode.light, // Change to .system if you want auto dark mode
-          routerConfig: AppRouter.router,
-          debugShowCheckedModeBanner: false,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // We use constraints.maxWidth >= 1024 instead of context.isDesktop
+        // because context.isDesktop relies on MediaQuery, which hasn't been built yet
+        // (MaterialApp is what provides MediaQuery to the app).
+        final Size designSize = constraints.maxWidth >= 1024
+            ? Size(constraints.maxWidth, constraints.maxHeight)
+            : const Size(375, 812);
+
+        return ScreenUtilInit(
+          designSize: designSize,
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, child) {
+            return MaterialApp.router(
+              title: 'GMB IQ',
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              themeMode: ThemeMode
+                  .light, // Change to .system if you want auto dark mode
+              routerConfig: AppRouter.router,
+              debugShowCheckedModeBanner: false,
+            );
+          },
         );
       },
     );
