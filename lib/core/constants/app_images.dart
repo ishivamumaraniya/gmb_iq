@@ -10,6 +10,7 @@ class AppImages {
   // Images
   // ===========================================================================
   static const String loginLogo = "$_pngPath/login_logo.png";
+
   // static const String placeholder = '$_imagePath/placeholder.png';
 
   // ===========================================================================
@@ -21,4 +22,5 @@ class AppImages {
   // SVG
   // ===========================================================================
   static const String appLogo = '$_svgPath/app_logo.svg';
+  static const String googleLogo = "$_svgPath/google.svg";
 }

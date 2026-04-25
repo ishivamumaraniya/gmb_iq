@@ -10,21 +10,24 @@ class AppColors {
 
   // Main Colors
   static const Color primary = Color(0xFF1A73E8);
-  
-  /// Secondary background color. 
+
+  /// Secondary background color.
   /// For example, if an icon on a button is [primary], its background should be this color.
   static const Color secondaryBackground = Color(0xFFF3F7FE);
 
   // Custom text/status colors
   static const Color greenText = Color(0xFF2C9C4A);
   static const Color redText = Color(0xFFD93025);
-  
+
   // Star/Rating color
   static const Color starColor = Color(0xFFFEB005);
 
   // Greys
   static const Color lightGrey = Color(0xFF989898);
   static const Color lighterGrey = Color(0xFF868A94);
+
+  static const Color darkPink = Color(0xFF9C6DF2);
+
   // --- Dark Mode Colors ---
   static const Color darkScaffoldBackground = Color(0xFF121212); // Standard Material dark background
   static const Color darkTextPrimary = Color(0xFFE8EAED); // Off-white (better readability than pure white)

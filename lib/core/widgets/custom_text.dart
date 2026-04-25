@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomText extends StatelessWidget {
   final String text;
@@ -10,6 +11,7 @@ class CustomText extends StatelessWidget {
   final TextAlign? textAlign;
   final int? maxLines;
   final bool isSelectable;
+  final double? height; // Added to control line spacing
 
   const CustomText(
     this.text, {
@@ -21,20 +23,35 @@ class CustomText extends StatelessWidget {
     this.textAlign,
     this.maxLines,
     this.isSelectable = false,
+    this.height, // Added optional parameter
   });
 
   @override
   Widget build(BuildContext context) {
-    // If no color is provided, we default to the textTheme's bodyMedium color
-    // which in your AppTheme is AppColors.textPrimary (or darkTextPrimary).
     final defaultColor = Theme.of(context).textTheme.bodyMedium?.color;
 
-    final style = TextStyle(fontSize: fontSize.spMin, fontWeight: fontWeight, color: color ?? defaultColor);
+    final style = GoogleFonts.googleSansFlex(
+      fontSize: fontSize.spMin,
+      fontWeight: fontWeight,
+      color: color ?? defaultColor,
+      height: height, // Passes line height multiplier to TextStyle
+    );
 
     if (isSelectable) {
-      return SelectableText(text, textAlign: textAlign, maxLines: maxLines, style: style);
+      return SelectableText(
+        text,
+        textAlign: textAlign,
+        maxLines: maxLines,
+        style: style,
+      );
     }
 
-    return Text(text, textAlign: textAlign, maxLines: maxLines, overflow: overflow, style: style);
+    return Text(
+      text,
+      textAlign: textAlign,
+      maxLines: maxLines,
+      overflow: overflow,
+      style: style,
+    );
   }
 }

@@ -48,7 +48,7 @@ class AppRouter {
                     child: CustomButton(
                       text: 'Go to Blank Page',
                       onPressed: () => context.pushNamed(AppRoutes.blank),
-                      rightIcon: const Icon(Icons.arrow_forward, color: Colors.white),
+                      customIcon: const Icon(Icons.arrow_forward, color: Colors.white),
                     ),
                   ),
                 ),

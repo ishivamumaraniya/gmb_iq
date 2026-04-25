@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               CustomButton(
                 text: 'Go to Blank Page',
                 onPressed: () => context.pushNamed(AppRoutes.blank),
-                rightIcon: const Icon(Icons.arrow_forward, color: Colors.white),
+                customIcon: const Icon(Icons.arrow_forward, color: Colors.white),
               ),
               const SizedBox(height: 16),
               CustomButton(text: 'Loading Button', onPressed: () {}, isLoading: true),
