@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/app_images.dart';
-import '../../../../core/responsive/responsive_widget.dart';
-import '../../../../core/widgets/custom_image.dart';
+import '../../../core/constants/app_images.dart';
+import '../../../core/responsive/responsive_widget.dart';
+import '../../../core/widgets/custom_image.dart';
 
 class AuthLayout extends StatelessWidget {
   final Widget child;
@@ -20,7 +20,7 @@ class AuthLayout extends StatelessWidget {
             child: Container(
               color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: .1),
               child: Center(
-                child: CustomImage(AppImages.appLogo, width: 100.w, height: 100.h, fit: BoxFit.contain),
+                child: CustomImage(AppImages.appLogo, width: 40.w, height: 40.h, fit: BoxFit.contain),
               ),
             ),
           ),

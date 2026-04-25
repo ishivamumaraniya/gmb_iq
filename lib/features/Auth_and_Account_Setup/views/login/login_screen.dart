@@ -12,6 +12,7 @@ import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_image.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/widgets/custom_text.dart';
+import '../../model/login_info_mode;.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -59,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
     ),
     myInfoLoginModel(
       svg: AppImages.graphLogo,
-      title: "Insightful & Smart",
+      title: "Bright & Insight",
       description: "Manage all locations\nand reviews",
       color: AppColors.greenText,
     ),
@@ -68,29 +69,39 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: kToolbarHeight),
-            // Show logo at the top ONLY on Mobile/Tablet
-            if (!context.isDesktop) ...[
-              CustomImage(AppImages.appLogo, width: 25.w, height: 25.h, fit: BoxFit.contain),
-              const SizedBox(height: 40),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (!context.isDesktop) ...[
+                CustomImage(
+                  AppImages.appLogo,
+                  width: (context.isMobile ? 25 : 20).w,
+                  height: (context.isMobile ? 25 : 20).h,
+                  fit: BoxFit.contain,
+                ),
+                const SizedBox(height: 40),
+              ],
+              _buildLoginForm(context),
             ],
-            _buildLoginForm(),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildLoginForm() {
+  Widget _buildLoginForm(BuildContext context) {
+    final double logoHeight = context.isMobile ? 150.h : (context.isTablet ? 90.h : 130.h);
+    final double logoWidth = context.isMobile ? 200.w : (context.isTablet ? 100.w : 180.w);
+
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CustomImage(AppImages.loginLogo, height: 120.h, width: 200.w, fit: BoxFit.contain),
+        Container(
+          color: Colors.white,
+          child: CustomImage(AppImages.loginLogo, height: logoHeight, width: logoWidth, fit: BoxFit.contain),
+        ),
         const SizedBox(height: 40),
         const CustomText("Let's get started", fontSize: 26, fontWeight: FontWeight.w500),
         const SizedBox(height: 5),
@@ -111,42 +122,40 @@ class _LoginScreenState extends State<LoginScreen> {
           customIcon: CustomImage(AppImages.googleLogo, height: 18.h, fit: BoxFit.contain),
         ),
         const SizedBox(height: 40),
-        _infoLoginWidget(),
+        _infoLoginWidget(context),
         const SizedBox(height: 40),
         _buildTermsAndPrivacy(),
       ],
     );
   }
 
-  Widget _infoLoginWidget() {
+  Widget _infoLoginWidget(BuildContext context) {
     return Row(
+      spacing: 8.w,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(myInfoLoginList.length, (index) {
         final e = myInfoLoginList[index];
         return Flexible(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 1.w),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CircleAvatar(
-                  radius: 20.r,
-                  backgroundColor: e.color.withValues(alpha: .15),
-                  child: CustomImage(e.svg, height: (index == 2 ? 19 : 23).h, fit: BoxFit.contain),
-                ),
-                SizedBox(height: 7.h),
-                CustomText(e.title, fontSize: 13, fontWeight: FontWeight.w600, textAlign: TextAlign.center),
-                SizedBox(height: 1.h),
-                CustomText(
-                  e.description,
-                  fontSize: 11.5,
-                  textAlign: TextAlign.center,
-                  color: AppColors.textSecondary,
-                  height: 1.1,
-                ),
-              ],
-            ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircleAvatar(
+                radius: 20.r,
+                backgroundColor: e.color.withValues(alpha: .15),
+                child: CustomImage(e.svg, height: (index == 2 ? 19 : 23).h, fit: BoxFit.contain),
+              ),
+              SizedBox(height: 7.h),
+              CustomText(e.title, fontSize: 13, fontWeight: FontWeight.w600, textAlign: TextAlign.center),
+              SizedBox(height: 1.h),
+              CustomText(
+                e.description,
+                fontSize: 11.5,
+                textAlign: TextAlign.center,
+                color: AppColors.textSecondary,
+                height: 1.1,
+              ),
+            ],
           ),
         );
       }),
@@ -179,13 +188,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-}
-
-class myInfoLoginModel {
-  final String svg;
-  final String title;
-  final String description;
-  final Color color;
-
-  myInfoLoginModel({required this.svg, required this.title, required this.description, required this.color});
 }

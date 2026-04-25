@@ -22,30 +22,31 @@ class CustomScaffold extends StatelessWidget {
     this.backgroundColor,
     this.extendBodyBehindAppBar = false,
     this.extendBody = false,
-    this.padding = const EdgeInsets.symmetric(horizontal: 16), // 16px horizontal default
+    this.padding = const EdgeInsets.symmetric(horizontal: 10), // 16px horizontal default
   });
 
   @override
   Widget build(BuildContext context) {
     final scaffoldColor = backgroundColor ?? Theme.of(context).scaffoldBackgroundColor;
     final bool isDesktop = context.isDesktop;
+    final mySize = MediaQuery.sizeOf(context);
 
-    return Container(
-      color: scaffoldColor,
-      child: SafeArea(
+    return Scaffold(
+      backgroundColor: scaffoldColor,
+      appBar: appBar,
+      bottomNavigationBar: bottomNavigationBar,
+      floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
+      extendBody: extendBody,
+      body: SafeArea(
         top: true,
-        bottom: false,
+        bottom: true,
         left: false,
         right: false,
-        child: Scaffold(
-          backgroundColor: scaffoldColor,
-          appBar: appBar,
-          bottomNavigationBar: bottomNavigationBar,
-          floatingActionButton: floatingActionButton,
-          floatingActionButtonLocation: floatingActionButtonLocation,
-          extendBodyBehindAppBar: extendBodyBehindAppBar,
-          extendBody: extendBody,
-          body: Padding(padding: isDesktop ? EdgeInsetsGeometry.zero : padding, child: body),
+        child: Padding(
+          padding: isDesktop ? EdgeInsets.zero : padding,
+          child: SizedBox(height: mySize.height, width: mySize.width, child: body),
         ),
       ),
     );

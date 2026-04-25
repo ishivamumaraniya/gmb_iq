@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/Auth_and_Account_Setup/accountSetup/Scan_and_Found_Accounts/view/scanning_google_accounts_screen.dart';
-import '../../features/Auth_and_Account_Setup/auth/view/login_screen.dart';
-import '../../features/Auth_and_Account_Setup/auth/widgets/auth_layout.dart';
+
+import '../../features/Auth_and_Account_Setup/views/scan_and_found/scanning_google_accounts_screen.dart';
+import '../../features/Auth_and_Account_Setup/views/login/login_screen.dart';
+import '../../features/Auth_and_Account_Setup/widget/auth_layout.dart';
 import '../../features/splash/view/splash_screen.dart';
 import '../../features/home/view/home_screen.dart';
 import '../../features/blank/view/blank_screen.dart';
