@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gmb_iq/core/constants/app_images.dart';
 import 'package:gmb_iq/core/router/app_router.dart';
 import 'package:gmb_iq/core/widgets/custom_image.dart';
 import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
-import 'package:gmb_iq/core/widgets/custom_text.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/responsive/responsive_widget.dart';
 
@@ -25,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   }
   void _navigateFunc()async{
-    await Future.delayed(Duration(seconds: 3),() {
+    await Future.delayed(const Duration(seconds: 3),() {
       context.goNamed(AppRoutes.login);
     },);
   }
@@ -39,6 +37,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Widget _buildUI(BuildContext context, String text) {
-    return CustomScaffold(body: Center(child: CustomImage(AppImages.appLogo)));
+    return const CustomScaffold(body: Center(child: CustomImage(AppImages.appLogo)));
   }
 }

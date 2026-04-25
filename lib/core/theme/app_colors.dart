@@ -25,8 +25,11 @@ class AppColors {
   // Greys
   static const Color lightGrey = Color(0xFF989898);
   static const Color lighterGrey = Color(0xFF868A94);
-
+  ////
   static const Color darkPink = Color(0xFF9C6DF2);
+
+  ////Button Border
+  static const Color buttonBorderColor = Color(0xFFDADCE0);
 
   // --- Dark Mode Colors ---
   static const Color darkScaffoldBackground = Color(0xFF121212); // Standard Material dark background

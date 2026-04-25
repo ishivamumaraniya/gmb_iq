@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/theme/app_theme.dart';
 import 'core/router/app_router.dart';
@@ -22,7 +21,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-
         final Size designSize = constraints.maxWidth >= 1024
             ? Size(constraints.maxWidth, constraints.maxHeight)
             : const Size(375, 812);
@@ -36,8 +34,7 @@ class MyApp extends StatelessWidget {
               title: 'GMB IQ',
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
-              themeMode: ThemeMode
-                  .light, // Change to .system if you want auto dark mode
+              themeMode: ThemeMode.light, // Change to .system if you want auto dark mode
               routerConfig: AppRouter.router,
               debugShowCheckedModeBanner: false,
             );

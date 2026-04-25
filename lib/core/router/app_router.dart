@@ -6,6 +6,7 @@ import '../../features/home/view/home_screen.dart';
 import '../../features/blank/view/blank_screen.dart';
 import '../../features/main_layout/view/main_layout.dart';
 import '../widgets/custom_button.dart';
+import '../widgets/custom_scaffold.dart';
 
 class AppRoutes {
   static const String splash = 'splash';
@@ -24,9 +25,16 @@ class AppRouter {
     initialLocation: '/',
     navigatorKey: _rootNavigatorKey,
     routes: [
-      GoRoute(name: AppRoutes.splash, path: '/', builder: (context, state) => const SplashScreen()),
-      GoRoute(name: AppRoutes.login, path: '/login', builder: (context, state) => const LoginScreen()),
-
+      GoRoute(
+        name: AppRoutes.splash,
+        path: '/',
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        name: AppRoutes.login,
+        path: '/login',
+        builder: (context, state) => const LoginScreen(),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return MainLayout(navigationShell: navigationShell);
@@ -34,8 +42,16 @@ class AppRouter {
         branches: [
           StatefulShellBranch(
             routes: [
-              GoRoute(name: AppRoutes.home, path: '/home', builder: (context, state) => const HomeScreen()),
-              GoRoute(name: AppRoutes.blank, path: '/blank', builder: (context, state) => const BlankScreen()),
+              GoRoute(
+                name: AppRoutes.home,
+                path: '/home',
+                builder: (context, state) => const HomeScreen(),
+              ),
+              GoRoute(
+                name: AppRoutes.blank,
+                path: '/blank',
+                builder: (context, state) => const BlankScreen(),
+              ),
             ],
           ),
           StatefulShellBranch(
@@ -43,12 +59,15 @@ class AppRouter {
               GoRoute(
                 name: AppRoutes.search,
                 path: '/search',
-                builder: (context, state) => Scaffold(
+                builder: (context, state) => CustomScaffold(
                   body: Center(
                     child: CustomButton(
                       text: 'Go to Blank Page',
                       onPressed: () => context.pushNamed(AppRoutes.blank),
-                      customIcon: const Icon(Icons.arrow_forward, color: Colors.white),
+                      customIcon: const Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -60,7 +79,9 @@ class AppRouter {
               GoRoute(
                 name: AppRoutes.cart,
                 path: '/cart',
-                builder: (context, state) => Scaffold(body: Center(child: Text('Cart Screen'))),
+                builder: (context, state) => const CustomScaffold(
+                  body: Center(child: Text('Cart Screen')),
+                ),
               ),
             ],
           ),
@@ -69,7 +90,9 @@ class AppRouter {
               GoRoute(
                 name: AppRoutes.profile,
                 path: '/profile',
-                builder: (context, state) => Scaffold(body: Center(child: Text('Profile Screen'))),
+                builder: (context, state) => const CustomScaffold(
+                  body: Center(child: Text('Profile Screen')),
+                ),
               ),
             ],
           ),

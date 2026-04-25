@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/responsive/responsive_widget.dart';
 import '../../../core/widgets/custom_button.dart';
+import '../../../core/widgets/custom_scaffold.dart';
 
 class BlankScreen extends StatelessWidget {
   const BlankScreen({super.key});
@@ -15,7 +16,7 @@ class BlankScreen extends StatelessWidget {
   }
 
   Widget _buildUI(BuildContext context, String text) {
-    return Scaffold(
+    return CustomScaffold(
       appBar: AppBar(title: Text(text)),
       body: Center(
         child: Padding(

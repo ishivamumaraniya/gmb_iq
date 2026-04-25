@@ -23,4 +23,7 @@ class AppImages {
   // ===========================================================================
   static const String appLogo = '$_svgPath/app_logo.svg';
   static const String googleLogo = "$_svgPath/google.svg";
+  static const String boltLogo = "$_svgPath/login_bolt.svg";
+  static const String lockLogo = "$_svgPath/login_lock.svg";
+  static const String graphLogo = "$_svgPath/login_graph.svg";
 }

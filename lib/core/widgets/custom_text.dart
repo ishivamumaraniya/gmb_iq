@@ -38,20 +38,27 @@ class CustomText extends StatelessWidget {
     );
 
     if (isSelectable) {
-      return SelectableText(
-        text,
-        textAlign: textAlign,
-        maxLines: maxLines,
-        style: style,
-      );
+      return SelectableText(text, textAlign: textAlign, maxLines: maxLines, style: style);
     }
 
-    return Text(
-      text,
-      textAlign: textAlign,
-      maxLines: maxLines,
-      overflow: overflow,
-      style: style,
-    );
+    return Text(text, textAlign: textAlign, maxLines: maxLines, overflow: overflow, style: style);
   }
+}
+
+class CustomTextSpan extends TextSpan {
+  CustomTextSpan({
+    required String super.text,
+    required double fontSize,
+    Color? color,
+    FontWeight? fontWeight,
+    super.recognizer,
+    double? height,
+  }) : super(
+         style: GoogleFonts.googleSansFlex(
+           fontSize: fontSize.spMin,
+           color: color,
+           fontWeight: fontWeight,
+           height: height,
+         ),
+       );
 }
