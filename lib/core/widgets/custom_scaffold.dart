@@ -1,5 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gmb_iq/core/responsive/responsive_context.dart';
 
 class CustomScaffold extends StatelessWidget {
   final Widget body;
@@ -22,13 +22,12 @@ class CustomScaffold extends StatelessWidget {
     this.backgroundColor,
     this.extendBodyBehindAppBar = false,
     this.extendBody = false,
-    this.padding = const EdgeInsets.symmetric(horizontal: 10), // 16px horizontal default
+    this.padding = const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: kIsWeb ? 10 : 0), // 16px horizontal default
   });
 
   @override
   Widget build(BuildContext context) {
     final scaffoldColor = backgroundColor ?? Theme.of(context).scaffoldBackgroundColor;
-    final bool isDesktop = context.isDesktop;
     final mySize = MediaQuery.sizeOf(context);
 
     return Scaffold(
@@ -45,7 +44,7 @@ class CustomScaffold extends StatelessWidget {
         left: false,
         right: false,
         child: Padding(
-          padding: isDesktop ? EdgeInsets.zero : padding,
+          padding: padding,
           child: SizedBox(height: mySize.height, width: mySize.width, child: body),
         ),
       ),

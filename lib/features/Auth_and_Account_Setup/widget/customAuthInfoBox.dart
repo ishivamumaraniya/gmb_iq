@@ -12,19 +12,26 @@ class CustomAuthInfoBox extends StatelessWidget {
     required this.myColor,
     required this.title,
     required this.subtitle,
+    this.wantSubtitleColor = false,
   });
+
   final String image;
   final Color myColor;
   final String title;
   final String subtitle;
+  final bool wantSubtitleColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 500),
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      decoration: BoxDecoration(color: myColor.withValues(alpha: .1), borderRadius: BorderRadius.circular(10)),
+      padding: const EdgeInsets.all(13),
+      decoration: BoxDecoration(
+        color: myColor.withValues(alpha: .1),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: myColor.withValues(alpha: .2)),
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 10,
@@ -32,16 +39,17 @@ class CustomAuthInfoBox extends StatelessWidget {
           CircleAvatar(
             radius: 20.r,
             backgroundColor: AppColors.scaffoldBackground,
-            child: CustomImage(image, height: 23.h, fit: BoxFit.contain),
+            child: CustomImage(image, height: 23.h, fit: BoxFit.contain, color: myColor),
           ),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomText(title, fontSize: 15, color: AppColors.infoBoxTitleColor, fontWeight: FontWeight.w600),
-                CustomText(subtitle, fontSize: 13, color: AppColors.infoBoxTitleColor),
-              ],
               crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (title.isNotEmpty) CustomText(title, fontSize: 15, color: AppColors.infoBoxTitleColor, fontWeight: FontWeight.w600),
+                if (subtitle.isNotEmpty)
+                  CustomText(subtitle, fontSize: 13, color: wantSubtitleColor ? myColor : AppColors.infoBoxTitleColor),
+              ],
             ),
           ),
         ],

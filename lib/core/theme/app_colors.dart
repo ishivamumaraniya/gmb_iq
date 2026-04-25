@@ -20,12 +20,16 @@ class AppColors {
   static const Color greenText = Color(0xFF2C9C4A);
   static const Color redText = Color(0xFFD93025);
 
+  //Border colors
+  static const Color customBorderColorGrey = Color(0xFFE9EBF0);
+
   // Star/Rating color
   static const Color starColor = Color(0xFFFEB005);
 
   // Greys
   static const Color lightGrey = Color(0xFF989898);
   static const Color lighterGrey = Color(0xFF868A94);
+
   ////
   static const Color darkPink = Color(0xFF9C6DF2);
 

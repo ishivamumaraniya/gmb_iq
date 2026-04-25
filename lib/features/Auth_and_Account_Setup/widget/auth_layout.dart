@@ -17,6 +17,7 @@ class AuthLayout extends StatelessWidget {
       desktop: Row(
         children: [
           Expanded(
+            flex: 2,
             child: Container(
               color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: .1),
               child: Center(

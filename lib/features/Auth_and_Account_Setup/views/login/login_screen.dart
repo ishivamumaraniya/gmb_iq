@@ -124,6 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
         const SizedBox(height: 40),
         _infoLoginWidget(context),
         const SizedBox(height: 40),
+        
         _buildTermsAndPrivacy(),
       ],
     );
@@ -148,13 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 7.h),
               CustomText(e.title, fontSize: 13, fontWeight: FontWeight.w600, textAlign: TextAlign.center),
               SizedBox(height: 1.h),
-              CustomText(
-                e.description,
-                fontSize: 11.5,
-                textAlign: TextAlign.center,
-                color: AppColors.textSecondary,
-                height: 1.1,
-              ),
+              CustomText(e.description, fontSize: 11.5, textAlign: TextAlign.center, color: AppColors.textSecondary, height: 1.1),
             ],
           ),
         );

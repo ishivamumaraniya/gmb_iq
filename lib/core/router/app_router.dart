@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/Auth_and_Account_Setup/views/scan_and_found/found_google_accounts_screen.dart';
 import '../../features/Auth_and_Account_Setup/views/scan_and_found/scanning_google_accounts_screen.dart';
 import '../../features/Auth_and_Account_Setup/views/login/login_screen.dart';
 import '../../features/Auth_and_Account_Setup/widget/auth_layout.dart';
@@ -21,6 +22,7 @@ class AppRoutes {
   static const String blank = 'blank';
   static const String login = 'login';
   static const String scanningAccounts = 'scanning-accounts';
+  static const String foundAccounts = "found-accounts";
 }
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -49,8 +51,13 @@ class AppRouter {
           GoRoute(
             name: AppRoutes.scanningAccounts,
             path: '/scanning-accounts',
-            pageBuilder: (context, state) =>
-                SlideTransitionPage(key: state.pageKey, child: const ScanningGoogleAccountsScreen()),
+            pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const ScanningGoogleAccountsScreen()),
+          ),
+
+          GoRoute(
+            name: AppRoutes.foundAccounts,
+            path: '/found-accounts',
+            pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const FoundGoogleAccountsScreen()),
           ),
         ],
       ),

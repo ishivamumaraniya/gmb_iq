@@ -4,6 +4,10 @@ import 'core/theme/app_theme.dart';
 import 'core/router/app_router.dart';
 import 'core/storage/hive_setup.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'core/connectivity/connectivity_bloc.dart';
+import 'core/widgets/connectivity_wrapper.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Future.delayed(Duration(seconds: 5));
@@ -19,28 +23,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final Size designSize = constraints.maxWidth >= 1024
-            ? Size(constraints.maxWidth, constraints.maxHeight)
-            : const Size(375, 812);
+    return BlocProvider(
+      create: (context) => ConnectivityBloc(),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final Size designSize = constraints.maxWidth >= 1024
+              ? Size(constraints.maxWidth, constraints.maxHeight)
+              : const Size(375, 812);
 
-        return ScreenUtilInit(
-          designSize: designSize,
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: (context, child) {
-            return MaterialApp.router(
-              title: 'GMB IQ',
-              theme: AppTheme.lightTheme,
-              darkTheme: AppTheme.darkTheme,
-              themeMode: ThemeMode.light, // Change to .system if you want auto dark mode
-              routerConfig: AppRouter.router,
-              debugShowCheckedModeBanner: false,
-            );
-          },
-        );
-      },
+          return ScreenUtilInit(
+            designSize: designSize,
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (context, child) {
+              return MaterialApp.router(
+                title: 'GMB IQ',
+                theme: AppTheme.lightTheme,
+                darkTheme: AppTheme.darkTheme,
+                themeMode: ThemeMode.light,
+                routerConfig: AppRouter.router,
+                debugShowCheckedModeBanner: false,
+                builder: (context, child) {
+                  return ConnectivityWrapper(child: child!);
+                },
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
