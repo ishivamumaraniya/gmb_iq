@@ -72,17 +72,16 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _mobileWidget() {
-    return Center(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Passing size directly to the logo builder
-            _buildLogo(width: 25.w, height: 25.h),
-            SizedBox(height: 50.h),
-            _buildLoginForm(),
-          ],
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: kToolbarHeight),
+          // Passing size directly to the logo builder
+          _buildLogo(width: 25.w, height: 25.h),
+          const SizedBox(height: 40),
+          _buildLoginForm(),
+        ],
       ),
     );
   }
@@ -122,10 +121,10 @@ class _LoginScreenState extends State<LoginScreen> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        CustomImage(AppImages.loginLogo, height: 110.h, fit: BoxFit.contain),
-        SizedBox(height: 40.h),
+        CustomImage(AppImages.loginLogo, height: 120.h, width: 200.w, fit: BoxFit.contain),
+        const SizedBox(height: 40),
         const CustomText("Let's get started", fontSize: 26, fontWeight: FontWeight.w500),
-        SizedBox(height: 5.h),
+        const SizedBox(height: 5),
         const CustomText(
           height: 1.25,
           "Connect your Google Business Profile\nto manage reviews, responses,\nand insights — all in one place.",
@@ -133,46 +132,19 @@ class _LoginScreenState extends State<LoginScreen> {
           textAlign: TextAlign.center,
           color: AppColors.textSecondary,
         ),
-        SizedBox(height: 35.h),
+        const SizedBox(height: 35),
         CustomButton(
           text: "Continue With Google",
           backgroundColor: AppColors.scaffoldBackground,
           onPressed: () {},
           customIcon: CustomImage(AppImages.googleLogo, height: 18.h, fit: BoxFit.contain),
         ),
-        SizedBox(height: 40.h),
+        const SizedBox(height: 40),
 
         _infoLoginWidget(),
-        SizedBox(height: 40.h),
+        const SizedBox(height: 40),
         _buildTermsAndPrivacy(),
       ],
-    );
-  }
-
-  Widget _buildTermsAndPrivacy() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        style: GoogleFonts.googleSansFlex(color: AppColors.textSecondary, height: 1.5, fontSize: 12.spMin),
-        children: [
-          const TextSpan(text: "By continuing, you agree to our\n"),
-          CustomTextSpan(
-            text: "Terms of Service ",
-            fontSize: 12,
-            color: AppColors.primary,
-            fontWeight: FontWeight.w600,
-            recognizer: _termsRecognizer,
-          ),
-          CustomTextSpan(text: " and ", fontSize: 12),
-          CustomTextSpan(
-            text: "Privacy Policy.",
-            fontSize: 12,
-            color: AppColors.primary,
-            fontWeight: FontWeight.w600,
-            recognizer: _privacyRecognizer,
-          ),
-        ],
-      ),
     );
   }
 
@@ -180,7 +152,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: myInfoLoginList.map((e) {
+      children: List.generate(myInfoLoginList.length, (index) {
+        final e = myInfoLoginList[index];
         return Expanded(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 1.w),
@@ -190,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 CircleAvatar(
                   radius: 20.r,
                   backgroundColor: e.color.withValues(alpha: .15),
-                  child: CustomImage(e.svg, height: 20.h, fit: BoxFit.contain),
+                  child: CustomImage(e.svg, height: (index == 2 ? 19 : 23).h, fit: BoxFit.contain),
                 ),
 
                 SizedBox(height: 7.h),
@@ -201,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 CustomText(
                   e.description,
-                  fontSize: 12,
+                  fontSize: 11.5,
                   textAlign: TextAlign.center,
                   color: AppColors.textSecondary,
                   height: 1.1,
@@ -210,7 +183,34 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         );
-      }).toList(),
+      }),
+    );
+  }
+
+  Widget _buildTermsAndPrivacy() {
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+        style: GoogleFonts.googleSansFlex(color: AppColors.textSecondary, height: 1.5, fontSize: 13.spMin),
+        children: [
+          const TextSpan(text: "By continuing, you agree to our\n"),
+          CustomTextSpan(
+            text: "Terms of Service ",
+            fontSize: 13,
+            color: AppColors.primary,
+            fontWeight: FontWeight.w600,
+            recognizer: _termsRecognizer,
+          ),
+          CustomTextSpan(text: " and ", fontSize: 13),
+          CustomTextSpan(
+            text: "Privacy Policy.",
+            fontSize: 13,
+            color: AppColors.primary,
+            fontWeight: FontWeight.w600,
+            recognizer: _privacyRecognizer,
+          ),
+        ],
+      ),
     );
   }
 }

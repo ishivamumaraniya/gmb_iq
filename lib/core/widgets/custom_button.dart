@@ -23,15 +23,16 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 47,
+      height: 50,
       width: width,
       constraints: const BoxConstraints(maxWidth: 400),
       child: ElevatedButton.icon(
         icon: customIcon,
         style: ElevatedButton.styleFrom(
+          overlayColor: Colors.transparent,
           backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
           disabledBackgroundColor: Colors.grey.shade300,
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          // padding: const EdgeInsets.symmetric(vertical: 16),
           elevation: .5,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
