@@ -1,13 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gmb_iq/core/constants/app_images.dart';
+import 'package:gmb_iq/core/router/app_router.dart';
 import 'package:gmb_iq/core/widgets/custom_image.dart';
 import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
+import 'package:gmb_iq/core/widgets/custom_text.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/responsive/responsive_widget.dart';
-import '../../../core/router/app_router.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _navigateFunc();
+
+  }
+  void _navigateFunc()async{
+    await Future.delayed(Duration(seconds: 3),() {
+      context.goNamed(AppRoutes.login);
+    },);
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/login/view/login_screen.dart';
 import '../../features/splash/view/splash_screen.dart';
 import '../../features/home/view/home_screen.dart';
 import '../../features/blank/view/blank_screen.dart';
@@ -13,6 +14,7 @@ class AppRoutes {
   static const String cart = 'cart';
   static const String profile = 'profile';
   static const String blank = 'blank';
+  static const String login = '/login';
 }
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -23,6 +25,7 @@ class AppRouter {
     navigatorKey: _rootNavigatorKey,
     routes: [
       GoRoute(name: AppRoutes.splash, path: '/', builder: (context, state) => const SplashScreen()),
+      GoRoute(name: AppRoutes.login, path: '/login', builder: (context, state) => const LoginScreen()),
 
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
