@@ -1,17 +1,17 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gmb_iq/core/responsive/responsive_context.dart';
+import 'package:gmb_iq/core/router/app_router.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gmb_iq/core/constants/app_images.dart';
-import 'package:gmb_iq/core/responsive/responsive_widget.dart';
-import 'package:gmb_iq/core/theme/app_colors.dart';
-import 'package:gmb_iq/core/widgets/custom_button.dart';
-import 'package:gmb_iq/core/widgets/custom_image.dart';
-import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
-import 'package:gmb_iq/core/widgets/custom_text.dart';
 
-import '../../../core/router/app_router.dart';
+import '../../../../core/constants/app_images.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_image.dart';
+import '../../../../core/widgets/custom_scaffold.dart';
+import '../../../../core/widgets/custom_text.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -68,53 +68,21 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: ResponsiveWidget(mobileTablet: _mobileWidget(), desktop: _desktopWidget()),
-    );
-  }
-
-  Widget _mobileWidget() {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: kToolbarHeight),
-          // Passing size directly to the logo builder
-          _buildLogo(width: 25.w, height: 25.h),
-          const SizedBox(height: 40),
-          _buildLoginForm(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: kToolbarHeight),
+            // Show logo at the top ONLY on Mobile/Tablet
+            if (!context.isDesktop) ...[
+              CustomImage(AppImages.appLogo, width: 25.w, height: 25.h, fit: BoxFit.contain),
+              const SizedBox(height: 40),
+            ],
+            _buildLoginForm(),
+          ],
+        ),
       ),
     );
-  }
-
-  Widget _desktopWidget() {
-    return Row(
-      children: [
-        // Left side: Logo/Image
-        Expanded(
-          child: Container(
-            color: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: .15),
-            child: Center(child: _buildLogo()),
-          ),
-        ),
-        // Right side: Login Form
-        Expanded(
-          child: Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 64.0, vertical: 24.0),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 450), // Prevent form from being too wide
-                child: _buildLoginForm(),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildLogo({double? width, double? height}) {
-    return CustomImage(AppImages.appLogo, width: width, height: height, fit: BoxFit.contain);
   }
 
   Widget _buildLoginForm() {
@@ -137,11 +105,12 @@ class _LoginScreenState extends State<LoginScreen> {
         CustomButton(
           text: "Continue With Google",
           backgroundColor: AppColors.scaffoldBackground,
-          onPressed: () {},
+          onPressed: () {
+            context.pushNamed(AppRoutes.scanningAccounts);
+          },
           customIcon: CustomImage(AppImages.googleLogo, height: 18.h, fit: BoxFit.contain),
         ),
         const SizedBox(height: 40),
-
         _infoLoginWidget(),
         const SizedBox(height: 40),
         _buildTermsAndPrivacy(),
@@ -151,11 +120,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _infoLoginWidget() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(myInfoLoginList.length, (index) {
         final e = myInfoLoginList[index];
-        return Expanded(
+        return Flexible(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 1.w),
             child: Column(
@@ -166,13 +135,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundColor: e.color.withValues(alpha: .15),
                   child: CustomImage(e.svg, height: (index == 2 ? 19 : 23).h, fit: BoxFit.contain),
                 ),
-
                 SizedBox(height: 7.h),
-
                 CustomText(e.title, fontSize: 13, fontWeight: FontWeight.w600, textAlign: TextAlign.center),
-
                 SizedBox(height: 1.h),
-
                 CustomText(
                   e.description,
                   fontSize: 11.5,

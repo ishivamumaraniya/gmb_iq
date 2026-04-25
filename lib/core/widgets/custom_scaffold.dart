@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gmb_iq/core/responsive/responsive_context.dart';
 
 class CustomScaffold extends StatelessWidget {
   final Widget body;
@@ -27,6 +28,7 @@ class CustomScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaffoldColor = backgroundColor ?? Theme.of(context).scaffoldBackgroundColor;
+    final bool isDesktop = context.isDesktop;
 
     return Container(
       color: scaffoldColor,
@@ -43,7 +45,7 @@ class CustomScaffold extends StatelessWidget {
           floatingActionButtonLocation: floatingActionButtonLocation,
           extendBodyBehindAppBar: extendBodyBehindAppBar,
           extendBody: extendBody,
-          body: Padding(padding: padding, child: body),
+          body: Padding(padding: isDesktop ? EdgeInsetsGeometry.zero : padding, child: body),
         ),
       ),
     );

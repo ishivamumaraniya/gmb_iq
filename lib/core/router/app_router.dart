@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../features/login/view/login_screen.dart';
+
+import '../../features/Auth_and_Account_Setup/accountSetup/Scan_and_Found_Accounts/view/scanning_google_accounts_screen.dart';
+import '../../features/Auth_and_Account_Setup/auth/view/login_screen.dart';
+import '../../features/Auth_and_Account_Setup/auth/widgets/auth_layout.dart';
 import '../../features/splash/view/splash_screen.dart';
 import '../../features/home/view/home_screen.dart';
 import '../../features/blank/view/blank_screen.dart';
@@ -17,6 +20,7 @@ class AppRoutes {
   static const String profile = 'profile';
   static const String blank = 'blank';
   static const String login = 'login';
+  static const String scanningAccounts = 'scanning-accounts';
 }
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -29,13 +33,30 @@ class AppRouter {
       GoRoute(
         name: AppRoutes.splash,
         path: '/',
-        pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const SplashScreen()),
+        pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const SplashScreen()),
       ),
-      GoRoute(
-        name: AppRoutes.login,
-        path: '/login',
-        pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const LoginScreen()),
+
+      // Auth & Onboarding Shell
+      ShellRoute(
+        builder: (context, state, child) {
+          // You can wrap AuthLayout with BlocProvider<AuthBloc> here later
+          return AuthLayout(child: child);
+        },
+        routes: [
+          GoRoute(
+            name: AppRoutes.login,
+            path: '/login',
+            pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const LoginScreen()),
+          ),
+          GoRoute(
+            name: AppRoutes.scanningAccounts,
+            path: '/scanning-accounts',
+            pageBuilder: (context, state) =>
+                SlideTransitionPage(key: state.pageKey, child: const ScanningGoogleAccountsScreen()),
+          ),
+        ],
       ),
+
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return MainLayout(navigationShell: navigationShell);

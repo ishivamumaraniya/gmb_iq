@@ -29,13 +29,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(
-      mobileTablet: _buildUI(context, 'Mobile/Tablet Splash'),
-      desktop: _buildUI(context, 'Desktop Splash'),
-    );
+    return ResponsiveWidget(mobileTablet: _buildUI(context), desktop: _buildUI(context));
   }
 
-  Widget _buildUI(BuildContext context, String text) {
+  Widget _buildUI(BuildContext context) {
     return const CustomScaffold(body: Center(child: CustomImage(AppImages.appLogo)));
   }
 }

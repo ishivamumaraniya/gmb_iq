@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SlideTransitionPage extends CustomTransitionPage {
-  SlideTransitionPage({required Widget child, required LocalKey super.key})
+  SlideTransitionPage({required super.child, required LocalKey super.key})
     : super(
-        child: child,
         transitionDuration: const Duration(milliseconds: 400),
         reverseTransitionDuration: const Duration(milliseconds: 400),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
