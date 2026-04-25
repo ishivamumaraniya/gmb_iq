@@ -7,6 +7,7 @@ import '../../features/blank/view/blank_screen.dart';
 import '../../features/main_layout/view/main_layout.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_scaffold.dart';
+import 'slide_transition_page.dart';
 
 class AppRoutes {
   static const String splash = 'splash';
@@ -15,7 +16,7 @@ class AppRoutes {
   static const String cart = 'cart';
   static const String profile = 'profile';
   static const String blank = 'blank';
-  static const String login = '/login';
+  static const String login = 'login';
 }
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -28,12 +29,12 @@ class AppRouter {
       GoRoute(
         name: AppRoutes.splash,
         path: '/',
-        builder: (context, state) => const SplashScreen(),
+        pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const SplashScreen()),
       ),
       GoRoute(
         name: AppRoutes.login,
         path: '/login',
-        builder: (context, state) => const LoginScreen(),
+        pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const LoginScreen()),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
@@ -45,12 +46,12 @@ class AppRouter {
               GoRoute(
                 name: AppRoutes.home,
                 path: '/home',
-                builder: (context, state) => const HomeScreen(),
+                pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const HomeScreen()),
               ),
               GoRoute(
                 name: AppRoutes.blank,
                 path: '/blank',
-                builder: (context, state) => const BlankScreen(),
+                pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const BlankScreen()),
               ),
             ],
           ),
@@ -59,14 +60,14 @@ class AppRouter {
               GoRoute(
                 name: AppRoutes.search,
                 path: '/search',
-                builder: (context, state) => CustomScaffold(
-                  body: Center(
-                    child: CustomButton(
-                      text: 'Go to Blank Page',
-                      onPressed: () => context.pushNamed(AppRoutes.blank),
-                      customIcon: const Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
+                pageBuilder: (context, state) => SlideTransitionPage(
+                  key: state.pageKey,
+                  child: CustomScaffold(
+                    body: Center(
+                      child: CustomButton(
+                        text: 'Go to Blank Page',
+                        onPressed: () => context.pushNamed(AppRoutes.blank),
+                        customIcon: const Icon(Icons.arrow_forward, color: Colors.white),
                       ),
                     ),
                   ),
@@ -79,8 +80,9 @@ class AppRouter {
               GoRoute(
                 name: AppRoutes.cart,
                 path: '/cart',
-                builder: (context, state) => const CustomScaffold(
-                  body: Center(child: Text('Cart Screen')),
+                pageBuilder: (context, state) => SlideTransitionPage(
+                  key: state.pageKey,
+                  child: const CustomScaffold(body: Center(child: Text('Cart Screen'))),
                 ),
               ),
             ],
@@ -90,8 +92,9 @@ class AppRouter {
               GoRoute(
                 name: AppRoutes.profile,
                 path: '/profile',
-                builder: (context, state) => const CustomScaffold(
-                  body: Center(child: Text('Profile Screen')),
+                pageBuilder: (context, state) => SlideTransitionPage(
+                  key: state.pageKey,
+                  child: const CustomScaffold(body: Center(child: Text('Profile Screen'))),
                 ),
               ),
             ],

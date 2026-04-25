@@ -36,7 +36,7 @@ class CustomButton extends StatelessWidget {
           elevation: .5,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
-            side: const BorderSide(color: AppColors.buttonBorderColor, width: 1.2),
+            side: const BorderSide(color: AppColors.buttonBorderColor, width: .5),
           ),
         ),
         onPressed: isLoading ? null : onPressed,

@@ -21,9 +21,13 @@ class AppTheme {
       ),
 
       // Set the default text color without overriding font sizes or weights
-      textTheme: GoogleFonts.googleSansFlexTextTheme(
-        ThemeData.light().textTheme,
-      ).apply(bodyColor: AppColors.textPrimary, displayColor: AppColors.textPrimary),
+      textTheme:
+          GoogleFonts.googleSansFlexTextTheme(
+            ThemeData.light().textTheme,
+          ).apply(
+            bodyColor: AppColors.textPrimary,
+            displayColor: AppColors.textPrimary,
+          ),
 
       // Icon Theme
       iconTheme: const IconThemeData(color: AppColors.primary),
@@ -44,13 +48,15 @@ class AppTheme {
         primary: AppColors.darkPrimary,
         surface: AppColors.darkScaffoldBackground,
         onSurface: AppColors.darkTextPrimary,
-        error: AppColors.redText, // Red works on dark too, or you can use a lighter red like #F28B82
+        error: AppColors
+            .redText, // Red works on dark too, or you can use a lighter red like #F28B82
       ),
 
       // Set the default dark text color
-      textTheme: GoogleFonts.dmSansTextTheme(
-        ThemeData.dark().textTheme,
-      ).apply(bodyColor: AppColors.darkTextPrimary, displayColor: AppColors.darkTextPrimary),
+      textTheme: GoogleFonts.dmSansTextTheme(ThemeData.dark().textTheme).apply(
+        bodyColor: AppColors.darkTextPrimary,
+        displayColor: AppColors.darkTextPrimary,
+      ),
 
       // Icon Theme
       iconTheme: const IconThemeData(color: AppColors.darkPrimary),

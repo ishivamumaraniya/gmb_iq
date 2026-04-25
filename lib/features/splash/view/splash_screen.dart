@@ -14,18 +14,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _navigateFunc();
-
   }
-  void _navigateFunc()async{
-    await Future.delayed(const Duration(seconds: 3),() {
-      context.goNamed(AppRoutes.login);
-    },);
+
+  void _navigateFunc() async {
+    await Future.delayed(const Duration(seconds: 3));
+    if (!mounted) return;
+    context.pushReplacementNamed(AppRoutes.login);
   }
 
   @override

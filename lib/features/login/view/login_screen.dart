@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gmb_iq/core/constants/app_images.dart';
 import 'package:gmb_iq/core/responsive/responsive_widget.dart';
@@ -9,6 +10,8 @@ import 'package:gmb_iq/core/widgets/custom_button.dart';
 import 'package:gmb_iq/core/widgets/custom_image.dart';
 import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
+
+import '../../../core/router/app_router.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,12 +29,10 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
     _termsRecognizer = TapGestureRecognizer()
       ..onTap = () {
-        debugPrint("Terms of Service tapped");
         // Navigation or URL launch logic here
       };
     _privacyRecognizer = TapGestureRecognizer()
       ..onTap = () {
-        debugPrint("Privacy Policy tapped");
         // Navigation or URL launch logic here
       };
   }

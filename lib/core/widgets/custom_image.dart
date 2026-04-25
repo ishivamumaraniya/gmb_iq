@@ -34,9 +34,6 @@ class CustomImage extends StatelessWidget {
     final cleanPath = path.split('?').first;
     final isSvg = cleanPath.toLowerCase().endsWith('.svg');
 
-    print(isNetwork);
-    print(isSvg);
-
     if (isNetwork) {
       imageWidget = CachedNetworkImage(
         imageUrl: path,
