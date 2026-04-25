@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../features/Auth_and_Account_Setup/accountSetup/Scan_and_Found_Accounts/view/scanning_google_accounts_screen.dart';
 import '../../features/Auth_and_Account_Setup/auth/view/login_screen.dart';
 import '../../features/Auth_and_Account_Setup/auth/widgets/auth_layout.dart';
@@ -36,10 +35,8 @@ class AppRouter {
         pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const SplashScreen()),
       ),
 
-      // Auth & Onboarding Shell
       ShellRoute(
         builder: (context, state, child) {
-          // You can wrap AuthLayout with BlocProvider<AuthBloc> here later
           return AuthLayout(child: child);
         },
         routes: [
