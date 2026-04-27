@@ -10,24 +10,19 @@ class ConnectivityCubit extends Cubit<ConnectivityState> {
   StreamSubscription? _connectivitySubscription;
   bool _isListenerActive = false;
 
-  ConnectivityCubit() : super(const ConnectivityState()) {
-    // We don't start the listener automatically in constructor to give SplashScreen control
-  }
+  ConnectivityCubit() : super(const ConnectivityState()) {}
 
   Future<void> checkConnectivity() async {
-    // Initial check with a small retry logic for warm-up
     bool hasInternet = await _performInternetCheck();
 
     emit(state.copyWith(status: hasInternet ? ConnectivityStatus.connected : ConnectivityStatus.disconnected));
 
-    // Start listener if not already active
     _startConnectionListener();
   }
 
   Future<bool> _performInternetCheck() async {
     bool hasInternet = await _connectionChecker.hasConnection;
 
-    // If it says no internet, try once more after a short delay (warm-up phase)
     if (!hasInternet) {
       await Future.delayed(const Duration(milliseconds: 500));
       hasInternet = await _connectionChecker.hasConnection;
@@ -43,16 +38,13 @@ class ConnectivityCubit extends Cubit<ConnectivityState> {
       bool hasConnection = results.any((result) => result != ConnectivityResult.none);
 
       if (hasConnection) {
-        // Double check with actual internet access
         bool hasInternet = await _connectionChecker.hasConnection;
         emit(state.copyWith(status: hasInternet ? ConnectivityStatus.connected : ConnectivityStatus.disconnected));
       } else {
-        // Even if results say 'none', double check one last time before committing to 'disconnected'
         bool hasInternet = await _connectionChecker.hasConnection;
         if (!hasInternet) {
           emit(state.copyWith(status: ConnectivityStatus.disconnected));
         } else {
-          // It reported none but internet is actually working
           emit(state.copyWith(status: ConnectivityStatus.connected));
         }
       }

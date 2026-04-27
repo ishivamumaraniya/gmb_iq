@@ -18,10 +18,14 @@ class NoInternetScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Spacer(),
             Icon(Icons.wifi_off_rounded, size: 100.sp, color: AppColors.primary.withValues(alpha: .2)),
             SizedBox(height: 40.h),
-            const CustomText("No Internet Connection", fontSize: 24, fontWeight: FontWeight.w600, textAlign: TextAlign.center),
+            const CustomText(
+              "No Internet Connection",
+              fontSize: 24,
+              fontWeight: FontWeight.w600,
+              textAlign: TextAlign.center,
+            ),
             SizedBox(height: 12.h),
             const CustomText(
               "Please check your internet connection and try again.",
@@ -29,15 +33,6 @@ class NoInternetScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               color: AppColors.textSecondary,
             ),
-            const Spacer(),
-            CustomButton(
-              backgroundColor: AppColors.scaffoldBackground,
-              text: "Try Again",
-              onPressed: () {
-                // context.read<ConnectivityBloc>().add(CheckConnectivity());
-              },
-            ),
-            SizedBox(height: 24.h),
           ],
         ),
       ),
