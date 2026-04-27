@@ -26,4 +26,9 @@ class AppImages {
   static const String boltLogo = "$_svgPath/login_bolt.svg";
   static const String lockLogo = "$_svgPath/login_lock.svg";
   static const String graphLogo = "$_svgPath/login_graph.svg";
+  static const String locaitonLogo = "$_svgPath/Location.svg";
+  static const String checkTickLogo = "$_svgPath/check_tick.svg";
+
+
+
 }

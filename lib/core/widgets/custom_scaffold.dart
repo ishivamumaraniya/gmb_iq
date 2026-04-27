@@ -45,9 +45,10 @@ class CustomScaffold extends StatelessWidget {
         left: false,
         right: false,
         child: Center(
-          child: ConstrainedBox(
+          child: Container(
             constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
-            child: Padding(padding: padding, child: body),
+            padding: padding,
+            child: body,
           ),
         ),
       ),

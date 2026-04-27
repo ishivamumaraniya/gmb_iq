@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         const SizedBox(height: 35),
         CustomButton(
-          text: "Continue With Google",
+          text: "Continue With Google",textColor: AppColors.textPrimary,
           backgroundColor: AppColors.scaffoldBackground,
           onPressed: () {
             context.pushNamed(AppRoutes.scanningAccounts);

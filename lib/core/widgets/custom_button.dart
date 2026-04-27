@@ -10,6 +10,8 @@ class CustomButton extends StatelessWidget {
   final Widget? customIcon; // Could be an Image or Icon
   final double width;
   final Color textColor;
+  final IconAlignment alignment;
+  final bool wantBorder;
 
   const CustomButton({
     super.key,
@@ -19,7 +21,8 @@ class CustomButton extends StatelessWidget {
     this.backgroundColor,
     this.customIcon,
     this.width = double.infinity,
-    this.textColor = AppColors.primary,
+    this.textColor = AppColors.textPrimary,
+    this.alignment = IconAlignment.start,  this.wantBorder = true,
   });
 
   @override
@@ -29,16 +32,16 @@ class CustomButton extends StatelessWidget {
       width: width,
       constraints: const BoxConstraints(maxWidth: 400),
       child: ElevatedButton.icon(
+        iconAlignment: alignment,
         icon: customIcon,
         style: ElevatedButton.styleFrom(
           overlayColor: Colors.transparent,
           backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
           disabledBackgroundColor: Colors.grey.shade300,
-          // padding: const EdgeInsets.symmetric(vertical: 16),
-          elevation: .5,
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(50),
-            side: const BorderSide(color: AppColors.buttonBorderColor, width: .5),
+            side:  BorderSide(color: wantBorder?AppColors.buttonBorderColor:Colors.transparent, width: .5),
           ),
         ),
         onPressed: isLoading ? null : onPressed,

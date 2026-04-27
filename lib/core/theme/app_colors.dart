@@ -5,11 +5,14 @@ class AppColors {
   static const Color scaffoldBackground = Colors.white;
 
   static const Color lightPrimaryColor = Color(0xFFDEEAFF);
-
+static const Color lighterPrimaryColor = Color(0xFFF6F9FE);
+static const Color lightCircleColor = Color(0xFFDAE6FA);
   // Text
   static const Color textPrimary = Color(0xFF202124);
   static const Color textSecondary = Color(0xFF5F6368);
   static const Color infoBoxTitleColor = Color(0xFF4B4F54);
+
+  static const Color googleButtonGrey = Color(0xFFF7F9FC);
 
   // Main Colors
   static const Color primary = Color(0xFF1A73E8);
@@ -20,6 +23,7 @@ class AppColors {
 
   // Custom text/status colors
   static const Color greenText = Color(0xFF2C9C4A);
+  static const Color darkGreen = Color(0xFF077E2E);
   static const Color redText = Color(0xFFD93025);
 
   //Border colors

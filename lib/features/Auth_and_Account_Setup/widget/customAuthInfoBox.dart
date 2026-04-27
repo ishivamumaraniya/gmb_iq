@@ -33,7 +33,7 @@ class CustomAuthInfoBox extends StatelessWidget {
         border: Border.all(color: myColor.withValues(alpha: .2)),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 10,
         children: [
           CircleAvatar(

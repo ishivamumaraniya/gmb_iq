@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/Auth_and_Account_Setup/views/scan_and_found/found_google_accounts_screen.dart';
 import '../../features/Auth_and_Account_Setup/views/scan_and_found/scanning_google_accounts_screen.dart';
+import '../../features/Auth_and_Account_Setup/views/scan_and_found/sync_complete_screen.dart';
 import '../../features/Auth_and_Account_Setup/views/login/login_screen.dart';
 import '../../features/Auth_and_Account_Setup/widget/auth_layout.dart';
 import '../../features/splash/view/splash_screen.dart';
@@ -23,6 +24,7 @@ class AppRoutes {
   static const String login = 'login';
   static const String scanningAccounts = 'scanning-accounts';
   static const String foundAccounts = "found-accounts";
+  static const String syncComplete = "sync-complete";
 }
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -68,6 +70,17 @@ class AppRouter {
               key: state.pageKey,
               child: const FoundGoogleAccountsScreen(),
             ),
+          ),
+          GoRoute(
+            name: AppRoutes.syncComplete,
+            path: '/sync-complete',
+            pageBuilder: (context, state) {
+              final locations = state.extra as List<LocationData>? ?? [];
+              return SlideTransitionPage(
+                key: state.pageKey,
+                child: SyncCompleteScreen(syncedLocations: locations),
+              );
+            },
           ),
         ],
       ),
