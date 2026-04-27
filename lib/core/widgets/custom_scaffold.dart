@@ -11,6 +11,7 @@ class CustomScaffold extends StatelessWidget {
   final bool extendBodyBehindAppBar;
   final bool extendBody;
   final EdgeInsetsGeometry padding;
+  final double? maxWidth;
 
   const CustomScaffold({
     super.key,
@@ -22,13 +23,13 @@ class CustomScaffold extends StatelessWidget {
     this.backgroundColor,
     this.extendBodyBehindAppBar = false,
     this.extendBody = false,
-    this.padding = const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: kIsWeb ? 10 : 0), // 16px horizontal default
+    this.padding = const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: kIsWeb ? 10 : 0),
+    this.maxWidth,
   });
 
   @override
   Widget build(BuildContext context) {
     final scaffoldColor = backgroundColor ?? Theme.of(context).scaffoldBackgroundColor;
-    final mySize = MediaQuery.sizeOf(context);
 
     return Scaffold(
       backgroundColor: scaffoldColor,
@@ -43,9 +44,11 @@ class CustomScaffold extends StatelessWidget {
         bottom: true,
         left: false,
         right: false,
-        child: Padding(
-          padding: padding,
-          child: SizedBox(height: mySize.height, width: mySize.width, child: body),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: maxWidth ?? double.infinity),
+            child: Padding(padding: padding, child: body),
+          ),
         ),
       ),
     );

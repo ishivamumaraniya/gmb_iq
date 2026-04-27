@@ -5,7 +5,7 @@ import 'core/router/app_router.dart';
 import 'core/storage/hive_setup.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'core/connectivity/connectivity_bloc.dart';
+import 'core/connectivity/connectivity_cubit.dart';
 import 'core/widgets/connectivity_wrapper.dart';
 
 void main() async {
@@ -24,12 +24,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ConnectivityBloc(),
+      create: (context) => ConnectivityCubit(),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final Size designSize = constraints.maxWidth >= 1024
-              ? Size(constraints.maxWidth, constraints.maxHeight)
-              : const Size(375, 812);
+          final Size designSize = constraints.maxWidth >= 1024 ? Size(constraints.maxWidth, constraints.maxHeight) : const Size(375, 812);
 
           return ScreenUtilInit(
             designSize: designSize,
@@ -39,7 +37,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp.router(
                 title: 'GMB IQ',
                 theme: AppTheme.lightTheme,
-                darkTheme: AppTheme.darkTheme,
+                // darkTheme: AppTheme.darkTheme,
                 themeMode: ThemeMode.light,
                 routerConfig: AppRouter.router,
                 debugShowCheckedModeBanner: false,

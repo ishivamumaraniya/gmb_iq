@@ -5,7 +5,6 @@ import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
 import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
 import 'package:gmb_iq/features/Auth_and_Account_Setup/widget/customAuthInfoBox.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
@@ -15,6 +14,7 @@ class FoundGoogleAccountsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      maxWidth: 500,
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
@@ -25,13 +25,28 @@ class FoundGoogleAccountsScreen extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 30.r,
-                      backgroundColor: AppColors.greenText.withValues(alpha: .1),
-                      child: const Icon(Icons.check_circle, color: AppColors.greenText, size: 33),
+                      backgroundColor: AppColors.greenText.withValues(
+                        alpha: .1,
+                      ),
+                      child: const Icon(
+                        Icons.check_circle,
+                        color: AppColors.greenText,
+                        size: 33,
+                      ),
                     ),
                     const SizedBox(height: 15),
-                    const CustomText("Success! We found 5 locations", fontSize: 16, fontWeight: FontWeight.w500), const SizedBox(height: 5),
+                    const CustomText(
+                      "Success! We found 5 locations",
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    const SizedBox(height: 5),
 
-                    const CustomText("on your Google Account", fontSize: 14, color: AppColors.textSecondary),
+                    const CustomText(
+                      "on your Google Account",
+                      fontSize: 14,
+                      color: AppColors.textSecondary,
+                    ),
                     const SizedBox(height: 15),
 
                     const CustomAuthInfoBox(
@@ -39,7 +54,8 @@ class FoundGoogleAccountsScreen extends StatelessWidget {
                       image: AppImages.lockLogo,
                       myColor: AppColors.greenText,
                       title: "",
-                      subtitle: "Your locations have been securely retrieved from Google. ",
+                      subtitle:
+                          "Your locations have been securely retrieved from Google. ",
                     ),
 
                     const SizedBox(height: 10),
@@ -51,21 +67,41 @@ class FoundGoogleAccountsScreen extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 20.r,
-                            backgroundColor: AppColors.primary.withValues(alpha: .1),
-                            child: const CustomText("W", fontSize: 20, color: AppColors.primary, fontWeight: FontWeight.w600),
+                            backgroundColor: AppColors.primary.withValues(
+                              alpha: .1,
+                            ),
+                            child: const CustomText(
+                              "W",
+                              fontSize: 20,
+                              color: AppColors.primary,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                CustomText("Connected as", fontSize: 12, color: AppColors.textSecondary),
-                                CustomText("wadewarren@gmail.com", fontSize: 14, fontWeight: FontWeight.w500),
+                                CustomText(
+                                  "Connected as",
+                                  fontSize: 12,
+                                  color: AppColors.textSecondary,
+                                ),
+                                CustomText(
+                                  "wadewarren@gmail.com",
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ],
                             ),
                           ),
 
-                          CustomText("Change", fontSize: 13, color: AppColors.primary, fontWeight: FontWeight.w500),
+                          CustomText(
+                            "Change",
+                            fontSize: 13,
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ],
                       ),
                     ),
@@ -77,8 +113,16 @@ class FoundGoogleAccountsScreen extends StatelessWidget {
                           child: RichText(
                             text: TextSpan(
                               children: [
-                                CustomTextSpan(text: "Locations Found ", fontSize: 13, color: AppColors.textPrimary),
-                                CustomTextSpan(text: "(5)", fontSize: 13, color: AppColors.textSecondary),
+                                CustomTextSpan(
+                                  text: "Locations Found ",
+                                  fontSize: 13,
+                                  color: AppColors.textPrimary,
+                                ),
+                                CustomTextSpan(
+                                  text: "(5)",
+                                  fontSize: 13,
+                                  color: AppColors.textSecondary,
+                                ),
                               ],
                             ),
                           ),
@@ -86,8 +130,17 @@ class FoundGoogleAccountsScreen extends StatelessWidget {
 
                         Row(
                           children: [
-                            const CustomText("Select All", fontSize: 13, color: AppColors.primary),
-                            Checkbox(value: true, onChanged: (val) {}, materialTapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                            const CustomText(
+                              "Select All",
+                              fontSize: 13,
+                              color: AppColors.primary,
+                            ),
+                            Checkbox(
+                              value: true,
+                              onChanged: (val) {},
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
+                            ),
                           ],
                         ),
                       ],
@@ -114,9 +167,18 @@ class FoundGoogleAccountsScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Icon(Icons.lock, color: AppColors.lighterGrey, size: 18),
+                        Icon(
+                          Icons.lock,
+                          color: AppColors.lighterGrey,
+                          size: 18,
+                        ),
 
-                        Flexible(child: CustomText("We never share your information with third parties.", fontSize: 12)),
+                        Flexible(
+                          child: CustomText(
+                            "We never share your information with third parties.",
+                            fontSize: 12,
+                          ),
+                        ),
                       ],
                     ),
 

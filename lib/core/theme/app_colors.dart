@@ -4,6 +4,8 @@ class AppColors {
   // Background
   static const Color scaffoldBackground = Colors.white;
 
+  static const Color lightPrimaryColor = Color(0xFFDEEAFF);
+
   // Text
   static const Color textPrimary = Color(0xFF202124);
   static const Color textSecondary = Color(0xFF5F6368);

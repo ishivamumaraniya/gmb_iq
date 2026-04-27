@@ -9,6 +9,7 @@ class CustomButton extends StatelessWidget {
   final Color? backgroundColor;
   final Widget? customIcon; // Could be an Image or Icon
   final double width;
+  final Color textColor;
 
   const CustomButton({
     super.key,
@@ -18,6 +19,7 @@ class CustomButton extends StatelessWidget {
     this.backgroundColor,
     this.customIcon,
     this.width = double.infinity,
+    this.textColor = AppColors.primary,
   });
 
   @override
@@ -41,12 +43,8 @@ class CustomButton extends StatelessWidget {
         ),
         onPressed: isLoading ? null : onPressed,
         label: isLoading
-            ? const SizedBox(
-                height: 24,
-                width: 24,
-                child: CircularProgressIndicator(color: Colors.grey, strokeWidth: 3),
-              )
-            : CustomText(text, fontSize: 15, fontWeight: FontWeight.w500),
+            ? const SizedBox(height: 24, width: 24, child: CircularProgressIndicator(color: Colors.grey, strokeWidth: 3))
+            : CustomText(text, fontSize: 15, fontWeight: FontWeight.w500, color: textColor),
       ),
     );
   }

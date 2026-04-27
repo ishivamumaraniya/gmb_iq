@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../connectivity/connectivity_bloc.dart';
+import '../connectivity/connectivity_cubit.dart';
 import '../connectivity/connectivity_state.dart';
 import 'no_internet_screen.dart';
 
@@ -11,7 +11,7 @@ class ConnectivityWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ConnectivityBloc, ConnectivityState>(
+    return BlocBuilder<ConnectivityCubit, ConnectivityState>(
       builder: (context, state) {
         if (state.status == ConnectivityStatus.disconnected) {
           return const NoInternetScreen();

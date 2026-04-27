@@ -49,6 +49,7 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      maxWidth: 500,
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(

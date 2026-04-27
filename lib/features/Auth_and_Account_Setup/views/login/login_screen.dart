@@ -69,30 +69,40 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (!context.isDesktop) ...[
-                CustomImage(
-                  AppImages.appLogo,
-                  width: (context.isMobile ? 25 : 20).w,
-                  height: (context.isMobile ? 25 : 20).h,
-                  fit: BoxFit.contain,
+      maxWidth: 500,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: IntrinsicHeight(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    if (!context.isDesktop) ...[
+                      CustomImage(
+                        AppImages.appLogo,
+                        width: (context.isMobile ? 25 : 20).w,
+                        height: (context.isMobile ? 25 : 20).h,
+                        fit: BoxFit.contain,
+                      ),
+                      const SizedBox(height: 40),
+                    ],
+                    _buildLoginFormContent(context),
+                    const Spacer(),
+                    const SizedBox(height: 20),
+                    _buildTermsAndPrivacy(),
+                  ],
                 ),
-                const SizedBox(height: 40),
-              ],
-              _buildLoginForm(context),
-            ],
-          ),
-        ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 
-  Widget _buildLoginForm(BuildContext context) {
+  Widget _buildLoginFormContent(BuildContext context) {
     final double logoHeight = context.isMobile ? 150.h : (context.isTablet ? 90.h : 130.h);
     final double logoWidth = context.isMobile ? 200.w : (context.isTablet ? 100.w : 180.w);
 
@@ -123,9 +133,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
         const SizedBox(height: 40),
         _infoLoginWidget(context),
-        const SizedBox(height: 40),
-        
-        _buildTermsAndPrivacy(),
       ],
     );
   }

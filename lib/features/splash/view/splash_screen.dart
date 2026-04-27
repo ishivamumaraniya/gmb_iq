@@ -4,6 +4,8 @@ import 'package:gmb_iq/core/router/app_router.dart';
 import 'package:gmb_iq/core/widgets/custom_image.dart';
 import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/connectivity/connectivity_cubit.dart';
 import '../../../core/responsive/responsive_widget.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,13 +18,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _navigateFunc();
   }
 
   void _navigateFunc() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await context.read<ConnectivityCubit>().checkConnectivity();
+
     if (!mounted) return;
     context.pushReplacementNamed(AppRoutes.login);
   }
