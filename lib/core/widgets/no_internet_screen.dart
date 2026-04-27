@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
 
 import '../theme/app_colors.dart';
-import 'custom_button.dart';
 import 'custom_text.dart';
 
 class NoInternetScreen extends StatelessWidget {

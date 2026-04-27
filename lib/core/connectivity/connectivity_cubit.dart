@@ -10,7 +10,7 @@ class ConnectivityCubit extends Cubit<ConnectivityState> {
   StreamSubscription? _connectivitySubscription;
   bool _isListenerActive = false;
 
-  ConnectivityCubit() : super(const ConnectivityState()) {}
+  ConnectivityCubit() : super(const ConnectivityState());
 
   Future<void> checkConnectivity() async {
     bool hasInternet = await _performInternetCheck();

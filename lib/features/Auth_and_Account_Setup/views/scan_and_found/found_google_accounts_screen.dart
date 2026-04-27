@@ -375,11 +375,11 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
       myColor: AppColors.primary.withValues(alpha: 0.05),
       myWidget: Column(
         children: [
-          Row(
+          const Row(
             children: [
-              const RotatingSyncIcon(),
-              const SizedBox(width: 12),
-              const CustomText(
+              RotatingSyncIcon(),
+              SizedBox(width: 12),
+              CustomText(
                 "Syncing your reviews...",
                 fontSize: 14,
                 fontWeight: FontWeight.w500,

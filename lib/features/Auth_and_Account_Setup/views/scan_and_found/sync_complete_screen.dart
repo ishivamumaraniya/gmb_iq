@@ -95,9 +95,9 @@ class SyncCompleteScreen extends StatelessWidget {
                         ],
                       ),
                       if (index != syncedLocations.length - 1)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 15),
-                          child: const Divider(
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15),
+                          child: Divider(
                             color: AppColors.customBorderColorGrey,
                             height: 1,
                           ),
@@ -109,7 +109,7 @@ class SyncCompleteScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
         
-          CustomAuthInfoBox(
+          const CustomAuthInfoBox(
             image: AppImages.lockLogo,
             myColor: AppColors.greenText,wantSubtitleColor: true,
             title: "",
