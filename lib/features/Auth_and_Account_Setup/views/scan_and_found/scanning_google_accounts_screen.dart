@@ -22,7 +22,8 @@ class ScanningGoogleAccountsScreen extends StatefulWidget {
   State<ScanningGoogleAccountsScreen> createState() => _ScanningGoogleAccountsScreenState();
 }
 
-class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScreen> with SingleTickerProviderStateMixin {
+class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _progressController;
 
   @override
@@ -37,6 +38,13 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
 
     Future.delayed(const Duration(milliseconds: 500), () {
       if (mounted) _progressController.forward();
+    });
+
+    _progressController.status.isCompleted;
+    _progressController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        context.pushNamed(AppRoutes.foundAccounts);
+      }
     });
   }
 
@@ -64,12 +72,6 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
                     const SizedBox(height: 25),
                     _buildLoadingSection(),
 
-                    ElevatedButton(
-                      onPressed: () {
-                        context.pushNamed(AppRoutes.foundAccounts);
-                      },
-                      child: const Text("data"),
-                    ),
                     const SizedBox(height: 25),
                     const Spacer(),
                     const SizedBox(height: 20),
@@ -119,7 +121,12 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
               Row(
                 children: [
                   const Expanded(
-                    child: CustomText("Scanning in progress", fontSize: 15, color: AppColors.primary, fontWeight: FontWeight.w600),
+                    child: CustomText(
+                      "Scanning in progress",
+                      fontSize: 15,
+                      color: AppColors.primary,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   CustomText(
                     "${(_progressController.value * 100).toInt()}%",
@@ -129,20 +136,10 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
                   ),
                 ],
               ),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  LinearProgressIndicator(
-                    value: _progressController.value,
-                    backgroundColor: AppColors.primary.withValues(alpha: .1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: AppColors.scaffoldBackground),
-                    height: 5,
-                    width: 10,
-                  ),
-                ],
+              LinearProgressIndicator(
+                value: _progressController.value,
+                backgroundColor: AppColors.primary.withValues(alpha: .1),
+                borderRadius: BorderRadius.circular(10),
               ),
               const CustomText("This may take few moments", fontSize: 12, color: AppColors.textSecondary),
             ],
@@ -189,7 +186,12 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
     );
   }
 
-  Widget _myLoadingRowsWidget({required String title, required String subtitle, required loadingRowStatus status, required bool isLast}) {
+  Widget _myLoadingRowsWidget({
+    required String title,
+    required String subtitle,
+    required loadingRowStatus status,
+    required bool isLast,
+  }) {
     final Color leftIconColor;
     final Color leftAvatarColor;
     final Widget leftIcon;

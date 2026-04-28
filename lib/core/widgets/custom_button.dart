@@ -12,6 +12,7 @@ class CustomButton extends StatelessWidget {
   final Color textColor;
   final IconAlignment alignment;
   final bool wantBorder;
+  final bool isDisable;
 
   const CustomButton({
     super.key,
@@ -22,32 +23,62 @@ class CustomButton extends StatelessWidget {
     this.customIcon,
     this.width = double.infinity,
     this.textColor = AppColors.textPrimary,
-    this.alignment = IconAlignment.start,  this.wantBorder = true,
+    this.alignment = IconAlignment.start,
+    this.wantBorder = true,
+    this.isDisable = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    // 1. Determine what the target color should be based on the current state.
+    final Color targetColor = isDisable ? AppColors.lightGrey : backgroundColor ?? Theme.of(context).primaryColor;
+
     return Container(
       height: 50,
       width: width,
       constraints: const BoxConstraints(maxWidth: 400),
-      child: ElevatedButton.icon(
-        iconAlignment: alignment,
-        icon: customIcon,
-        style: ElevatedButton.styleFrom(
-          overlayColor: Colors.transparent,
-          backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
-          disabledBackgroundColor: Colors.grey.shade300,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-            side:  BorderSide(color: wantBorder?AppColors.buttonBorderColor:Colors.transparent, width: .5),
-          ),
-        ),
-        onPressed: isLoading ? null : onPressed,
-        label: isLoading
-            ? const SizedBox(height: 24, width: 24, child: CircularProgressIndicator(color: Colors.grey, strokeWidth: 3))
-            : CustomText(text, fontSize: 15, fontWeight: FontWeight.w500, color: textColor),
+      // 2. Animate the background color change smoothly
+      child: TweenAnimationBuilder<Color?>(
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+        tween: ColorTween(end: targetColor),
+        builder: (context, animatedColor, child) {
+          return ElevatedButton.icon(
+            iconAlignment: alignment,
+            icon: customIcon,
+            style: ElevatedButton.styleFrom(
+              overlayColor: Colors.transparent,
+              backgroundColor: animatedColor, // Apply the smoothly changing color here
+              disabledBackgroundColor: Colors.grey.shade300,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+                side: BorderSide(color: wantBorder ? AppColors.buttonBorderColor : Colors.transparent, width: .5),
+              ),
+            ),
+            onPressed: isDisable || isLoading ? null : onPressed,
+            // 3. Smoothly cross-fade between the Text and the Loading Indicator
+            label: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              child: isLoading
+                  ? const SizedBox(
+                      key: ValueKey(
+                        'loading_spinner',
+                      ), // Keys are required for AnimatedSwitcher to know the widget changed
+                      height: 24,
+                      width: 24,
+                      child: CircularProgressIndicator(color: Colors.grey, strokeWidth: 3),
+                    )
+                  : CustomText(
+                      text,
+                      key: const ValueKey('button_text'),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: textColor,
+                    ),
+            ),
+          );
+        },
       ),
     );
   }

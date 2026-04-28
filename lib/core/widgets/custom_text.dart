@@ -11,7 +11,7 @@ class CustomText extends StatelessWidget {
   final TextAlign? textAlign;
   final int? maxLines;
   final bool isSelectable;
-  final double? height; // Added to control line spacing
+  final double? height;
 
   const CustomText(
     this.text, {

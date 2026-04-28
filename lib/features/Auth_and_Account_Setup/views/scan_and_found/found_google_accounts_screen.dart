@@ -19,8 +19,7 @@ class FoundGoogleAccountsScreen extends StatefulWidget {
   const FoundGoogleAccountsScreen({super.key});
 
   @override
-  State<FoundGoogleAccountsScreen> createState() =>
-      _FoundGoogleAccountsScreenState();
+  State<FoundGoogleAccountsScreen> createState() => _FoundGoogleAccountsScreenState();
 }
 
 class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
@@ -89,10 +88,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
                     _buildLocationsListHeader(),
                     const SizedBox(height: 10),
                     _buildLocationsList(),
-                    if (!isExpanded && locations.length > 3) ...[
-                      const SizedBox(height: 10),
-                      _buildExpansionButton(),
-                    ],
+                    if (!isExpanded && locations.length > 3) ...[const SizedBox(height: 10), _buildExpansionButton()],
                     const SizedBox(height: 25),
                     _buildSummaryBar(),
                     const SizedBox(height: 16),
@@ -116,24 +112,12 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
         CircleAvatar(
           radius: 30.r,
           backgroundColor: AppColors.greenText.withValues(alpha: .1),
-          child: const Icon(
-            Icons.check_circle,
-            color: AppColors.greenText,
-            size: 33,
-          ),
+          child: const Icon(Icons.check_circle, color: AppColors.greenText, size: 33),
         ),
         const SizedBox(height: 15),
-        const CustomText(
-          "Success! We found 5 locations",
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
+        const CustomText("Success! We found 5 locations", fontSize: 16, fontWeight: FontWeight.w500),
         const SizedBox(height: 5),
-        const CustomText(
-          "on your Google Account",
-          fontSize: 14,
-          color: AppColors.textSecondary,
-        ),
+        const CustomText("on your Google Account", fontSize: 14, color: AppColors.textSecondary),
       ],
     );
   }
@@ -147,36 +131,19 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
           CircleAvatar(
             radius: 20.r,
             backgroundColor: AppColors.primary.withValues(alpha: .1),
-            child: const CustomText(
-              "W",
-              fontSize: 20,
-              color: AppColors.primary,
-              fontWeight: FontWeight.w600,
-            ),
+            child: const CustomText("W", fontSize: 20, color: AppColors.primary, fontWeight: FontWeight.w600),
           ),
           const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                CustomText(
-                  "Connected as",
-                  fontSize: 12,
-                  color: AppColors.textSecondary,
-                ),
-                CustomText(
-                  "wadewarren@gmail.com",
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
+                CustomText("Connected as", fontSize: 12, color: AppColors.textSecondary),
+                CustomText("wadewarren@gmail.com", fontSize: 14, fontWeight: FontWeight.w500),
               ],
             ),
           ),
-          CustomTextButton(
-            text: "Change",
-            onPressed: () {},
-            color: AppColors.primary,
-          ),
+          CustomTextButton(text: "Change", onPressed: () {}, color: AppColors.primary),
         ],
       ),
     );
@@ -195,22 +162,14 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
                   color: AppColors.textPrimary,
                   fontWeight: FontWeight.w500,
                 ),
-                CustomTextSpan(
-                  text: "(${locations.length})",
-                  fontSize: 13,
-                  color: AppColors.textSecondary,
-                ),
+                CustomTextSpan(text: "(${locations.length})", fontSize: 13, color: AppColors.textSecondary),
               ],
             ),
           ),
         ),
         Row(
           children: [
-            const CustomText(
-              "Select all",
-              fontSize: 13,
-              color: AppColors.primary,
-            ),
+            const CustomText("Select all", fontSize: 13, color: AppColors.primary),
             const SizedBox(width: 8),
             CustomCheckbox(
               value: selectedCount == locations.length,
@@ -269,11 +228,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
-                Icons.keyboard_arrow_down,
-                color: AppColors.primary,
-                size: 20,
-              ),
+              const Icon(Icons.keyboard_arrow_down, color: AppColors.primary, size: 20),
               const SizedBox(width: 5),
               CustomText(
                 "+${locations.length - 3} more locations",
@@ -298,11 +253,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
               shape: BoxShape.circle,
               border: Border.all(color: AppColors.lightCircleColor, width: 4),
             ),
-            child: const Icon(
-              Icons.bar_chart,
-              color: AppColors.primary,
-              size: 20,
-            ),
+            child: const Icon(Icons.bar_chart, color: AppColors.primary, size: 20),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -310,16 +261,8 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                CustomText(
-                  "$selectedCount locations selected",
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-                const CustomText(
-                  "\$8/month.",
-                  fontSize: 11,
-                  color: AppColors.textSecondary,
-                ),
+                CustomText("$selectedCount locations selected", fontSize: 13, fontWeight: FontWeight.w500),
+                const CustomText("\$8/month.", fontSize: 11, color: AppColors.textSecondary),
               ],
             ),
           ),
@@ -338,13 +281,13 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
     if (isSyncing) {
       return _buildSyncingBox();
     }
+
+    List selectedLocations = locations.where((l) => l.isSelected).toList();
     return Column(
       children: [
         CustomButton(
-          customIcon: const Icon(
-            Icons.arrow_forward_rounded,
-            color: AppColors.scaffoldBackground,
-          ),
+          isDisable: selectedLocations.isEmpty,
+          customIcon: const Icon(Icons.arrow_forward_rounded, color: AppColors.scaffoldBackground),
           text: "Connect these locations and continue",
           onPressed: () {
             setState(() {
@@ -379,30 +322,21 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
             children: [
               RotatingSyncIcon(),
               SizedBox(width: 12),
-              CustomText(
-                "Syncing your reviews...",
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
+              CustomText("Syncing your reviews...", fontSize: 14, fontWeight: FontWeight.w500),
             ],
           ),
           const SizedBox(height: 7),
           ...List.generate(selectedLocations.length, (index) {
             return SyncLocationProgress(
               locationName: selectedLocations[index].name,
-              delay: Duration(
-                milliseconds: index * 1000,
-              ), // 1s delay between each
+              delay: Duration(milliseconds: index * 1000), // 1s delay between each
               onComplete: () {
                 completedSyncs++;
                 if (completedSyncs == selectedLocations.length) {
                   // All complete, navigate after a small delay
                   Future.delayed(const Duration(milliseconds: 500), () {
                     if (mounted) {
-                      context.pushReplacementNamed(
-                        AppRoutes.syncComplete,
-                        extra: selectedLocations,
-                      );
+                      context.pushNamed(AppRoutes.syncComplete, extra: selectedLocations);
                     }
                   });
                 }
@@ -439,17 +373,15 @@ class RotatingSyncIcon extends StatefulWidget {
   State<RotatingSyncIcon> createState() => _RotatingSyncIconState();
 }
 
-class _RotatingSyncIconState extends State<RotatingSyncIcon>
-    with SingleTickerProviderStateMixin {
+class _RotatingSyncIconState extends State<RotatingSyncIcon> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2))
-          ..reverse()
-          ..repeat();
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2))
+      ..reverse()
+      ..repeat();
   }
 
   @override
@@ -462,10 +394,7 @@ class _RotatingSyncIconState extends State<RotatingSyncIcon>
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: AppColors.primary.withValues(alpha: 0.1),
-        shape: BoxShape.circle,
-      ),
+      decoration: BoxDecoration(color: AppColors.primary.withValues(alpha: 0.1), shape: BoxShape.circle),
       child: RotationTransition(
         turns: ReverseAnimation(_controller),
         child: const Icon(Icons.sync, color: AppColors.primary, size: 20),
@@ -494,11 +423,7 @@ class LocationCard extends StatelessWidget {
   final LocationData location;
   final ValueChanged<bool?> onChanged;
 
-  const LocationCard({
-    super.key,
-    required this.location,
-    required this.onChanged,
-  });
+  const LocationCard({super.key, required this.location, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -510,10 +435,7 @@ class LocationCard extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: const Color(0xFFE6EFFD),
-              borderRadius: BorderRadius.circular(5),
-            ),
+            decoration: BoxDecoration(color: const Color(0xFFE6EFFD), borderRadius: BorderRadius.circular(5)),
             child: const CustomImage(AppImages.locaitonLogo),
           ),
           const SizedBox(width: 12),
@@ -521,16 +443,8 @@ class LocationCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText(
-                  location.name,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                ),
-                CustomText(
-                  location.address,
-                  fontSize: 11,
-                  color: AppColors.textSecondary,
-                ),
+                CustomText(location.name, fontSize: 13, fontWeight: FontWeight.w500),
+                CustomText(location.address, fontSize: 11, color: AppColors.textSecondary),
                 // Row(
                 //   children: [
                 //     const Icon(
@@ -560,11 +474,7 @@ class LocationCard extends StatelessWidget {
             children: [
               const Icon(Icons.star, color: AppColors.starColor, size: 14),
               const SizedBox(width: 4),
-              CustomText(
-                location.rating.toString(),
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-              ),
+              CustomText(location.rating.toString(), fontSize: 13, fontWeight: FontWeight.w500),
               const SizedBox(width: 10),
 
               CustomCheckbox(value: location.isSelected, onChanged: onChanged),

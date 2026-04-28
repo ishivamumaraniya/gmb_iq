@@ -23,8 +23,8 @@ class AppRoutes {
   static const String blank = 'blank';
   static const String login = 'login';
   static const String scanningAccounts = 'scanning-accounts';
-  static const String foundAccounts = "found-accounts";
-  static const String syncComplete = "sync-complete";
+  static const String foundAccounts = 'found-accounts';
+  static const String syncComplete = 'sync-complete';
 }
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
