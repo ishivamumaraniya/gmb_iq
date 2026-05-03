@@ -9,7 +9,7 @@ import 'package:gmb_iq/core/widgets/custom_image.dart';
 import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
 import '../../widget/customAuthInfoBox.dart';
-import 'found_google_accounts_screen.dart';
+import 'found_accounts/found_accounts_state.dart';
 
 class SyncCompleteScreen extends StatelessWidget {
   final List<LocationData> syncedLocations;

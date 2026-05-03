@@ -4,7 +4,7 @@ import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
 import 'package:gmb_iq/core/widgets/custom_image.dart';
 import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
-import 'package:gmb_iq/features/Auth_and_Account_Setup/views/scan_and_found/widgets/scanning_components.dart';
+import 'package:gmb_iq/features/Auth_and_Account_Setup/views/scan_and_found/scanning/widgets/scanning_components.dart';
 
 class ScanningDesktopView extends StatelessWidget {
   final AnimationController progressController;

@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gmb_iq/features/Auth_and_Account_Setup/views/scan_and_found/scanning_desktop_view.dart';
-import 'package:gmb_iq/features/Auth_and_Account_Setup/views/scan_and_found/scanning_mobile_view.dart';
+import 'package:gmb_iq/features/Auth_and_Account_Setup/views/scan_and_found/scanning/scanning_desktop_view.dart';
+import 'package:gmb_iq/features/Auth_and_Account_Setup/views/scan_and_found/scanning/scanning_mobile_view.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../core/responsive/responsive_context.dart';
+import '../../../../../core/responsive/responsive_context.dart';
+import '../../../../../core/router/app_router.dart';
 
 enum loadingRowStatus { initial, loading, success }
 
@@ -35,7 +37,7 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
     _progressController.status.isCompleted;
     _progressController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        // context.pushNamed(AppRoutes.foundAccounts);
+        context.pushNamed(AppRoutes.foundAccounts);
       }
     });
   }

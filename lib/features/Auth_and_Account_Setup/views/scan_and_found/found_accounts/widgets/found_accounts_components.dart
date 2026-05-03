@@ -2,83 +2,25 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gmb_iq/core/constants/app_images.dart';
+import 'package:gmb_iq/core/responsive/responsive_context.dart';
 import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
 import 'package:gmb_iq/core/widgets/custom_button.dart';
 import 'package:gmb_iq/core/widgets/custom_image.dart';
-import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
-
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/theme_extensions.dart';
-import '../../../../core/widgets/custom_checkbox.dart';
-import '../../../../core/widgets/custom_text_button.dart';
-import '../../../../core/widgets/sync_location_progress.dart';
-import '../../../../core/router/app_router.dart';
 import 'package:go_router/go_router.dart';
 
-class FoundGoogleAccountsScreen extends StatefulWidget {
-  const FoundGoogleAccountsScreen({super.key});
+import '../../../../../../core/theme/app_colors.dart';
+import '../../../../../../core/theme/theme_extensions.dart';
+import '../../../../../../core/widgets/custom_checkbox.dart';
+import '../../../../../../core/widgets/custom_text_button.dart';
+import '../../../../../../core/widgets/sync_location_progress.dart';
+import '../../../../../../core/router/app_router.dart';
+import '../found_accounts_state.dart';
 
-  @override
-  State<FoundGoogleAccountsScreen> createState() => _FoundGoogleAccountsScreenState();
-}
-
-class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
-  bool isExpanded = false;
-  bool isSyncing = false;
-  int completedSyncs = 0;
-  final List<LocationData> locations = [
-    LocationData(name: "Main Branch", address: "123 Main street, New York, NY 10001", rating: 4.6, reviews: 128, isSelected: true),
-    LocationData(name: "Downtown Location", address: "456 Downtown Ave, New York, NY 10002", rating: 4.2, reviews: 89, isSelected: true),
-    LocationData(name: "Westside Clinic", address: "789 West Blvd, New York, NY 10003", rating: 4.9, reviews: 241, isSelected: false),
-    LocationData(name: "Time Square Clinic", address: "789 West Blvd, New York, NY 10003", rating: 4.8, reviews: 120, isSelected: false),
-    LocationData(name: "Northside Clinic", address: "789 West Blvd, New York, NY 10003", rating: 4.5, reviews: 95, isSelected: false),
-  ];
-
-  int get selectedCount => locations.where((l) => l.isSelected).length;
-
-  double get totalMonthlyPrice => selectedCount * 8.0;
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomScaffold(
-      maxWidth: 500,
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: constraints.maxHeight),
-              child: IntrinsicHeight(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    _buildHeader(),
-                    const SizedBox(height: 15),
-                    _buildConnectedAccount(),
-                    const SizedBox(height: 20),
-                    _buildLocationsListHeader(),
-                    const SizedBox(height: 10),
-                    _buildLocationsList(),
-                    if (!isExpanded && locations.length > 3) ...[const SizedBox(height: 10), _buildExpansionButton()],
-                    const SizedBox(height: 25),
-                    _buildSummaryBar(),
-                    const SizedBox(height: 16),
-                    _buildActionButtons(),
-                    const Spacer(),
-                    const SizedBox(height: 20),
-                    _buildFooter(),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
+class FoundAccountsComponents {
+  static Widget buildHeader(BuildContext context, {CrossAxisAlignment alignment = CrossAxisAlignment.center}) {
     return Column(
+      crossAxisAlignment: alignment,
       children: [
         CircleAvatar(
           radius: 30.r,
@@ -86,15 +28,20 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
           child: const Icon(Icons.check_circle, color: AppColors.greenText, size: 33),
         ),
         const SizedBox(height: 15),
-        const CustomText("Success! We found 5 locations", fontSize: 16, fontWeight: FontWeight.w500),
-        const SizedBox(height: 5),
-        const CustomText("on your Google Account", fontSize: 14, isSecondary: true),
+        CustomText(
+          "Success! We found 5 locations",
+          fontSize: context.isDesktop ? 32 : 16,
+          fontWeight: context.isDesktop ? FontWeight.w700 : FontWeight.w500,
+        ),
+        CustomText("on your Google Account", fontSize: context.isDesktop ? 16 : 14, isSecondary: true),
       ],
     );
   }
 
-  Widget _buildConnectedAccount() {
+  static Widget buildConnectedAccount(FoundAccountsState state) {
     return CustomBorderContainer(
+      borderRadius: 10,
+      elevation: 2,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 10,
@@ -114,13 +61,13 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
               ],
             ),
           ),
-          CustomTextButton(text: "Change", onPressed: () {}, color: AppColors.primary),
+          CustomTextButton(text: "Change", onPressed: state.onChangeAccount, color: AppColors.primary),
         ],
       ),
     );
   }
 
-  Widget _buildLocationsListHeader() {
+  static Widget buildLocationsListHeader(BuildContext context, FoundAccountsState state) {
     return Row(
       children: [
         Expanded(
@@ -134,7 +81,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
                   fontWeight: FontWeight.w500,
                   context: context,
                 ),
-                CustomTextSpan(text: "(${locations.length})", fontSize: 13, context: context),
+                CustomTextSpan(text: "(${state.locations.length})", fontSize: 13, context: context),
               ],
             ),
           ),
@@ -143,56 +90,34 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
           children: [
             const CustomText("Select all", fontSize: 13, color: AppColors.primary),
             const SizedBox(width: 8),
-            CustomCheckbox(
-              value: selectedCount == locations.length,
-              onChanged: (val) {
-                setState(() {
-                  for (var l in locations) {
-                    l.isSelected = val ?? false;
-                  }
-                });
-              },
-            ),
+            CustomCheckbox(value: state.selectedCount == state.locations.length, onChanged: state.onSelectAll),
           ],
         ),
       ],
     );
   }
 
-  Widget _buildLocationsList() {
-    final count = isExpanded ? locations.length : 3;
+  static Widget buildLocationsList(FoundAccountsState state) {
+    final count = state.isExpanded ? state.locations.length : 3;
     return Column(
       children: List.generate(count, (index) {
         return Padding(
           padding: EdgeInsets.only(bottom: index == count - 1 ? 0 : 10),
-          child: LocationCard(
-            location: locations[index],
-            onChanged: (val) {
-              setState(() {
-                locations[index].isSelected = val ?? false;
-              });
-            },
-          ),
+          child: LocationCard(location: state.locations[index], onChanged: (val) => state.onLocationToggle(index, val)),
         );
       }),
     );
   }
 
-  Widget _buildExpansionButton() {
+  static Widget buildExpansionButton(FoundAccountsState state) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          isExpanded = true;
-        });
-      },
+      onTap: state.onExpandToggle,
       child: DottedBorder(
         options: RoundedRectDottedBorderOptions(
           radius: const Radius.circular(5),
           color: AppColors.primary.withValues(alpha: 0.5),
-
           dashPattern: const [3, 3],
         ),
-
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 12),
@@ -202,7 +127,12 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
             children: [
               const Icon(Icons.keyboard_arrow_down, color: AppColors.primary, size: 20),
               const SizedBox(width: 5),
-              CustomText("+${locations.length - 3} more locations", fontSize: 13, color: AppColors.primary, fontWeight: FontWeight.w500),
+              CustomText(
+                "+${state.locations.length - 3} more locations",
+                fontSize: 13,
+                color: AppColors.primary,
+                fontWeight: FontWeight.w500,
+              ),
             ],
           ),
         ),
@@ -210,7 +140,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
     );
   }
 
-  Widget _buildSummaryBar() {
+  static Widget buildSummaryBar(FoundAccountsState state) {
     return CustomBorderContainer(
       child: Row(
         children: [
@@ -228,23 +158,23 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                CustomText("$selectedCount locations selected", fontSize: 13, fontWeight: FontWeight.w500),
+                CustomText("${state.selectedCount} locations selected", fontSize: 13, fontWeight: FontWeight.w500),
                 const CustomText("\$8/month.", fontSize: 11, isSecondary: true),
               ],
             ),
           ),
-          CustomText("\$${totalMonthlyPrice.toInt()}/month", fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.greenText),
+          CustomText("\$${state.totalMonthlyPrice.toInt()}/month", fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.greenText),
         ],
       ),
     );
   }
 
-  Widget _buildActionButtons() {
-    if (isSyncing) {
-      return _buildSyncingBox();
+  static Widget buildActionButtons(BuildContext context, FoundAccountsState state) {
+    if (state.isSyncing) {
+      return buildSyncingBox(context, state);
     }
 
-    List selectedLocations = locations.where((l) => l.isSelected).toList();
+    List<LocationData> selectedLocations = state.locations.where((l) => l.isSelected).toList();
     return Column(
       children: [
         CustomButton(
@@ -252,12 +182,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
           isDisable: selectedLocations.isEmpty,
           customIcon: const Icon(Icons.arrow_forward_rounded),
           text: "Connect these locations and continue",
-          onPressed: () {
-            setState(() {
-              isSyncing = true;
-              completedSyncs = 0;
-            });
-          },
+          onPressed: state.onConnect,
           alignment: IconAlignment.end,
         ),
         const SizedBox(height: 10),
@@ -265,7 +190,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
           isSecondary: true,
           backgroundColor: AppColors.googleButtonGrey,
           text: "Use a different Google account",
-          onPressed: () {},
+          onPressed: state.onChangeAccount,
           textColor: AppColors.primary,
           customIcon: const CustomImage(AppImages.googleLogo),
         ),
@@ -273,8 +198,8 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
     );
   }
 
-  Widget _buildSyncingBox() {
-    final selectedLocations = locations.where((l) => l.isSelected).toList();
+  static Widget buildSyncingBox(BuildContext context, FoundAccountsState state) {
+    final selectedLocations = state.locations.where((l) => l.isSelected).toList();
     return CustomBorderContainer(
       wantBorder: false,
       myColor: AppColors.primary.withValues(alpha: 0.05),
@@ -292,17 +217,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
             return SyncLocationProgress(
               locationName: selectedLocations[index].name,
               delay: Duration(milliseconds: index * 1000), // 1s delay between each
-              onComplete: () {
-                completedSyncs++;
-                if (completedSyncs == selectedLocations.length) {
-                  // All complete, navigate after a small delay
-                  Future.delayed(const Duration(milliseconds: 500), () {
-                    if (mounted) {
-                      context.pushNamed(AppRoutes.syncComplete, extra: selectedLocations);
-                    }
-                  });
-                }
-              },
+              onComplete: state.onSyncComplete,
             );
           }),
         ],
@@ -310,7 +225,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
     );
   }
 
-  Widget _buildFooter() {
+  static Widget buildFooter() {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -359,16 +274,6 @@ class _RotatingSyncIconState extends State<RotatingSyncIcon> with SingleTickerPr
   }
 }
 
-class LocationData {
-  final String name;
-  final String address;
-  final double rating;
-  final int reviews;
-  bool isSelected;
-
-  LocationData({required this.name, required this.address, required this.rating, required this.reviews, this.isSelected = false});
-}
-
 class LocationCard extends StatelessWidget {
   final LocationData location;
   final ValueChanged<bool?> onChanged;
@@ -379,7 +284,6 @@ class LocationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomBorderContainer(
       myColor: context.isDarkMode ? null : AppColors.lighterPrimaryColor,
-
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -401,14 +305,12 @@ class LocationCard extends StatelessWidget {
               ],
             ),
           ),
-
           Row(
             children: [
               const Icon(Icons.star, color: AppColors.starColor, size: 14),
               const SizedBox(width: 4),
               CustomText(location.rating.toString(), fontSize: 13, fontWeight: FontWeight.w500),
               const SizedBox(width: 10),
-
               CustomCheckbox(value: location.isSelected, onChanged: onChanged),
             ],
           ),

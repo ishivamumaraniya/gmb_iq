@@ -4,7 +4,8 @@ import 'package:gmb_iq/core/theme/app_colors.dart';
 import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
 import 'package:gmb_iq/features/Auth_and_Account_Setup/widget/customAuthInfoBox.dart';
-import '../../../../../core/constants/app_images.dart';
+
+import '../../../../../../core/constants/app_images.dart';
 
 enum LoadingRowStatus { initial, loading, success }
 
