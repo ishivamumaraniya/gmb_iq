@@ -3,7 +3,6 @@ class AppImages {
 
   // Define your base paths
   static const String _pngPath = 'assets/png';
-  static const String _iconPath = 'assets/icons';
   static const String _svgPath = 'assets/svg';
 
   // ===========================================================================
@@ -28,7 +27,5 @@ class AppImages {
   static const String graphLogo = "$_svgPath/login_graph.svg";
   static const String locaitonLogo = "$_svgPath/Location.svg";
   static const String checkTickLogo = "$_svgPath/check_tick.svg";
-
-
-
+  static const String logoGraphLogo = "$_svgPath/graph_logo.svg";
 }

@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gmb_iq/core/router/app_router.dart';
 import 'package:gmb_iq/core/theme/app_colors.dart';
 import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
 import 'package:gmb_iq/features/Auth_and_Account_Setup/widget/customAuthInfoBox.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_images.dart';
+import '../../../../core/router/app_router.dart';
 import '../../../../core/widgets/custom_image.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/widgets/custom_text.dart';
@@ -22,8 +22,7 @@ class ScanningGoogleAccountsScreen extends StatefulWidget {
   State<ScanningGoogleAccountsScreen> createState() => _ScanningGoogleAccountsScreenState();
 }
 
-class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScreen>
-    with SingleTickerProviderStateMixin {
+class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScreen> with SingleTickerProviderStateMixin {
   late AnimationController _progressController;
 
   @override
@@ -121,12 +120,7 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
               Row(
                 children: [
                   const Expanded(
-                    child: CustomText(
-                      "Scanning in progress",
-                      fontSize: 15,
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    child: CustomText("Scanning in progress", fontSize: 15, color: AppColors.primary, fontWeight: FontWeight.w600),
                   ),
                   CustomText(
                     "${(_progressController.value * 100).toInt()}%",
@@ -186,12 +180,7 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
     );
   }
 
-  Widget _myLoadingRowsWidget({
-    required String title,
-    required String subtitle,
-    required loadingRowStatus status,
-    required bool isLast,
-  }) {
+  Widget _myLoadingRowsWidget({required String title, required String subtitle, required loadingRowStatus status, required bool isLast}) {
     final Color leftIconColor;
     final Color leftAvatarColor;
     final Widget leftIcon;
@@ -202,7 +191,7 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
         leftIconColor = AppColors.primary;
         leftAvatarColor = AppColors.primary.withValues(alpha: .1);
         leftIcon = const Icon(Icons.check_circle_outline, color: AppColors.primary, size: 24);
-        rightIcon = const Icon(Icons.check, color: Colors.black, size: 20);
+        rightIcon = Icon(Icons.check, color: Theme.of(context).colorScheme.onSurface, size: 20);
         break;
       case loadingRowStatus.loading:
         leftIconColor = AppColors.primary;
@@ -251,7 +240,7 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
             ],
           ),
         ),
-        if (!isLast) const Divider(color: AppColors.customBorderColorGrey, height: 1),
+        if (!isLast) const Divider(height: 1),
       ],
     );
   }

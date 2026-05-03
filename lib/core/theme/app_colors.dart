@@ -5,8 +5,9 @@ class AppColors {
   static const Color scaffoldBackground = Colors.white;
 
   static const Color lightPrimaryColor = Color(0xFFDEEAFF);
-static const Color lighterPrimaryColor = Color(0xFFF6F9FE);
-static const Color lightCircleColor = Color(0xFFDAE6FA);
+  static const Color lighterPrimaryColor = Color(0xFFF6F9FE);
+  static const Color lightCircleColor = Color(0xFFDAE6FA);
+
   // Text
   static const Color textPrimary = Color(0xFF202124);
   static const Color textSecondary = Color(0xFF5F6368);
@@ -46,6 +47,6 @@ static const Color lightCircleColor = Color(0xFFDAE6FA);
   static const Color darkScaffoldBackground = Color(0xFF121212); // Standard Material dark background
   static const Color darkTextPrimary = Color(0xFFE8EAED); // Off-white (better readability than pure white)
   static const Color darkTextSecondary = Color(0xFF9AA0A6); // Lighter grey for contrast on dark background
-  static const Color darkPrimary = Color(0xFF8AB4F8); // A slightly brighter blue to pop against dark backgrounds
   static const Color darkSecondaryBackground = Color(0xFF1A263D); // Dark tinted blue for icon backgrounds
+  static const Color darkBorderColor = Color(0xFF2C3647); // Dark tinted blue for borders
 }

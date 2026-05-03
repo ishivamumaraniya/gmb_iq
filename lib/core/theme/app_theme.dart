@@ -11,6 +11,8 @@ class AppTheme {
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.scaffoldBackground,
       primaryColor: AppColors.primary,
+      cardColor: Colors.white,
+      dividerTheme: const DividerThemeData(color: AppColors.customBorderColorGrey, thickness: 1),
 
       // Default color scheme
       colorScheme: const ColorScheme.light(
@@ -21,13 +23,9 @@ class AppTheme {
       ),
 
       // Set the default text color without overriding font sizes or weights
-      textTheme:
-          GoogleFonts.googleSansFlexTextTheme(
-            ThemeData.light().textTheme,
-          ).apply(
-            bodyColor: AppColors.textPrimary,
-            displayColor: AppColors.textPrimary,
-          ),
+      textTheme: GoogleFonts.googleSansFlexTextTheme(
+        ThemeData.light().textTheme,
+      ).apply(bodyColor: AppColors.textPrimary, displayColor: AppColors.textPrimary),
 
       // Icon Theme
       iconTheme: const IconThemeData(color: AppColors.primary),
@@ -41,25 +39,25 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.darkScaffoldBackground,
-      primaryColor: AppColors.darkPrimary,
+      primaryColor: AppColors.primary,
+      cardColor: AppColors.darkSecondaryBackground,
+      dividerTheme: const DividerThemeData(color: AppColors.darkBorderColor, thickness: 1),
 
       // Default dark color scheme
       colorScheme: const ColorScheme.dark(
-        primary: AppColors.darkPrimary,
+        primary: AppColors.primary,
         surface: AppColors.darkScaffoldBackground,
         onSurface: AppColors.darkTextPrimary,
-        error: AppColors
-            .redText, // Red works on dark too, or you can use a lighter red like #F28B82
+        error: AppColors.redText, // Red works on dark too, or you can use a lighter red like #F28B82
       ),
 
       // Set the default dark text color
-      textTheme: GoogleFonts.dmSansTextTheme(ThemeData.dark().textTheme).apply(
-        bodyColor: AppColors.darkTextPrimary,
-        displayColor: AppColors.darkTextPrimary,
-      ),
+      textTheme: GoogleFonts.dmSansTextTheme(
+        ThemeData.dark().textTheme,
+      ).apply(bodyColor: AppColors.darkTextPrimary, displayColor: AppColors.darkTextPrimary),
 
       // Icon Theme
-      iconTheme: const IconThemeData(color: AppColors.darkPrimary),
+      iconTheme: const IconThemeData(color: AppColors.primary),
     );
   }
 }

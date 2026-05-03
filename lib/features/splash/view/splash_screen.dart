@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gmb_iq/core/constants/app_images.dart';
 import 'package:gmb_iq/core/router/app_router.dart';
-import 'package:gmb_iq/core/widgets/custom_image.dart';
+import 'package:gmb_iq/core/widgets/customLogo.dart';
 import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Widget _buildUI(BuildContext context) {
-    return const CustomScaffold(body: Center(child: CustomImage(AppImages.appLogo)));
+    return const CustomScaffold(body: Center(child: CustomLogo()));
   }
 }

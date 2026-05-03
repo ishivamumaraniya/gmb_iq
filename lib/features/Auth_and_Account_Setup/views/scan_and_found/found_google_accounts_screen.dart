@@ -9,6 +9,7 @@ import 'package:gmb_iq/core/widgets/custom_scaffold.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/theme_extensions.dart';
 import '../../../../core/widgets/custom_checkbox.dart';
 import '../../../../core/widgets/custom_text_button.dart';
 import '../../../../core/widgets/sync_location_progress.dart';
@@ -27,41 +28,11 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
   bool isSyncing = false;
   int completedSyncs = 0;
   final List<LocationData> locations = [
-    LocationData(
-      name: "Main Branch",
-      address: "123 Main street, New York, NY 10001",
-      rating: 4.6,
-      reviews: 128,
-      isSelected: true,
-    ),
-    LocationData(
-      name: "Downtown Location",
-      address: "456 Downtown Ave, New York, NY 10002",
-      rating: 4.2,
-      reviews: 89,
-      isSelected: true,
-    ),
-    LocationData(
-      name: "Westside Clinic",
-      address: "789 West Blvd, New York, NY 10003",
-      rating: 4.9,
-      reviews: 241,
-      isSelected: false,
-    ),
-    LocationData(
-      name: "Time Square Clinic",
-      address: "789 West Blvd, New York, NY 10003",
-      rating: 4.8,
-      reviews: 120,
-      isSelected: false,
-    ),
-    LocationData(
-      name: "Northside Clinic",
-      address: "789 West Blvd, New York, NY 10003",
-      rating: 4.5,
-      reviews: 95,
-      isSelected: false,
-    ),
+    LocationData(name: "Main Branch", address: "123 Main street, New York, NY 10001", rating: 4.6, reviews: 128, isSelected: true),
+    LocationData(name: "Downtown Location", address: "456 Downtown Ave, New York, NY 10002", rating: 4.2, reviews: 89, isSelected: true),
+    LocationData(name: "Westside Clinic", address: "789 West Blvd, New York, NY 10003", rating: 4.9, reviews: 241, isSelected: false),
+    LocationData(name: "Time Square Clinic", address: "789 West Blvd, New York, NY 10003", rating: 4.8, reviews: 120, isSelected: false),
+    LocationData(name: "Northside Clinic", address: "789 West Blvd, New York, NY 10003", rating: 4.5, reviews: 95, isSelected: false),
   ];
 
   int get selectedCount => locations.where((l) => l.isSelected).length;
@@ -159,7 +130,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
                 CustomTextSpan(
                   text: "Locations found ",
                   fontSize: 13,
-                  color: AppColors.textPrimary,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontWeight: FontWeight.w500,
                 ),
                 CustomTextSpan(text: "(${locations.length})", fontSize: 13, color: AppColors.textSecondary),
@@ -230,12 +201,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
             children: [
               const Icon(Icons.keyboard_arrow_down, color: AppColors.primary, size: 20),
               const SizedBox(width: 5),
-              CustomText(
-                "+${locations.length - 3} more locations",
-                fontSize: 13,
-                color: AppColors.primary,
-                fontWeight: FontWeight.w500,
-              ),
+              CustomText("+${locations.length - 3} more locations", fontSize: 13, color: AppColors.primary, fontWeight: FontWeight.w500),
             ],
           ),
         ),
@@ -266,12 +232,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
               ],
             ),
           ),
-          CustomText(
-            "\$${totalMonthlyPrice.toInt()}/month",
-            fontSize: 13,
-            fontWeight: FontWeight.w500,
-            color: AppColors.greenText,
-          ),
+          CustomText("\$${totalMonthlyPrice.toInt()}/month", fontSize: 13, fontWeight: FontWeight.w500, color: AppColors.greenText),
         ],
       ),
     );
@@ -286,8 +247,9 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
     return Column(
       children: [
         CustomButton(
+          wantBorder: false,
           isDisable: selectedLocations.isEmpty,
-          customIcon: const Icon(Icons.arrow_forward_rounded, color: AppColors.scaffoldBackground),
+          customIcon: const Icon(Icons.arrow_forward_rounded),
           text: "Connect these locations and continue",
           onPressed: () {
             setState(() {
@@ -295,13 +257,12 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
               completedSyncs = 0;
             });
           },
-          textColor: AppColors.scaffoldBackground,
           alignment: IconAlignment.end,
         ),
         const SizedBox(height: 10),
         CustomButton(
+          isSecondary: true,
           backgroundColor: AppColors.googleButtonGrey,
-          wantBorder: false,
           text: "Use a different Google account",
           onPressed: () {},
           textColor: AppColors.primary,
@@ -354,13 +315,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
       children: [
         Icon(Icons.lock, color: AppColors.lighterGrey, size: 16),
         SizedBox(width: 5),
-        Flexible(
-          child: CustomText(
-            "We never share your information with third parties.",
-            fontSize: 12,
-            color: AppColors.textSecondary,
-          ),
-        ),
+        Flexible(child: CustomText("We never share your information with third parties.", fontSize: 12, color: AppColors.textSecondary)),
       ],
     );
   }
@@ -410,13 +365,7 @@ class LocationData {
   final int reviews;
   bool isSelected;
 
-  LocationData({
-    required this.name,
-    required this.address,
-    required this.rating,
-    required this.reviews,
-    this.isSelected = false,
-  });
+  LocationData({required this.name, required this.address, required this.rating, required this.reviews, this.isSelected = false});
 }
 
 class LocationCard extends StatelessWidget {
@@ -428,14 +377,17 @@ class LocationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomBorderContainer(
-      myColor: AppColors.lighterPrimaryColor,
+      myColor: context.isDarkMode ? null : AppColors.lighterPrimaryColor,
 
       myWidget: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(color: const Color(0xFFE6EFFD), borderRadius: BorderRadius.circular(5)),
+            decoration: BoxDecoration(
+              color: context.isDarkMode ? AppColors.primary.withValues(alpha: 0.1) : const Color(0xFFE6EFFD),
+              borderRadius: BorderRadius.circular(5),
+            ),
             child: const CustomImage(AppImages.locaitonLogo),
           ),
           const SizedBox(width: 12),

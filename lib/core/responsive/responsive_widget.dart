@@ -10,7 +10,6 @@ class ResponsiveWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        print(constraints.maxWidth);
         if (constraints.maxWidth >= 1040) {
           return desktop;
         } else {

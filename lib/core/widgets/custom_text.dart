@@ -12,6 +12,7 @@ class CustomText extends StatelessWidget {
   final int? maxLines;
   final bool isSelectable;
   final double? height;
+  final double? letterSpacing;
 
   const CustomText(
     this.text, {
@@ -23,7 +24,8 @@ class CustomText extends StatelessWidget {
     this.textAlign,
     this.maxLines,
     this.isSelectable = false,
-    this.height, // Added optional parameter
+    this.height,
+    this.letterSpacing,
   });
 
   @override
@@ -31,10 +33,13 @@ class CustomText extends StatelessWidget {
     final defaultColor = Theme.of(context).textTheme.bodyMedium?.color;
 
     final style = GoogleFonts.googleSansFlex(
+      letterSpacing: letterSpacing,
+
+      // 👈 APPLY HERE
       fontSize: fontSize.spMin,
       fontWeight: fontWeight,
       color: color ?? defaultColor,
-      height: height, // Passes line height multiplier to TextStyle
+      height: height,
     );
 
     if (isSelectable) {
@@ -54,11 +59,6 @@ class CustomTextSpan extends TextSpan {
     super.recognizer,
     double? height,
   }) : super(
-         style: GoogleFonts.googleSansFlex(
-           fontSize: fontSize.spMin,
-           color: color,
-           fontWeight: fontWeight,
-           height: height,
-         ),
+         style: GoogleFonts.googleSansFlex(fontSize: fontSize.spMin, color: color, fontWeight: fontWeight, height: height),
        );
 }

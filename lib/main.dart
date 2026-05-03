@@ -37,8 +37,8 @@ class MyApp extends StatelessWidget {
               return MaterialApp.router(
                 title: 'GMB IQ',
                 theme: AppTheme.lightTheme,
-                // darkTheme: AppTheme.darkTheme,
-                themeMode: ThemeMode.light,
+                darkTheme: AppTheme.darkTheme,
+                themeMode: ThemeMode.system,
                 routerConfig: AppRouter.router,
                 debugShowCheckedModeBanner: false,
                 builder: (context, child) {

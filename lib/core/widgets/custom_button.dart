@@ -9,10 +9,12 @@ class CustomButton extends StatelessWidget {
   final Color? backgroundColor;
   final Widget? customIcon; // Could be an Image or Icon
   final double width;
-  final Color textColor;
+  final Color? textColor;
   final IconAlignment alignment;
   final bool wantBorder;
   final bool isDisable;
+  final double maxWidth;
+  final bool isSecondary;
 
   const CustomButton({
     super.key,
@@ -22,38 +24,56 @@ class CustomButton extends StatelessWidget {
     this.backgroundColor,
     this.customIcon,
     this.width = double.infinity,
-    this.textColor = AppColors.textPrimary,
+    this.textColor,
     this.alignment = IconAlignment.start,
     this.wantBorder = true,
     this.isDisable = false,
+    this.maxWidth = 500,
+    this.isSecondary = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    // 1. Determine what the target color should be based on the current state.
-    final Color targetColor = isDisable ? AppColors.lightGrey : backgroundColor ?? Theme.of(context).primaryColor;
+    // Determine target background color
+    final Color targetBgColor = isDisable
+        ? AppColors.lightGrey
+        : (isSecondary
+              ? Theme.of(context).scaffoldBackgroundColor
+              : (backgroundColor ?? Theme.of(context).primaryColor));
+
+    // Determine target text/icon color
+    final Color effectiveTextColor = isSecondary
+        ? (textColor ?? Theme.of(context).colorScheme.onSurface)
+        : Colors.white;
 
     return Container(
       height: 50,
       width: width,
-      constraints: const BoxConstraints(maxWidth: 400),
+      constraints: BoxConstraints(maxWidth: maxWidth),
       // 2. Animate the background color change smoothly
       child: TweenAnimationBuilder<Color?>(
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeOut,
-        tween: ColorTween(end: targetColor),
-        builder: (context, animatedColor, child) {
+        tween: ColorTween(end: targetBgColor),
+        builder: (context, animatedBgColor, child) {
           return ElevatedButton.icon(
             iconAlignment: alignment,
             icon: customIcon,
             style: ElevatedButton.styleFrom(
               overlayColor: Colors.transparent,
-              backgroundColor: animatedColor, // Apply the smoothly changing color here
+              backgroundColor: animatedBgColor,
+              foregroundColor:
+                  effectiveTextColor, // This automatically tints Icons inside the button
               disabledBackgroundColor: Colors.grey.shade300,
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
-                side: BorderSide(color: wantBorder ? AppColors.buttonBorderColor : Colors.transparent, width: .5),
+                side: BorderSide(
+                  color: wantBorder
+                      ? AppColors.buttonBorderColor
+                      : Colors.transparent,
+                  width: .5,
+                ),
               ),
             ),
             onPressed: isDisable || isLoading ? null : onPressed,
@@ -62,19 +82,19 @@ class CustomButton extends StatelessWidget {
               duration: const Duration(milliseconds: 300),
               child: isLoading
                   ? const SizedBox(
-                      key: ValueKey(
-                        'loading_spinner',
-                      ), // Keys are required for AnimatedSwitcher to know the widget changed
+                      key: ValueKey('loading_spinner'),
                       height: 24,
                       width: 24,
-                      child: CircularProgressIndicator(color: Colors.grey, strokeWidth: 3),
+                      child: CircularProgressIndicator(
+                        color: Colors.grey,
+                        strokeWidth: 3,
+                      ),
                     )
                   : CustomText(
                       text,
-                      key: const ValueKey('button_text'),
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
-                      color: textColor,
+                      color: effectiveTextColor,
                     ),
             ),
           );
