@@ -86,24 +86,19 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
   }
 
   Widget _buildHeader() {
-    return Column(
+    return const Column(
       children: [
-        CustomImage(AppImages.googleLogo, width: 40.w, height: 40.h, fit: BoxFit.contain),
-        const SizedBox(height: 15),
-        const CustomText(
+        CustomImage(AppImages.googleLogo, width: 40, height: 40, fit: BoxFit.contain),
+        SizedBox(height: 15),
+        CustomText(
           "Scanning your\nGoogle account...",
           fontSize: 22,
           fontWeight: FontWeight.w600,
           textAlign: TextAlign.center,
           height: 1.15,
         ),
-        const SizedBox(height: 5),
-        const CustomText(
-          "Looking for your google Business locations",
-          fontSize: 14,
-          textAlign: TextAlign.center,
-          color: AppColors.textSecondary,
-        ),
+        SizedBox(height: 5),
+        CustomText("Looking for your google Business locations", fontSize: 14, textAlign: TextAlign.center, isSecondary: true),
       ],
     );
   }
@@ -135,7 +130,7 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
                 backgroundColor: AppColors.primary.withValues(alpha: .1),
                 borderRadius: BorderRadius.circular(10),
               ),
-              const CustomText("This may take few moments", fontSize: 12, color: AppColors.textSecondary),
+              const CustomText("This may take few moments", fontSize: 12, isSecondary: true),
             ],
           ),
         );
@@ -232,7 +227,7 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
                   children: [
                     CustomText(title, fontSize: 14, fontWeight: FontWeight.w600),
                     const SizedBox(height: 2),
-                    CustomText(subtitle, fontSize: 12, color: AppColors.textSecondary),
+                    CustomText(subtitle, fontSize: 12, isSecondary: true),
                   ],
                 ),
               ),

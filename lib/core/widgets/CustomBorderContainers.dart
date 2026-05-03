@@ -9,12 +9,18 @@ class CustomBorderContainer extends StatelessWidget {
     this.padding = const EdgeInsets.all(13),
     this.myColor,
     this.wantBorder = true,
+    this.borderRadius = 5,
+    this.boxShadow,
+    this.elevation = 0,
   });
 
   final Widget myWidget;
   final EdgeInsets padding;
   final Color? myColor;
   final bool wantBorder;
+  final double borderRadius;
+  final List<BoxShadow>? boxShadow;
+  final double elevation;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +30,22 @@ class CustomBorderContainer extends StatelessWidget {
 
     final resolvedBorderColor = wantBorder ? (isDark ? AppColors.darkBorderColor : AppColors.customBorderColorGrey) : Colors.transparent;
 
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 500),
-      padding: padding,
-      decoration: BoxDecoration(
-        color: resolvedColor,
-        border: Border.all(color: resolvedBorderColor),
-        borderRadius: BorderRadius.circular(5),
+    return PhysicalModel(
+      borderRadius: BorderRadius.circular(borderRadius),
+      color: resolvedColor,
+      elevation: elevation,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        constraints: const BoxConstraints(maxWidth: 500),
+        padding: padding,
+        decoration: BoxDecoration(
+          color: resolvedColor,
+          border: Border.all(color: resolvedBorderColor),
+          borderRadius: BorderRadius.circular(borderRadius),
+          boxShadow: boxShadow,
+        ),
+        child: myWidget,
       ),
-      child: myWidget,
     );
   }
 }

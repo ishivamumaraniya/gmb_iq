@@ -88,7 +88,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
         const SizedBox(height: 15),
         const CustomText("Success! We found 5 locations", fontSize: 16, fontWeight: FontWeight.w500),
         const SizedBox(height: 5),
-        const CustomText("on your Google Account", fontSize: 14, color: AppColors.textSecondary),
+        const CustomText("on your Google Account", fontSize: 14, isSecondary: true),
       ],
     );
   }
@@ -109,7 +109,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                CustomText("Connected as", fontSize: 12, color: AppColors.textSecondary),
+                CustomText("Connected as", fontSize: 12, isSecondary: true),
                 CustomText("wadewarren@gmail.com", fontSize: 14, fontWeight: FontWeight.w500),
               ],
             ),
@@ -130,10 +130,11 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
                 CustomTextSpan(
                   text: "Locations found ",
                   fontSize: 13,
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
                   fontWeight: FontWeight.w500,
+                  context: context,
                 ),
-                CustomTextSpan(text: "(${locations.length})", fontSize: 13, color: AppColors.textSecondary),
+                CustomTextSpan(text: "(${locations.length})", fontSize: 13, context: context),
               ],
             ),
           ),
@@ -228,7 +229,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 CustomText("$selectedCount locations selected", fontSize: 13, fontWeight: FontWeight.w500),
-                const CustomText("\$8/month.", fontSize: 11, color: AppColors.textSecondary),
+                const CustomText("\$8/month.", fontSize: 11, isSecondary: true),
               ],
             ),
           ),
@@ -315,7 +316,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
       children: [
         Icon(Icons.lock, color: AppColors.lighterGrey, size: 16),
         SizedBox(width: 5),
-        Flexible(child: CustomText("We never share your information with third parties.", fontSize: 12, color: AppColors.textSecondary)),
+        Flexible(child: CustomText("We never share your information with third parties.", fontSize: 12, isSecondary: true)),
       ],
     );
   }
@@ -396,28 +397,7 @@ class LocationCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomText(location.name, fontSize: 13, fontWeight: FontWeight.w500),
-                CustomText(location.address, fontSize: 11, color: AppColors.textSecondary),
-                // Row(
-                //   children: [
-                //     const Icon(
-                //       Icons.star,
-                //       color: AppColors.starColor,
-                //       size: 14,
-                //     ),
-                //     const SizedBox(width: 4),
-                //     CustomText(
-                //       location.rating.toString(),
-                //       fontSize: 12,
-                //       fontWeight: FontWeight.w600,
-                //     ),
-                //     const SizedBox(width: 4),
-                //     CustomText(
-                //       "(${location.reviews} reviews)",
-                //       fontSize: 12,
-                //       color: AppColors.textSecondary,
-                //     ),
-                //   ],
-                // ),
+                CustomText(location.address, fontSize: 11, isSecondary: true),
               ],
             ),
           ),

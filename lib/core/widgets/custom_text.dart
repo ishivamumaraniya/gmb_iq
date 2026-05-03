@@ -13,6 +13,7 @@ class CustomText extends StatelessWidget {
   final bool isSelectable;
   final double? height;
   final double? letterSpacing;
+  final bool isSecondary;
 
   const CustomText(
     this.text, {
@@ -26,16 +27,19 @@ class CustomText extends StatelessWidget {
     this.isSelectable = false,
     this.height,
     this.letterSpacing,
+    this.isSecondary = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final defaultColor = Theme.of(context).textTheme.bodyMedium?.color;
+    Color? defaultColor = Theme.of(context).textTheme.bodyMedium?.color;
+
+    if (isSecondary) {
+      defaultColor = Theme.of(context).colorScheme.onSurfaceVariant;
+    }
 
     final style = GoogleFonts.googleSansFlex(
       letterSpacing: letterSpacing,
-
-      // 👈 APPLY HERE
       fontSize: fontSize.spMin,
       fontWeight: fontWeight,
       color: color ?? defaultColor,
@@ -58,7 +62,13 @@ class CustomTextSpan extends TextSpan {
     FontWeight? fontWeight,
     super.recognizer,
     double? height,
+    required BuildContext context,
   }) : super(
-         style: GoogleFonts.googleSansFlex(fontSize: fontSize.spMin, color: color, fontWeight: fontWeight, height: height),
+         style: GoogleFonts.googleSansFlex(
+           fontSize: fontSize.spMin,
+           color: Theme.of(context).colorScheme.onSurfaceVariant,
+           fontWeight: fontWeight,
+           height: height,
+         ),
        );
 }

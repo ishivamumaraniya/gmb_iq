@@ -28,4 +28,5 @@ class AppImages {
   static const String locaitonLogo = "$_svgPath/Location.svg";
   static const String checkTickLogo = "$_svgPath/check_tick.svg";
   static const String logoGraphLogo = "$_svgPath/graph_logo.svg";
+  static const String desktopLoginLogo = "$_svgPath/login_dashboard.svg";
 }

@@ -46,12 +46,12 @@ class LoginComponents {
               CircleAvatar(
                 radius: 20.r,
                 backgroundColor: e.color.withValues(alpha: .15),
-                child: CustomImage(e.svg, height: (index == 2 ? 19 : 23).h, fit: BoxFit.contain),
+                child: CustomImage(e.svg, height: (index == 2 ? 19 : 23), fit: BoxFit.contain),
               ),
-              SizedBox(height: 7.h),
+              const SizedBox(height: 7),
               CustomText(e.title, fontSize: 13, fontWeight: FontWeight.w600, textAlign: TextAlign.center),
-              SizedBox(height: 1.h),
-              CustomText(e.description, fontSize: 11.5, textAlign: TextAlign.center, color: AppColors.textSecondary, height: 1.1),
+              const SizedBox(height: 1),
+              CustomText(e.description, fontSize: 11.5, textAlign: TextAlign.center, isSecondary: true, height: 1.1),
             ],
           ),
         );
@@ -64,12 +64,12 @@ class LoginComponents {
       alignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        const CustomText("By continuing, you agree to our ", fontSize: 13, color: AppColors.textSecondary),
+        const CustomText("By continuing, you agree to our ", fontSize: 13, isSecondary: true),
         InkWell(
           onTap: () {},
           child: const CustomText("Terms of Service", fontSize: 13, color: AppColors.primary),
         ),
-        const CustomText(" and ", fontSize: 13, color: AppColors.textSecondary),
+        const CustomText(" and ", fontSize: 13, isSecondary: true),
         InkWell(
           onTap: () {},
           child: const CustomText("Privacy Policy.", fontSize: 13, color: AppColors.primary),
@@ -78,15 +78,16 @@ class LoginComponents {
     );
   }
 
-  static Widget buildGoogleButton(BuildContext context) {
+  static Widget buildGoogleButton(BuildContext context, {double? maxWidth}) {
     return CustomButton(
+      maxWidth: maxWidth ?? 500,
       isSecondary: true,
       text: "Continue With Google",
       backgroundColor: AppColors.scaffoldBackground,
       onPressed: () {
         context.pushNamed(AppRoutes.scanningAccounts);
       },
-      customIcon: CustomImage(AppImages.googleLogo, height: 18.h, fit: BoxFit.contain),
+      customIcon: const CustomImage(AppImages.googleLogo, height: 18, fit: BoxFit.contain),
     );
   }
 }

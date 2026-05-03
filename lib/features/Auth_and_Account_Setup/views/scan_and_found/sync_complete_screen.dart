@@ -40,7 +40,7 @@ class SyncCompleteScreen extends StatelessWidget {
                     const CustomText(
                       "Your locations and reviews are\nnow up to date.",
                       fontSize: 14,
-                      color: AppColors.textSecondary,
+                      isSecondary: true,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 32),
@@ -67,7 +67,7 @@ class SyncCompleteScreen extends StatelessWidget {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         CustomText(loc.name, fontSize: 14, fontWeight: FontWeight.w500),
-                                        CustomText(loc.address, fontSize: 12, color: AppColors.textSecondary),
+                                        CustomText(loc.address, fontSize: 12, isSecondary: true),
                                       ],
                                     ),
                                   ),

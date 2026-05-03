@@ -14,11 +14,13 @@ class AppTheme {
       cardColor: Colors.white,
       dividerTheme: const DividerThemeData(color: AppColors.customBorderColorGrey, thickness: 1),
 
-      // Default color scheme
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         surface: AppColors.scaffoldBackground,
-        onSurface: AppColors.textPrimary, // Sets default text color on surfaces
+        onSurface: AppColors.textPrimary,
+        // Sets default text color on surfaces
+        onSurfaceVariant: AppColors.textSecondary,
+        // Secondary text color
         error: AppColors.redText,
       ),
 
@@ -43,11 +45,12 @@ class AppTheme {
       cardColor: AppColors.darkSecondaryBackground,
       dividerTheme: const DividerThemeData(color: AppColors.darkBorderColor, thickness: 1),
 
-      // Default dark color scheme
       colorScheme: const ColorScheme.dark(
         primary: AppColors.primary,
         surface: AppColors.darkScaffoldBackground,
         onSurface: AppColors.darkTextPrimary,
+        onSurfaceVariant: AppColors.darkTextSecondary,
+        // Secondary text color
         error: AppColors.redText, // Red works on dark too, or you can use a lighter red like #F28B82
       ),
 

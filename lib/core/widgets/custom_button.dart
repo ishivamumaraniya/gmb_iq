@@ -37,14 +37,10 @@ class CustomButton extends StatelessWidget {
     // Determine target background color
     final Color targetBgColor = isDisable
         ? AppColors.lightGrey
-        : (isSecondary
-              ? Theme.of(context).scaffoldBackgroundColor
-              : (backgroundColor ?? Theme.of(context).primaryColor));
+        : (isSecondary ? Theme.of(context).scaffoldBackgroundColor : (backgroundColor ?? Theme.of(context).primaryColor));
 
     // Determine target text/icon color
-    final Color effectiveTextColor = isSecondary
-        ? (textColor ?? Theme.of(context).colorScheme.onSurface)
-        : Colors.white;
+    final Color effectiveTextColor = isSecondary ? (textColor ?? Theme.of(context).colorScheme.onSurface) : Colors.white;
 
     return Container(
       height: 50,
@@ -62,18 +58,13 @@ class CustomButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               overlayColor: Colors.transparent,
               backgroundColor: animatedBgColor,
-              foregroundColor:
-                  effectiveTextColor, // This automatically tints Icons inside the button
+              foregroundColor: effectiveTextColor,
+              // This automatically tints Icons inside the button
               disabledBackgroundColor: Colors.grey.shade300,
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
-                side: BorderSide(
-                  color: wantBorder
-                      ? AppColors.buttonBorderColor
-                      : Colors.transparent,
-                  width: .5,
-                ),
+                side: BorderSide(color: wantBorder ? AppColors.buttonBorderColor : Colors.transparent, width: .5),
               ),
             ),
             onPressed: isDisable || isLoading ? null : onPressed,
@@ -85,17 +76,9 @@ class CustomButton extends StatelessWidget {
                       key: ValueKey('loading_spinner'),
                       height: 24,
                       width: 24,
-                      child: CircularProgressIndicator(
-                        color: Colors.grey,
-                        strokeWidth: 3,
-                      ),
+                      child: CircularProgressIndicator(color: Colors.grey, strokeWidth: 3),
                     )
-                  : CustomText(
-                      text,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: effectiveTextColor,
-                    ),
+                  : CustomText(text, fontSize: 15, fontWeight: FontWeight.w500, color: effectiveTextColor),
             ),
           );
         },

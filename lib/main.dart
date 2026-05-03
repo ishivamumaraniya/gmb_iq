@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
                 title: 'GMB IQ',
                 theme: AppTheme.lightTheme,
                 darkTheme: AppTheme.darkTheme,
-                themeMode: ThemeMode.system,
+                themeMode: ThemeMode.light,
                 routerConfig: AppRouter.router,
                 debugShowCheckedModeBanner: false,
                 builder: (context, child) {

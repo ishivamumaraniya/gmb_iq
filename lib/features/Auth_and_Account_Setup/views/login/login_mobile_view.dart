@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gmb_iq/core/responsive/responsive_context.dart';
 import 'package:gmb_iq/core/widgets/customLogo.dart';
 
 import '../../../../../core/constants/app_images.dart';
-import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/widgets/custom_image.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/custom_text.dart';
@@ -50,8 +48,8 @@ class LoginMobileView extends StatelessWidget {
   }
 
   Widget _buildLoginFormContent(BuildContext context) {
-    final double logoHeight = context.isMobile ? 150.h : 90.h;
-    final double logoWidth = context.isMobile ? 200.w : 100.w;
+    final double logoHeight = context.isMobile ? 150 : 90;
+    final double logoWidth = context.isMobile ? 200 : 100;
 
     return Column(
       children: [
@@ -61,10 +59,10 @@ class LoginMobileView extends StatelessWidget {
         const SizedBox(height: 5),
         const CustomText(
           height: 1.25,
+          isSecondary: true,
           "Connect your Google Business Profile\nto manage reviews, responses,\nand insights — all in one place.",
           fontSize: 15,
           textAlign: TextAlign.center,
-          color: AppColors.textSecondary,
         ),
         const SizedBox(height: 45),
         LoginComponents.buildGoogleButton(context),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gmb_iq/core/theme/app_colors.dart';
-import 'package:gmb_iq/core/theme/theme_extensions.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
 
 import '../../../core/widgets/custom_image.dart';
@@ -47,15 +45,8 @@ class CustomAuthInfoBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (title.isNotEmpty)
-                  CustomText(
-                    title,
-                    fontSize: 15,
-                    color: context.isDarkMode ? null : AppColors.infoBoxTitleColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                if (subtitle.isNotEmpty)
-                  CustomText(subtitle, fontSize: 13, color: wantSubtitleColor ? myColor : AppColors.infoBoxTitleColor),
+                if (title.isNotEmpty) CustomText(title, fontSize: 15, isSecondary: true, fontWeight: FontWeight.w600),
+                if (subtitle.isNotEmpty) CustomText(subtitle, fontSize: 13, color: wantSubtitleColor ? myColor : null, isSecondary: true),
               ],
             ),
           ),
