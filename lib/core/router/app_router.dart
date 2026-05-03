@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/Auth_and_Account_Setup/views/scan_and_found/found_accounts/found_accounts_state.dart';
 import '../../features/Auth_and_Account_Setup/views/scan_and_found/found_accounts/found_google_accounts_screen.dart';
 import '../../features/Auth_and_Account_Setup/views/scan_and_found/scanning/scanning_google_accounts_screen.dart';
-import '../../features/Auth_and_Account_Setup/views/scan_and_found/sync_complete_screen.dart';
+import '../../features/Auth_and_Account_Setup/views/scan_and_found/sync_complete/sync_complete_screen.dart';
 import '../../features/Auth_and_Account_Setup/views/login/login_screen.dart';
 import '../../features/splash/view/splash_screen.dart';
 import '../../features/home/view/home_screen.dart';

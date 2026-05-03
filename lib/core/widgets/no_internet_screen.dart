@@ -18,18 +18,13 @@ class NoInternetScreen extends StatelessWidget {
           children: [
             Icon(Icons.wifi_off_rounded, size: 100.sp, color: AppColors.primary.withValues(alpha: .2)),
             SizedBox(height: 40.h),
-            const CustomText(
-              "No Internet Connection",
-              fontSize: 24,
-              fontWeight: FontWeight.w600,
-              textAlign: TextAlign.center,
-            ),
+            const CustomText("No Internet Connection", fontSize: 24, fontWeight: FontWeight.w600, textAlign: TextAlign.center),
             SizedBox(height: 12.h),
             const CustomText(
               "Please check your internet connection and try again.",
               fontSize: 16,
               textAlign: TextAlign.center,
-              color: AppColors.textSecondary,
+              isSecondary: true,
             ),
           ],
         ),
