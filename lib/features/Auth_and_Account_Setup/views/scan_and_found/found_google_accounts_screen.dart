@@ -95,7 +95,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
 
   Widget _buildConnectedAccount() {
     return CustomBorderContainer(
-      myWidget: Row(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 10,
         children: [
@@ -212,7 +212,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
 
   Widget _buildSummaryBar() {
     return CustomBorderContainer(
-      myWidget: Row(
+      child: Row(
         children: [
           Container(
             padding: const EdgeInsets.all(4),
@@ -278,7 +278,7 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
     return CustomBorderContainer(
       wantBorder: false,
       myColor: AppColors.primary.withValues(alpha: 0.05),
-      myWidget: Column(
+      child: Column(
         children: [
           const Row(
             children: [
@@ -380,7 +380,7 @@ class LocationCard extends StatelessWidget {
     return CustomBorderContainer(
       myColor: context.isDarkMode ? null : AppColors.lighterPrimaryColor,
 
-      myWidget: Row(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(

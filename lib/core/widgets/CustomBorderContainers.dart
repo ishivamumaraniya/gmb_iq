@@ -5,22 +5,24 @@ import 'package:gmb_iq/core/theme/theme_extensions.dart';
 class CustomBorderContainer extends StatelessWidget {
   const CustomBorderContainer({
     super.key,
-    required this.myWidget,
+    required this.child,
     this.padding = const EdgeInsets.all(13),
     this.myColor,
     this.wantBorder = true,
     this.borderRadius = 5,
     this.boxShadow,
     this.elevation = 0,
+    this.boxShape = BoxShape.rectangle,
   });
 
-  final Widget myWidget;
+  final Widget child;
   final EdgeInsets padding;
   final Color? myColor;
   final bool wantBorder;
   final double borderRadius;
   final List<BoxShadow>? boxShadow;
   final double elevation;
+  final BoxShape boxShape;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,8 @@ class CustomBorderContainer extends StatelessWidget {
     final resolvedBorderColor = wantBorder ? (isDark ? AppColors.darkBorderColor : AppColors.customBorderColorGrey) : Colors.transparent;
 
     return PhysicalModel(
-      borderRadius: BorderRadius.circular(borderRadius),
+      shape: boxShape,
+      borderRadius: boxShape == BoxShape.circle ? null : BorderRadius.circular(borderRadius),
       color: resolvedColor,
       elevation: elevation,
       child: Container(
@@ -39,12 +42,13 @@ class CustomBorderContainer extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 500),
         padding: padding,
         decoration: BoxDecoration(
+          shape: boxShape,
           color: resolvedColor,
           border: Border.all(color: resolvedBorderColor),
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: boxShape == BoxShape.circle ? null : BorderRadius.circular(borderRadius),
           boxShadow: boxShadow,
         ),
-        child: myWidget,
+        child: child,
       ),
     );
   }

@@ -54,7 +54,7 @@ class LoginDesktopView extends StatelessWidget {
                         elevation: 2,
                         padding: EdgeInsets.zero,
                         borderRadius: 30,
-                        myWidget: Stack(
+                        child: Stack(
                           children: [
                             Positioned.fill(
                               child: Padding(
@@ -111,11 +111,13 @@ class LoginDesktopView extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 15),
-                    PhysicalModel(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.white,
+                    const CustomBorderContainer(
+                      myColor: Colors.transparent,
+                      wantBorder: false,
+                      borderRadius: 30,
                       elevation: 2,
-                      child: const CustomImage(AppImages.desktopLoginLogo, borderRadius: 30),
+                      padding: EdgeInsets.zero,
+                      child: CustomImage(AppImages.desktopLoginLogo, borderRadius: 30),
                     ),
                   ],
                 ),
@@ -190,7 +192,7 @@ class LoginDesktopView extends StatelessWidget {
         padding: const EdgeInsets.all(30),
         borderRadius: 30,
 
-        myWidget: Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(

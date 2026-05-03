@@ -45,7 +45,7 @@ class SyncCompleteScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 32),
                     CustomBorderContainer(
-                      myWidget: Column(
+                      child: Column(
                         children: syncedLocations.asMap().entries.map((entry) {
                           final index = entry.key;
                           final loc = entry.value;
