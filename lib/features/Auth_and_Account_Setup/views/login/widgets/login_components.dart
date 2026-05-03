@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/constants/app_images.dart';
@@ -8,6 +9,8 @@ import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_image.dart';
 import '../../../../../core/widgets/custom_text.dart';
+import '../../../cubit/auth_cubit.dart';
+import '../../../cubit/auth_state.dart';
 import '../../../model/login_info_mode;.dart';
 
 class LoginComponents {
@@ -78,16 +81,23 @@ class LoginComponents {
     );
   }
 
-  static Widget buildGoogleButton(BuildContext context, {double? maxWidth}) {
-    return CustomButton(
-      maxWidth: maxWidth ?? 500,
-      isSecondary: true,
-      text: "Continue With Google",
-      backgroundColor: AppColors.scaffoldBackground,
-      onPressed: () {
-        context.pushNamed(AppRoutes.scanningAccounts);
+  static Widget buildGoogleButton(BuildContext context, {double? maxWidth, VoidCallback? onPressed}) {
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        return CustomButton(
+          maxWidth: maxWidth ?? 500,
+          isSecondary: true,
+          text: "Continue With Google",
+          isLoading: state.status == AuthStatus.loading,
+          backgroundColor: AppColors.scaffoldBackground,
+          onPressed:
+              onPressed ??
+              () {
+                context.read<AuthCubit>().loginWithGoogle();
+              },
+          customIcon: const CustomImage(AppImages.googleLogo, height: 18, fit: BoxFit.contain),
+        );
       },
-      customIcon: const CustomImage(AppImages.googleLogo, height: 18, fit: BoxFit.contain),
     );
   }
 }

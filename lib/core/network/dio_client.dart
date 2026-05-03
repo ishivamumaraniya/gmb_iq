@@ -1,12 +1,14 @@
 import 'package:dio/dio.dart';
 
+import '../constants/api_constants.dart';
+
 class DioClient {
   late final Dio _dio;
 
   DioClient() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: 'https://api.example.com/', // Replace with actual base URL
+        baseUrl: ApiConstants.baseUrl, // Backend URL
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),
         headers: {
