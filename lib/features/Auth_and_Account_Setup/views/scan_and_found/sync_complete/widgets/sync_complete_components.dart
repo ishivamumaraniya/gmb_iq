@@ -8,7 +8,6 @@ import 'package:gmb_iq/core/widgets/custom_button.dart';
 import 'package:gmb_iq/core/widgets/custom_image.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
 
-import '../../../../../../core/responsive/responsive_context.dart';
 import '../../../../widget/customAuthInfoBox.dart';
 import '../../found_accounts/found_accounts_state.dart';
 

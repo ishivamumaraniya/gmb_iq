@@ -7,14 +7,12 @@ import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
 import 'package:gmb_iq/core/widgets/custom_button.dart';
 import 'package:gmb_iq/core/widgets/custom_image.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../../core/theme/app_colors.dart';
 import '../../../../../../core/theme/theme_extensions.dart';
 import '../../../../../../core/widgets/custom_checkbox.dart';
 import '../../../../../../core/widgets/custom_text_button.dart';
 import '../../../../../../core/widgets/sync_location_progress.dart';
-import '../../../../../../core/router/app_router.dart';
 import '../found_accounts_state.dart';
 
 class FoundAccountsComponents {
