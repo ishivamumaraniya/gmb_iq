@@ -8,7 +8,9 @@ import 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepository;
 
-  AuthCubit({AuthRepository? authRepository}) : _authRepository = authRepository ?? AuthRepository(), super(const AuthState()) {
+  AuthCubit({AuthRepository? authRepository})
+    : _authRepository = authRepository ?? AuthRepository(),
+      super(const AuthState()) {
     _initialize();
   }
 
@@ -22,9 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     signIn.authenticationEvents.listen((GoogleSignInAuthenticationEvent event) {
       if (event is GoogleSignInAuthenticationEventSignIn) {
-        if (event.user != null) {
-          _handleSignInSuccess(event.user!);
-        }
+        _handleSignInSuccess(event.user);
       }
     });
 
@@ -34,7 +34,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> _handleSignInSuccess(GoogleSignInAccount googleUser) async {
     emit(state.copyWith(status: AuthStatus.loading));
     try {
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
       final String? token = googleAuth.idToken;
 
       if (token == null) {

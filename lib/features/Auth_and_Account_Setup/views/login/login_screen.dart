@@ -18,18 +18,12 @@ class LoginScreen extends StatelessWidget {
         if (state.status == AuthStatus.success) {
           // TODO: Route to Scanning Screen
           // context.pushNamed(AppRoutes.scanningAccounts);
-          print("Login success! Route commented out per user request.");
         } else if (state.status == AuthStatus.failure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.error ?? 'Authentication failed')),
-          );
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error ?? 'Authentication failed')));
         }
       },
       builder: (context, state) {
-        return const ResponsiveWidget(
-          mobileTablet: LoginMobileView(),
-          desktop: LoginDesktopView(),
-        );
+        return const ResponsiveWidget(mobileTablet: LoginMobileView(), desktop: LoginDesktopView());
       },
     );
   }

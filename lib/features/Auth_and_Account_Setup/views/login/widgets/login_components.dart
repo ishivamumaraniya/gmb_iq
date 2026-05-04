@@ -80,6 +80,7 @@ class LoginComponents {
 
   static Widget buildGoogleButton(BuildContext context, {double? maxWidth, VoidCallback? onPressed}) {
     return CustomBorderContainer(
+      padding: EdgeInsets.zero,
       wantBorder: false,
       child: (GoogleSignInPlatform.instance as web.GoogleSignInPlugin).renderButton(
         configuration: web.GSIButtonConfiguration(
