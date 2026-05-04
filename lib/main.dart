@@ -27,7 +27,9 @@ class MyApp extends StatelessWidget {
       create: (context) => ConnectivityCubit(),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final Size designSize = constraints.maxWidth >= 1024 ? Size(constraints.maxWidth, constraints.maxHeight) : const Size(375, 812);
+          final Size designSize = constraints.maxWidth >= 1024
+              ? Size(constraints.maxWidth, constraints.maxHeight)
+              : const Size(375, 812);
 
           return ScreenUtilInit(
             designSize: designSize,

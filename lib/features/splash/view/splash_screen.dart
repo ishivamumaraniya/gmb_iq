@@ -30,7 +30,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(mobileTablet: _buildUI(context), desktop: _buildUI(context));
+    return ResponsiveWidget(
+      mobileTablet: _buildUI(context),
+      desktop: _buildUI(context),
+    );
   }
 
   Widget _buildUI(BuildContext context) {
