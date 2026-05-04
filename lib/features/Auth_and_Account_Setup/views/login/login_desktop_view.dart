@@ -92,7 +92,7 @@ class LoginDesktopView extends StatelessWidget {
                                     LoginComponents.buildGoogleButton(context, maxWidth: 300),
 
                                     const SizedBox(height: 24),
-                                    LoginComponents.buildTermsAndPrivacy(),
+                                    LoginComponents.buildTermsAndPrivacy(context),
                                   ],
                                 ),
                               ),
@@ -102,7 +102,10 @@ class LoginDesktopView extends StatelessWidget {
                               right: -200,
                               child: Container(
                                 height: 450,
-                                decoration: BoxDecoration(color: AppColors.primary.withValues(alpha: .1), shape: BoxShape.circle),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primary.withValues(alpha: .1),
+                                  shape: BoxShape.circle,
+                                ),
                                 width: 450,
                               ),
                             ),
@@ -153,7 +156,8 @@ class LoginDesktopView extends StatelessWidget {
                       iconColor: Colors.green,
                       bgColor: Colors.green.withValues(alpha: 0.1),
                       title: "Deep Analytics",
-                      description: "Get actionable insights across all your locations. Track growth and response rates.",
+                      description:
+                          "Get actionable insights across all your locations. Track growth and response rates.",
                       context: context,
                     ),
                     const SizedBox(width: 20),

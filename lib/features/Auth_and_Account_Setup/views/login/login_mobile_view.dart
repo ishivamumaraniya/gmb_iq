@@ -36,7 +36,7 @@ class LoginMobileView extends StatelessWidget {
                     const SizedBox(height: 40),
                     _buildLoginFormContent(context),
                     const Spacer(),
-                    LoginComponents.buildTermsAndPrivacy(),
+                    LoginComponents.buildTermsAndPrivacy(context),
                   ],
                 ),
               ),

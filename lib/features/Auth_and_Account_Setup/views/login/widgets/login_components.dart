@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gmb_iq/core/responsive/responsive_context.dart';
 import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
 import 'package:google_sign_in_web/google_sign_in_web.dart' as web;
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
@@ -59,12 +60,25 @@ class LoginComponents {
     );
   }
 
-  static Widget buildTermsAndPrivacy() {
-    return Wrap(
-      alignment: WrapAlignment.center,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        const CustomText("By continuing, you agree to our ", fontSize: 13, isSecondary: true),
+  static Widget buildTermsAndPrivacy(BuildContext context) {
+    List<Widget> termAndPrivacy = [
+      const CustomText("By continuing, you agree to our ", fontSize: 13, isSecondary: true),
+
+      if (context.isDesktop) ...[
+        Row(
+          children: [
+            InkWell(
+              onTap: () {},
+              child: const CustomText("Terms of Service", fontSize: 13, color: AppColors.primary),
+            ),
+            const CustomText(" and ", fontSize: 13, isSecondary: true),
+            InkWell(
+              onTap: () {},
+              child: const CustomText("Privacy Policy.", fontSize: 13, color: AppColors.primary),
+            ),
+          ],
+        ),
+      ] else ...[
         InkWell(
           onTap: () {},
           child: const CustomText("Terms of Service", fontSize: 13, color: AppColors.primary),
@@ -75,7 +89,15 @@ class LoginComponents {
           child: const CustomText("Privacy Policy.", fontSize: 13, color: AppColors.primary),
         ),
       ],
-    );
+    ];
+
+    return context.isDesktop
+        ? Wrap(alignment: WrapAlignment.center, crossAxisAlignment: WrapCrossAlignment.center, children: termAndPrivacy)
+        : Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: termAndPrivacy,
+          );
   }
 
   static Widget buildGoogleButton(BuildContext context, {double? maxWidth, VoidCallback? onPressed}) {
