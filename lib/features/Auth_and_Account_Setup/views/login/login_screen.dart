@@ -52,10 +52,10 @@ class LoginScreen extends StatelessWidget {
   Widget _buildStepScreen(AuthState state) {
     switch (state.step) {
       case AuthStep.login:
-        return ResponsiveWidget(
-          key: const ValueKey('login'),
-          mobileTablet: const LoginMobileView(),
-          desktop: const LoginDesktopView(),
+        return const ResponsiveWidget(
+          key: ValueKey('login'),
+          mobileTablet: LoginMobileView(),
+          desktop: LoginDesktopView(),
         );
       case AuthStep.scanning:
         return const ScanningGoogleAccountsScreen(key: ValueKey('scanning'));

@@ -1,6 +1,7 @@
 import '../views/scan_and_found/found_accounts/found_accounts_state.dart';
 
 enum AuthStatus { initial, loading, success, failure }
+
 enum AuthStep { login, scanning, foundAccounts, syncComplete }
 
 class AuthState {

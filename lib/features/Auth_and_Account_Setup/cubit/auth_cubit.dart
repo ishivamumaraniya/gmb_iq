@@ -9,7 +9,9 @@ import 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepository;
 
-  AuthCubit({required AuthRepository authRepository}) : _authRepository = authRepository, super(const AuthState()) {
+  AuthCubit({required AuthRepository authRepository})
+    : _authRepository = authRepository,
+      super(const AuthState()) {
     _initialize();
   }
 
@@ -35,21 +37,41 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> _handleSignInSuccess(GoogleSignInAccount googleUser) async {
     emit(state.copyWith(status: AuthStatus.loading));
     try {
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
       final String? token = googleAuth.idToken;
 
       if (token == null) {
-        emit(state.copyWith(status: AuthStatus.failure, error: 'Failed to retrieve authentication token'));
+        emit(
+          state.copyWith(
+            status: AuthStatus.failure,
+            error: 'Failed to retrieve authentication token',
+          ),
+        );
         return;
       }
 
       final String deviceId = HiveSetup.deviceId;
-      final response = await _authRepository.loginWithGoogle(token: token, deviceId: deviceId);
+      final response = await _authRepository.loginWithGoogle(
+        token: token,
+        deviceId: deviceId,
+      );
 
       if (response != null) {
-        emit(state.copyWith(status: AuthStatus.success, step: AuthStep.scanning, data: response));
+        emit(
+          state.copyWith(
+            status: AuthStatus.success,
+            step: AuthStep.scanning,
+            data: response,
+          ),
+        );
       } else {
-        emit(state.copyWith(status: AuthStatus.failure, error: 'Invalid response from server'));
+        emit(
+          state.copyWith(
+            status: AuthStatus.failure,
+            error: 'Invalid response from server',
+          ),
+        );
       }
     } catch (e) {
       emit(state.copyWith(status: AuthStatus.failure, error: e.toString()));
