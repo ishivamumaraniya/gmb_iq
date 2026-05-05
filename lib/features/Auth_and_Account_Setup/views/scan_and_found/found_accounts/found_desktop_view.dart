@@ -24,18 +24,12 @@ class FoundDesktopView extends StatelessWidget {
               wantBorder: false,
               myColor: Theme.of(context).primaryColor.withValues(alpha: .05),
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40,
-                  vertical: 40,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FoundAccountsComponents.buildHeader(
-                      context,
-                      alignment: CrossAxisAlignment.start,
-                    ),
+                    FoundAccountsComponents.buildHeader(context, alignment: CrossAxisAlignment.start),
                     const SizedBox(height: 30),
                     FoundAccountsComponents.buildConnectedAccount(state),
                   ],
@@ -50,32 +44,25 @@ class FoundDesktopView extends StatelessWidget {
             flex: 1,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
-              child: SingleChildScrollView(
-                child: Center(
+              child: Center(
+                child: SingleChildScrollView(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 500),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        FoundAccountsComponents.buildLocationsListHeader(
-                          context,
-                          state,
-                        ),
+                        FoundAccountsComponents.buildLocationsListHeader(context, state),
                         const SizedBox(height: 15),
                         FoundAccountsComponents.buildLocationsList(state),
-                        if (!state.isExpanded &&
-                            state.locations.length > 3) ...[
+                        if (!state.isExpanded && state.locations.length > 3) ...[
                           const SizedBox(height: 10),
                           FoundAccountsComponents.buildExpansionButton(state),
                         ],
                         const SizedBox(height: 30),
                         FoundAccountsComponents.buildSummaryBar(state),
                         const SizedBox(height: 20),
-                        FoundAccountsComponents.buildActionButtons(
-                          context,
-                          state,
-                        ),
+                        FoundAccountsComponents.buildActionButtons(context, state),
                         const SizedBox(height: 20),
                         FoundAccountsComponents.buildFooter(),
                       ],

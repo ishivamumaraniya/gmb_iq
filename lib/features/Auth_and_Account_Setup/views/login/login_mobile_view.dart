@@ -6,6 +6,7 @@ import '../../../../../core/constants/app_images.dart';
 import '../../../../../core/widgets/custom_image.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/custom_text.dart';
+import '../../../../core/widgets/custom_button.dart';
 import 'widgets/login_components.dart';
 
 class LoginMobileView extends StatelessWidget {
@@ -65,7 +66,8 @@ class LoginMobileView extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 45),
-        LoginComponents.buildGoogleButton(context),
+        const CustomGoogleButton(),
+
         const SizedBox(height: 60),
         LoginComponents.buildInfoLoginWidget(context),
       ],

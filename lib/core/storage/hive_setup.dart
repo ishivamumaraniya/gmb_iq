@@ -16,4 +16,8 @@ class HiveSetup {
   static Box get appBox => Hive.box('appBox');
 
   static String get deviceId => appBox.get('device_id', defaultValue: 'unknown-device');
+
+  static String get token => appBox.get('token', defaultValue: '');
+
+  static set token(String value) => appBox.put('token', value);
 }

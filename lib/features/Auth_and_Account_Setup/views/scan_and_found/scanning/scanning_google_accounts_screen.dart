@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:gmb_iq/features/Auth_and_Account_Setup/views/scan_and_found/scanning/scanning_desktop_view.dart';
 import 'package:gmb_iq/features/Auth_and_Account_Setup/views/scan_and_found/scanning/scanning_mobile_view.dart';
-import 'package:go_router/go_router.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/responsive/responsive_context.dart';
-import '../../../../../core/router/app_router.dart';
+import '../../../cubit/auth_cubit.dart';
+import '../../../cubit/auth_state.dart';
 
 enum loadingRowStatus { initial, loading, success }
 
@@ -35,9 +35,10 @@ class _ScanningGoogleAccountsScreenState extends State<ScanningGoogleAccountsScr
     });
 
     _progressController.status.isCompleted;
+
     _progressController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        context.pushNamed(AppRoutes.foundAccounts);
+        context.read<AuthCubit>().updateStep(AuthStep.foundAccounts);
       }
     });
   }

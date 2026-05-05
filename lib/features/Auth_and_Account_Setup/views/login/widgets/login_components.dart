@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gmb_iq/core/responsive/responsive_context.dart';
 import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
+import 'package:gmb_iq/core/widgets/custom_button.dart';
 import 'package:google_sign_in_web/google_sign_in_web.dart' as web;
 import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
 
@@ -64,8 +65,9 @@ class LoginComponents {
     List<Widget> termAndPrivacy = [
       const CustomText("By continuing, you agree to our ", fontSize: 13, isSecondary: true),
 
-      if (context.isDesktop) ...[
+      if (!context.isDesktop) ...[
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
               onTap: () {},
@@ -93,26 +95,6 @@ class LoginComponents {
 
     return context.isDesktop
         ? Wrap(alignment: WrapAlignment.center, crossAxisAlignment: WrapCrossAlignment.center, children: termAndPrivacy)
-        : Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: termAndPrivacy,
-          );
-  }
-
-  static Widget buildGoogleButton(BuildContext context, {double? maxWidth, VoidCallback? onPressed}) {
-    return CustomBorderContainer(
-      padding: EdgeInsets.zero,
-      wantBorder: false,
-      child: (GoogleSignInPlatform.instance as web.GoogleSignInPlugin).renderButton(
-        configuration: web.GSIButtonConfiguration(
-          type: web.GSIButtonType.standard,
-          size: web.GSIButtonSize.large,
-          text: web.GSIButtonText.continueWith,
-          shape: web.GSIButtonShape.pill,
-          minimumWidth: maxWidth ?? 500,
-        ),
-      ),
-    );
+        : Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.center, children: termAndPrivacy);
   }
 }

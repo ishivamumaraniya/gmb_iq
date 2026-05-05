@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/responsive/responsive_context.dart';
-import '../../../../../core/router/app_router.dart';
+import '../../../cubit/auth_cubit.dart';
+import '../../../cubit/auth_state.dart';
+import '../../../../../core/storage/hive_setup.dart';
 import 'found_accounts_state.dart';
 import 'found_desktop_view.dart';
 import 'found_mobile_view.dart';
@@ -66,14 +67,18 @@ class _FoundGoogleAccountsScreenState extends State<FoundGoogleAccountsScreen> {
       onChangeAccount: () {
         // Change account logic
       },
+
       onSyncComplete: () {
         completedSyncs++;
         final selectedLocations = locations.where((l) => l.isSelected).toList();
         if (completedSyncs == selectedLocations.length) {
-          // All complete, navigate after a small delay
+          // All complete, save token to Hive
+          // HiveSetup.token = 'dummy_token_123'; // Replace with actual token from your API if needed
+
+          // Navigate after a small delay
           Future.delayed(const Duration(milliseconds: 500), () {
             if (mounted) {
-              context.pushNamed(AppRoutes.syncComplete, extra: selectedLocations);
+              context.read<AuthCubit>().updateStep(AuthStep.syncComplete, syncedLocations: selectedLocations);
             }
           });
         }

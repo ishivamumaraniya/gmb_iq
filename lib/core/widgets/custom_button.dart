@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gmb_iq/core/theme/app_colors.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
 
+import 'CustomBorderContainers.dart';
+import 'package:google_sign_in_web/google_sign_in_web.dart' as web;
+import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
+
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -82,6 +86,30 @@ class CustomButton extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class CustomGoogleButton extends StatelessWidget {
+  const CustomGoogleButton({super.key, this.width});
+
+  final double? width;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomBorderContainer(
+      padding: EdgeInsets.zero,
+      wantBorder: false,
+      child: (GoogleSignInPlatform.instance as web.GoogleSignInPlugin).renderButton(
+        configuration: web.GSIButtonConfiguration(
+          type: web.GSIButtonType.standard,
+          theme: Theme.of(context).brightness == Brightness.dark ? web.GSIButtonTheme.filledBlack : web.GSIButtonTheme.outline,
+          size: web.GSIButtonSize.large,
+          text: web.GSIButtonText.continueWith,
+          shape: web.GSIButtonShape.pill,
+          minimumWidth: width ?? 500,
+        ),
       ),
     );
   }

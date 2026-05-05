@@ -5,6 +5,7 @@ import 'core/router/app_router.dart';
 import 'core/storage/hive_setup.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:toastification/toastification.dart';
 import 'core/connectivity/connectivity_cubit.dart';
 import 'core/widgets/connectivity_wrapper.dart';
 
@@ -27,9 +28,7 @@ class MyApp extends StatelessWidget {
       create: (context) => ConnectivityCubit(),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final Size designSize = constraints.maxWidth >= 1024
-              ? Size(constraints.maxWidth, constraints.maxHeight)
-              : const Size(375, 812);
+          final Size designSize = constraints.maxWidth >= 1024 ? Size(constraints.maxWidth, constraints.maxHeight) : const Size(375, 812);
 
           return ScreenUtilInit(
             designSize: designSize,
@@ -44,7 +43,7 @@ class MyApp extends StatelessWidget {
                 routerConfig: AppRouter.router,
                 debugShowCheckedModeBanner: false,
                 builder: (context, child) {
-                  return ConnectivityWrapper(child: child!);
+                  return ToastificationWrapper(child: ConnectivityWrapper(child: child!));
                 },
               );
             },

@@ -2,81 +2,82 @@
 <html>
 
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+    <!--
+      If you are serving your web app in a path other than the root, change the
+      href value below to reflect the base path you are serving from.
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+      The path provided below has to start and end with a slash "/" in order for
+      it to work correctly.
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+      For more details:
+      * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
+      This is a placeholder for base href that will be replaced by the value of
+      the `--base-href` argument provided to `flutter build`.
+    -->
+    <base href="$FLUTTER_BASE_HREF">
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-  <meta name="google-signin-client_id"
-    content="407752492784-amr2bdi7ckg0h6m514qs6qdpb4enlnq1.apps.googleusercontent.com">
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="description" content="A new Flutter project.">
+    <meta name="google-signin-client_id"
+          content="407752492784-amr2bdi7ckg0h6m514qs6qdpb4enlnq1.apps.googleusercontent.com">
 
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="gmb_iq">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    <!-- iOS meta tags & icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="gmb_iq">
+    <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>gmb_iq</title>
-  <link rel="manifest" href="manifest.json">
+    <title>gmb_iq</title>
+    <link rel="manifest" href="manifest.json">
 
-  <!-- Network Speed Optimizations -->
-  <!-- Preconnect to domains where CanvasKit and Google Fonts are downloaded from -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
-  <!-- Preload the flutter engine bootstrap to download it immediately -->
-  <link rel="preload" href="flutter_bootstrap.js" as="script">
-  <style>
-    body {
-      background-color: #FFFFFF;
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
+    <!-- Network Speed Optimizations -->
+    <!-- Preconnect to domains where CanvasKit and Google Fonts are downloaded from -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    <!-- Preload the flutter engine bootstrap to download it immediately -->
+    <link rel="preload" href="flutter_bootstrap.js" as="script">
+    <style>
+        body {
+          background-color: #FFFFFF;
+          margin: 0;
+          padding: 0;
+          width: 100vw;
+          height: 100vh;
+          overflow: hidden;
+        }
 
-    #splash-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      width: 100vw;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: #FFFFFF;
-      z-index: 9999;
-    }
+        #splash-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          width: 100vw;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color: #FFFFFF;
+          z-index: 9999;
+        }
 
-    #splash-container img {
-      width: 200px;
-    }
-  </style>
+        #splash-container img {
+          width: 200px;
+        }
+    </style>
 </head>
 
 <body>
-  <div id="splash-container">
+<div id="splash-container">
     <!-- Using onerror to fallback to the launcher icon if the svg path is incorrect -->
-    <img src="assets/assets/svg/app_logo.svg" alt="App Logo" onerror="this.onerror=null; this.src='icons/Icon-192.png'">
-  </div>
+    <img src="assets/assets/svg/app_logo.svg" alt="App Logo"
+         onerror="this.onerror=null; this.src='icons/Icon-192.png'">
+</div>
 
-  <script>
+<script>
     // This script ensures the splash screen is removed once Flutter renders its first frame.
     window.addEventListener('flutter-first-frame', function () {
       var splashContent = document.getElementById('splash-container');
@@ -84,17 +85,17 @@
         splashContent.remove();
       }
     });
-  </script>
+</script>
 
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
+<!--
+  You can customize the "flutter_bootstrap.js" script.
+  This is useful to provide a custom configuration to the Flutter loader
+  or to give the user feedback during the initialization process.
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
-  <script src="flutter_bootstrap.js" async></script>
+  For more details:
+  * https://docs.flutter.dev/platform-integration/web/initialization
+-->
+<script src="flutter_bootstrap.js" async></script>
 </body>
 
 </html>
