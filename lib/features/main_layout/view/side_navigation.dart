@@ -21,8 +21,15 @@ class SideNavigation extends StatelessWidget {
     final onSurfaceVariantColor = Theme.of(context).colorScheme.onSurfaceVariant;
 
     return Theme(
-      data: Theme.of(context).copyWith(navigationDrawerTheme: NavigationDrawerThemeData(indicatorSize: const Size(double.infinity, 45))),
+      data: Theme.of(context).copyWith(
+        navigationDrawerTheme: const NavigationDrawerThemeData(indicatorSize: Size(double.infinity, 45)),
+        hoverColor: Colors.white,
+      ),
       child: NavigationDrawer(
+        header: Padding(
+          padding: const .symmetric(vertical: 20),
+          child: CustomImage(AppImages.appLogo, height: 30, fit: BoxFit.contain, color: isDark ? Colors.white : null),
+        ),
         selectedIndex: navigationShell.currentIndex,
         indicatorColor: AppColors.primary.withValues(alpha: .10),
         onDestinationSelected: (index) {
@@ -33,12 +40,6 @@ class SideNavigation extends StatelessWidget {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         footer: _buildAiVisibilityCard(context, isDark),
         children: [
-          // Logo Header
-          Padding(
-            padding: const EdgeInsets.fromLTRB(24, 28, 24, 16),
-            child: CustomImage(AppImages.appLogo, height: 35, fit: BoxFit.contain, color: isDark ? Colors.white : null),
-          ),
-
           const Divider(indent: 16, endIndent: 16),
 
           // 2. Reusable destinations rendered beautifully using helper methods (solving Flutter's drawer parent lookup assertion)
@@ -112,12 +113,7 @@ class SideNavigation extends StatelessWidget {
     final isSelected = currentIndex == index;
 
     return NavigationDrawerDestination(
-      icon: CustomImage(
-        svgPath,
-        height: 20,
-        width: 20,
-        color: isSelected ? AppColors.primary : (isDark ? Colors.grey[400] : Colors.grey[600]),
-      ),
+      icon: CustomImage(svgPath, height: 20, width: 20, color: isSelected ? AppColors.primary : null),
       label: CustomText(label, fontSize: 14, fontWeight: FontWeight.w500, color: isSelected ? AppColors.primary : onSurfaceVariantColor),
     );
   }
@@ -148,12 +144,7 @@ class SideNavigation extends StatelessWidget {
               color: isDark ? Colors.white : const Color(0xFF0F172A),
             ),
             const SizedBox(height: 6),
-            CustomText(
-              'Discover your AI visibility on all platforms for free.',
-              fontSize: 12,
-              color: isDark ? Colors.grey[400] : const Color(0xFF475569),
-              maxLines: 2,
-            ),
+            const CustomText('Discover your AI visibility on all platforms for free.', fontSize: 12, isSecondary: true, maxLines: 2),
             const SizedBox(height: 16),
 
             // Row of AI Brand Logo PNGs
