@@ -8,18 +8,23 @@ import '../../features/Auth_and_Account_Setup/views/login/login_screen.dart';
 import '../../features/splash/view/splash_screen.dart';
 import '../../features/home/view/home_screen.dart';
 import '../../features/blank/view/blank_screen.dart';
+import '../../features/manage_review/view/manage_review_screen.dart';
+import '../../features/business_profile/view/business_profile_screen.dart';
+import '../../features/activity/view/activity_screen.dart';
+import '../../features/your_iq_ai/view/your_iq_ai_screen.dart';
+import '../../features/settings/view/settings_screen.dart';
 import '../../features/main_layout/view/main_layout.dart';
-import '../widgets/custom_button.dart';
-import '../widgets/custom_scaffold.dart';
 import '../storage/hive_setup.dart';
 import 'slide_transition_page.dart';
 
 class AppRoutes {
   static const String splash = 'splash';
   static const String home = 'home';
-  static const String search = 'search';
-  static const String cart = 'cart';
-  static const String profile = 'profile';
+  static const String manageReview = 'manage_review';
+  static const String businessProfile = 'business_profile';
+  static const String activity = 'activity';
+  static const String yourIqAi = 'your_iq_ai';
+  static const String settings = 'settings';
   static const String login = 'login';
   static const String blank = 'blank';
 }
@@ -33,12 +38,19 @@ class AppRouter {
     redirect: (context, state) {
       final token = HiveSetup.token;
 
-      if (token.isEmpty) {
-        return '/login';
+      if (state.matchedLocation == '/') {
+        return null;
       }
 
-      // If token is not empty and user tries to access login or splash, redirect to home
-      if (state.matchedLocation == '/login' || state.matchedLocation == '/') {
+      if (token.isEmpty) {
+        // Allow navigating to any sub-route, only redirect from login to home for easy testing
+        if (state.matchedLocation == '/login') {
+          return '/home';
+        }
+        return null;
+      }
+
+      if (state.matchedLocation == '/login') {
         return '/home';
       }
 
@@ -88,44 +100,45 @@ class AppRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                name: AppRoutes.search,
-                path: '/search',
-                pageBuilder: (context, state) => SlideTransitionPage(
-                  key: state.pageKey,
-                  child: CustomScaffold(
-                    body: Center(
-                      child: CustomButton(
-                        text: 'Go to Blank Page',
-                        onPressed: () => context.pushNamed(AppRoutes.blank),
-                        customIcon: const Icon(Icons.arrow_forward, color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
+                name: AppRoutes.manageReview,
+                path: '/manage_review',
+                pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const ManageReviewScreen()),
               ),
             ],
           ),
           StatefulShellBranch(
             routes: [
               GoRoute(
-                name: AppRoutes.cart,
-                path: '/cart',
-                pageBuilder: (context, state) => SlideTransitionPage(
-                  key: state.pageKey,
-                  child: const CustomScaffold(body: Center(child: Text('Cart Screen'))),
-                ),
+                name: AppRoutes.businessProfile,
+                path: '/business_profile',
+                pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const BusinessProfileScreen()),
               ),
             ],
           ),
           StatefulShellBranch(
             routes: [
               GoRoute(
-                name: AppRoutes.profile,
-                path: '/profile',
-                pageBuilder: (context, state) => SlideTransitionPage(
-                  key: state.pageKey,
-                  child: const CustomScaffold(body: Center(child: Text('Profile Screen'))),
-                ),
+                name: AppRoutes.activity,
+                path: '/activity',
+                pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const ActivityScreen()),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: AppRoutes.yourIqAi,
+                path: '/your_iq_ai',
+                pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const YourIqAiScreen()),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                name: AppRoutes.settings,
+                path: '/settings',
+                pageBuilder: (context, state) => SlideTransitionPage(key: state.pageKey, child: const SettingsScreen()),
               ),
             ],
           ),

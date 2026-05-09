@@ -31,7 +31,7 @@ class LoginDesktopView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const CustomLogo(logoSize: 32, textSize: 20),
+                  const CustomLogo(logoSize: 28, textSize: 20),
 
                   Row(
                     children: [

@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/connectivity/connectivity_cubit.dart';
 import '../../../core/responsive/responsive_widget.dart';
+import '../../../core/storage/hive_setup.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,15 +26,18 @@ class _SplashScreenState extends State<SplashScreen> {
     await context.read<ConnectivityCubit>().checkConnectivity();
 
     if (!mounted) return;
-    context.pushReplacementNamed(AppRoutes.login);
+
+    final token = HiveSetup.token;
+    if (!token.isEmpty) {
+      context.goNamed(AppRoutes.login);
+    } else {
+      context.goNamed(AppRoutes.home);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(
-      mobileTablet: _buildUI(context),
-      desktop: _buildUI(context),
-    );
+    return ResponsiveWidget(mobileTablet: _buildUI(context), desktop: _buildUI(context));
   }
 
   Widget _buildUI(BuildContext context) {
