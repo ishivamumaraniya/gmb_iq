@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../../../core/widgets/custom_scaffold.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/responsive/responsive_widget.dart';
+import 'desktop/manage_review_desktop_view.dart';
+import 'mobile_tablet/manage_review_mobile_tablet_view.dart';
 
 class ManageReviewScreen extends StatelessWidget {
   const ManageReviewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScaffold(
-      appBar: CustomAppBar(title: 'Manage Review'),
-      body: Center(
-        child: Text('Manage Review Screen'),
-      ),
+    return const ResponsiveWidget(
+      desktop: ManageReviewDesktopView(),
+      mobileTablet: ManageReviewMobileTabletView(),
     );
   }
 }

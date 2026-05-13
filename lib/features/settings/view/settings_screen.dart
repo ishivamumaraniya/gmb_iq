@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../../../core/widgets/custom_scaffold.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/responsive/responsive_widget.dart';
+import 'desktop/settings_desktop_view.dart';
+import 'mobile_tablet/settings_mobile_tablet_view.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScaffold(
-      appBar: CustomAppBar(title: 'Settings'),
-      body: Center(
-        child: Text('Settings Screen'),
-      ),
+    return const ResponsiveWidget(
+      desktop: SettingsDesktopView(),
+      mobileTablet: SettingsMobileTabletView(),
     );
   }
 }

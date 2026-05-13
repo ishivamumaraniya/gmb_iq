@@ -42,19 +42,21 @@ class AppRouter {
         return null;
       }
 
+      final isGoingToLogin = state.matchedLocation == '/login';
+
       if (token.isEmpty) {
-        // Allow navigating to any sub-route, only redirect from login to home for easy testing
-        if (state.matchedLocation == '/login') {
+        // If the user is not logged in, they must be redirected to login
+        if (!isGoingToLogin) {
+          return '/login';
+        }
+        return null;
+      } else {
+        // If the user is logged in, they shouldn't see the login page
+        if (isGoingToLogin) {
           return '/home';
         }
         return null;
       }
-
-      if (state.matchedLocation == '/login') {
-        return '/home';
-      }
-
-      return null;
     },
     routes: [
       GoRoute(

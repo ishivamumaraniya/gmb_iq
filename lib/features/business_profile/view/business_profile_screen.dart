@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../../../core/widgets/custom_scaffold.dart';
-import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/responsive/responsive_widget.dart';
+import 'desktop/business_profile_desktop_view.dart';
+import 'mobile_tablet/business_profile_mobile_tablet_view.dart';
 
 class BusinessProfileScreen extends StatelessWidget {
   const BusinessProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScaffold(
-      appBar: CustomAppBar(title: 'Bussiness Profile'),
-      body: Center(
-        child: Text('Business Profile Screen'),
-      ),
+    return const ResponsiveWidget(
+      desktop: BusinessProfileDesktopView(),
+      mobileTablet: BusinessProfileMobileTabletView(),
     );
   }
 }

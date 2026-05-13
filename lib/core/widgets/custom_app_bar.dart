@@ -9,12 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? subtitle;
   final List<Widget> actions;
 
-  const CustomAppBar({
-    super.key,
-    required this.title,
-    this.subtitle,
-    this.actions = const [],
-  });
+  const CustomAppBar({super.key, required this.title, this.subtitle, this.actions = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -28,20 +23,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            CustomText(
-              title,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSurface,
-            ),
+            CustomText(title, fontSize: 22, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface),
             if (subtitle != null) ...[
-              const SizedBox(height: 4),
-              CustomText(
-                subtitle!,
-                fontSize: 13,
-                isSecondary: true,
-                color: isDark ? AppColors.darkTextSecondary : AppColors.textSecondary,
-              ),
+              CustomText(subtitle!, fontSize: 13, isSecondary: true, color: isDark ? AppColors.darkTextSecondary : AppColors.textSecondary),
             ],
           ],
         ),
@@ -59,11 +43,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
       bottom: PreferredSize(
         preferredSize: const Size.fromHeight(1),
-        child: Divider(
-          height: 1,
-          thickness: 0.5,
-          color: borderColor,
-        ),
+        child: Divider(height: 1, thickness: 0.5, color: borderColor),
       ),
     );
   }

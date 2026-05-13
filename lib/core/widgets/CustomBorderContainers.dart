@@ -13,6 +13,7 @@ class CustomBorderContainer extends StatelessWidget {
     this.boxShadow,
     this.elevation = 0,
     this.boxShape = BoxShape.rectangle,
+    this.maxWidth = 500,
   });
 
   final Widget child;
@@ -23,6 +24,7 @@ class CustomBorderContainer extends StatelessWidget {
   final List<BoxShadow>? boxShadow;
   final double elevation;
   final BoxShape boxShape;
+  final double maxWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class CustomBorderContainer extends StatelessWidget {
       elevation: elevation,
       child: Container(
         clipBehavior: Clip.antiAlias,
-        constraints: const BoxConstraints(maxWidth: 500),
+        constraints: BoxConstraints(maxWidth: maxWidth),
         padding: padding,
         decoration: BoxDecoration(
           shape: boxShape,

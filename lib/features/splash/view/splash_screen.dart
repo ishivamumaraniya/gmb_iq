@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (!mounted) return;
 
     final token = HiveSetup.token;
-    if (!token.isEmpty) {
+    if (token.isEmpty) {
       context.goNamed(AppRoutes.login);
     } else {
       context.goNamed(AppRoutes.home);
