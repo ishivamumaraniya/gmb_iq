@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gmb_iq/core/constants/app_images.dart';
+import 'package:gmb_iq/core/router/app_router.dart';
+import 'package:gmb_iq/core/storage/hive_setup.dart';
 import 'package:gmb_iq/core/theme/app_colors.dart';
 import 'package:gmb_iq/core/theme/theme_extensions.dart';
 import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
 import 'package:gmb_iq/core/widgets/custom_button.dart';
 import 'package:gmb_iq/core/widgets/custom_image.dart';
 import 'package:gmb_iq/core/widgets/custom_text.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../widget/customAuthInfoBox.dart';
 import '../../found_accounts/found_accounts_state.dart';
@@ -98,7 +101,10 @@ class SyncCompleteComponents {
         CustomButton(
           wantBorder: false,
           text: "Go to Dashboard",
-          onPressed: () {},
+          onPressed: () {
+            HiveSetup.token = "Dummy";
+            context.pushReplacementNamed(AppRoutes.home);
+          },
           customIcon: const Icon(Icons.arrow_forward, color: Colors.white, size: 18),
           alignment: IconAlignment.end,
         ),
