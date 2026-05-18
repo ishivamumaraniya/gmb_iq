@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:gmb_iq/core/theme/theme_extensions.dart';
+import 'package:gmb_iq/core/widgets/custom_text_button.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/custom_text.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/CustomBorderContainers.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_outline_button.dart';
 
 class HomeDesktopView extends StatelessWidget {
   const HomeDesktopView({super.key});
@@ -12,11 +15,8 @@ class HomeDesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar: const CustomAppBar(
-          title: 'Welcome to GmbIQ, Wade!',
-          subtitle: "Let's set up your first AI reply in under a minute"),
+      appBar: const CustomAppBar(title: 'Welcome to GmbIQ, Wade!', subtitle: "Let's set up your first AI reply in under a minute"),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 32.0),
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1000), // Max width to look good on ultra-wide
@@ -39,32 +39,24 @@ class HomeDesktopView extends StatelessWidget {
   }
 
   Widget _buildTopBanner(BuildContext context) {
-    return Container(
-      width: double.infinity,
+    return CustomBorderContainer(
+      maxWidth: double.infinity,
+      borderRadius: 16,
       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
-      decoration: BoxDecoration(
-        color: AppColors.secondaryBackground, // Or a custom light blue like in the design
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.primary.withValues(alpha: 0.1)),
-      ),
+      myColor: context.isDarkMode ? null : AppColors.secondaryBackground,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomText(
-                  "You're all set up. Now what?",
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-                const SizedBox(height: 8),
+                CustomText("You're all set up. Now what?", fontSize: 20, fontWeight: FontWeight.w500),
+                SizedBox(height: 8),
                 CustomText(
                   "We've connected your 3 Google locations and pulled in all your existing reviews.\nWant to see how the AI replies in your tone? Try it on a real review now.",
                   fontSize: 14,
                   isSecondary: true,
-                  height: 1.5,
                 ),
               ],
             ),
@@ -82,20 +74,14 @@ class HomeDesktopView extends StatelessWidget {
                 customIcon: const Icon(Icons.arrow_forward, color: Colors.white, size: 18),
                 alignment: IconAlignment.end,
               ),
-              const SizedBox(height: 12),
-              TextButton(
+              const SizedBox(height: 8),
+
+              CustomTextButton(
+                text: "Or take the 2-minute tour",
                 onPressed: () {},
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  minimumSize: Size.zero,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                ),
-                child: const CustomText(
-                  "Or take the 2-minute tour",
-                  fontSize: 14,
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.w500,
-                ),
+                color: AppColors.primary,
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
               ),
             ],
           ),
@@ -112,7 +98,7 @@ class HomeDesktopView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomText("Get the most out of GmbIQ", fontSize: 20, fontWeight: FontWeight.bold),
+          const CustomText("Get the most out of GmbIQ", fontSize: 20, fontWeight: FontWeight.w500),
           const SizedBox(height: 8),
           const CustomText("Complete these steps to be fully set up.", fontSize: 14, isSecondary: true),
           const SizedBox(height: 32),
@@ -175,26 +161,13 @@ class HomeDesktopView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomText(title, fontSize: 16, fontWeight: FontWeight.w600, color: isDone ? AppColors.lightGrey : null),
+              CustomText(title, fontSize: 16, fontWeight: FontWeight.w500, color: isDone ? AppColors.lightGrey : null),
               const SizedBox(height: 4),
               CustomText(subtitle, fontSize: 14, isSecondary: true),
             ],
           ),
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          decoration: BoxDecoration(
-            color: actionColor ?? Colors.transparent,
-            border: actionColor == null ? Border.all(color: AppColors.buttonBorderColor) : null,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: CustomText(
-            actionText,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            color: actionTextColor ?? AppColors.primary,
-          ),
-        ),
+        CustomOutlineButton(text: actionText, onPressed: () {}, backgroundColor: actionColor, textColor: actionTextColor),
       ],
     );
   }
@@ -203,58 +176,62 @@ class HomeDesktopView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CustomText("Your Business Overview", fontSize: 20, fontWeight: FontWeight.bold),
+        const CustomText("Your Business Overview", fontSize: 20, fontWeight: FontWeight.w600),
         const SizedBox(height: 24),
         Row(
           children: [
             Expanded(
-                child: _buildStatCard(
-              context,
-              "Time Saved w/ AI",
-              "124 hrs",
-              Icons.access_time,
-              Colors.blue.shade50,
-              Colors.blue,
-              trendText: "1.4h vs last month",
-              isPositiveTrend: true,
-            )),
+              child: _buildStatCard(
+                context,
+                "Time Saved w/ AI",
+                "124 hrs",
+                Icons.access_time,
+                Colors.blue.shade50,
+                Colors.blue,
+                trendText: "1.4h vs last month",
+                isPositiveTrend: true,
+              ),
+            ),
             const SizedBox(width: 24),
             Expanded(
-                child: _buildStatCard(
-              context,
-              "Unanswered Reviews",
-              "23",
-              Icons.error_outline,
-              Colors.red.shade50,
-              Colors.red,
-              trendText: "Action Required",
-              isPositiveTrend: false,
-              isActionRequired: true,
-            )),
+              child: _buildStatCard(
+                context,
+                "Unanswered Reviews",
+                "23",
+                Icons.error_outline,
+                Colors.red.shade50,
+                Colors.red,
+                trendText: "Action Required",
+                isPositiveTrend: false,
+                isActionRequired: true,
+              ),
+            ),
             const SizedBox(width: 24),
             Expanded(
-                child: _buildStatCard(
-              context,
-              "Total Reviews",
-              "256",
-              Icons.chat_bubble_outline,
-              Colors.green.shade50,
-              Colors.green,
-              trendText: "23 More vs last month",
-              isPositiveTrend: true,
-            )),
+              child: _buildStatCard(
+                context,
+                "Total Reviews",
+                "256",
+                Icons.chat_bubble_outline,
+                Colors.green.shade50,
+                Colors.green,
+                trendText: "23 More vs last month",
+                isPositiveTrend: true,
+              ),
+            ),
             const SizedBox(width: 24),
             Expanded(
-                child: _buildStatCard(
-              context,
-              "Average Rating",
-              "4.5",
-              Icons.star_outline,
-              Colors.orange.shade50,
-              Colors.orange,
-              trendText: "15% vs last month",
-              isPositiveTrend: true,
-            )),
+              child: _buildStatCard(
+                context,
+                "Average Rating",
+                "4.5",
+                Icons.star_outline,
+                Colors.orange.shade50,
+                Colors.orange,
+                trendText: "15% vs last month",
+                isPositiveTrend: true,
+              ),
+            ),
           ],
         ),
       ],
@@ -274,30 +251,25 @@ class HomeDesktopView extends StatelessWidget {
   }) {
     return CustomBorderContainer(
       maxWidth: double.infinity,
-      padding: const EdgeInsets.all(24),
-      borderRadius: 16,
+      padding: const EdgeInsets.all(14),
+      borderRadius: 20,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: iconBgColor,
-              shape: BoxShape.circle,
-            ),
+            decoration: BoxDecoration(color: iconBgColor, borderRadius: BorderRadius.circular(10)),
             child: Icon(icon, color: iconColor, size: 24),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 14),
           CustomText(title, fontSize: 14, isSecondary: true),
           const SizedBox(height: 4),
-          CustomText(value, fontSize: 32, fontWeight: FontWeight.bold),
+          CustomText(value, fontSize: 32, fontWeight: FontWeight.w700),
           const SizedBox(height: 16),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
             decoration: BoxDecoration(
-              color: isActionRequired
-                  ? Colors.red.shade50
-                  : (isPositiveTrend ? Colors.green.shade50 : Colors.red.shade50),
+              color: isActionRequired ? Colors.red.shade50 : (isPositiveTrend ? Colors.green.shade50 : Colors.red.shade50),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
@@ -313,14 +285,12 @@ class HomeDesktopView extends StatelessWidget {
                 CustomText(
                   trendText,
                   fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: isActionRequired
-                      ? Colors.red.shade700
-                      : (isPositiveTrend ? Colors.green.shade700 : Colors.red.shade700),
+                  color: isActionRequired ? Colors.red.shade700 : (isPositiveTrend ? Colors.green.shade700 : Colors.red.shade700),
                 ),
               ],
             ),
           ),
+          const SizedBox(height: 5),
         ],
       ),
     );
@@ -334,15 +304,14 @@ class HomeDesktopView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const CustomText("Your Business Profiles", fontSize: 20, fontWeight: FontWeight.bold),
-            TextButton(
+            CustomTextButton(
               onPressed: () {},
-              child: const Row(
-                children: [
-                  CustomText("View all", fontSize: 14, color: AppColors.primary, fontWeight: FontWeight.w600),
-                  SizedBox(width: 4),
-                  Icon(Icons.arrow_forward_ios, size: 12, color: AppColors.primary),
-                ],
-              ),
+              text: "View all",
+              fontSize: 14,
+              color: AppColors.primary,
+              fontWeight: FontWeight.w600,
+              customIcon: const Icon(Icons.arrow_forward_ios, size: 12, color: AppColors.primary),
+              alignment: IconAlignment.end,
             ),
           ],
         ),
@@ -356,7 +325,16 @@ class HomeDesktopView extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileListItem(BuildContext context, String initial, String name, String address, String rating, String reviews, String questions, String growth) {
+  Widget _buildProfileListItem(
+    BuildContext context,
+    String initial,
+    String name,
+    String address,
+    String rating,
+    String reviews,
+    String questions,
+    String growth,
+  ) {
     return CustomBorderContainer(
       maxWidth: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -378,7 +356,7 @@ class HomeDesktopView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText(name, fontSize: 16, fontWeight: FontWeight.bold),
+                CustomText(name, fontSize: 16, fontWeight: FontWeight.w600),
                 const SizedBox(height: 4),
                 CustomText(address, fontSize: 13, isSecondary: true),
                 const SizedBox(height: 8),
@@ -388,12 +366,12 @@ class HomeDesktopView extends StatelessWidget {
                     border: Border.all(color: AppColors.customBorderColorGrey),
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.email_outlined, size: 14, color: AppColors.textSecondary),
-                      const SizedBox(width: 4),
-                      const CustomText("wade.warren@gmail.com", fontSize: 12, isSecondary: true),
+                      Icon(Icons.email_outlined, size: 14, color: AppColors.textSecondary),
+                      SizedBox(width: 4),
+                      CustomText("wade.warren@gmail.com", fontSize: 12, isSecondary: true),
                     ],
                   ),
                 ),

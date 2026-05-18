@@ -11,19 +11,15 @@ class ActivityDesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      appBar: const CustomAppBar(
-        title: 'Activity',
-        subtitle: 'Track your AI operations and time saved',
-      ),
+      appBar: const CustomAppBar(title: 'Activity', subtitle: 'Track your AI operations and time saved'),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 32.0),
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1000),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomText("Activity by IQ AI", fontSize: 20, fontWeight: FontWeight.bold),
+                const CustomText("Activity by IQ AI", fontSize: 20, fontWeight: FontWeight.w600),
                 const SizedBox(height: 8),
                 const CustomText("Monitor ongoing AI tasks and track your time saved.", fontSize: 14, isSecondary: true),
                 const SizedBox(height: 24),
@@ -31,7 +27,7 @@ class ActivityDesktopView extends StatelessWidget {
                 const SizedBox(height: 24),
                 _buildInProgressTaskCard(),
                 const SizedBox(height: 48),
-                const CustomText("Task History", fontSize: 20, fontWeight: FontWeight.bold),
+                const CustomText("Task History", fontSize: 20, fontWeight: FontWeight.w600),
                 const SizedBox(height: 24),
                 _buildTaskHistoryItem("Bulk Apology Drafts", "Today, 10:42 AM", "12 Critical Reviews", "1h 15m"),
                 const SizedBox(height: 16),
@@ -58,10 +54,7 @@ class ActivityDesktopView extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.blue.shade50,
-                  shape: BoxShape.circle,
-                ),
+                decoration: BoxDecoration(color: Colors.blue.shade50, shape: BoxShape.circle),
                 child: const Icon(Icons.access_time, color: Colors.blue, size: 32),
               ),
               const SizedBox(width: 24),
@@ -70,23 +63,15 @@ class ActivityDesktopView extends StatelessWidget {
                 children: [
                   const CustomText("Total Time Saved", fontSize: 14, isSecondary: true),
                   const SizedBox(height: 4),
-                  const CustomText("148 hrs 30m", fontSize: 32, fontWeight: FontWeight.bold),
+                  const CustomText("148 hrs 30m", fontSize: 32, fontWeight: FontWeight.w600),
                   const SizedBox(height: 8),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.green.shade50,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
+                    decoration: BoxDecoration(color: Colors.green.shade50, borderRadius: BorderRadius.circular(12)),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        CustomText(
-                          "+12H SAVE THIS MONTH",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.green.shade700,
-                        ),
+                        CustomText("+12H SAVE THIS MONTH", fontSize: 12, fontWeight: FontWeight.w600, color: Colors.green.shade700),
                       ],
                     ),
                   ),
@@ -102,37 +87,33 @@ class ActivityDesktopView extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CustomText("Auto Replies", fontSize: 12, isSecondary: true),
-                    const SizedBox(height: 4),
+                    CustomText("Auto Replies", fontSize: 12, isSecondary: true),
+                    SizedBox(height: 4),
                     Row(
                       children: [
-                        const Icon(Icons.bolt, color: Colors.orange, size: 16),
-                        const SizedBox(width: 4),
-                        const CustomText("96 hrs", fontSize: 16, fontWeight: FontWeight.bold),
+                        Icon(Icons.bolt, color: Colors.orange, size: 16),
+                        SizedBox(width: 4),
+                        CustomText("96 hrs", fontSize: 16, fontWeight: FontWeight.w600),
                       ],
                     ),
                   ],
                 ),
                 const SizedBox(width: 32),
-                Container(
-                  width: 1,
-                  height: 40,
-                  color: AppColors.customBorderColorGrey,
-                ),
+                Container(width: 1, height: 40, color: AppColors.customBorderColorGrey),
                 const SizedBox(width: 32),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CustomText("Bulk Replies", fontSize: 12, isSecondary: true),
-                    const SizedBox(height: 4),
+                    CustomText("Bulk Replies", fontSize: 12, isSecondary: true),
+                    SizedBox(height: 4),
                     Row(
                       children: [
-                        const Icon(Icons.auto_awesome, color: Colors.blue, size: 16),
-                        const SizedBox(width: 4),
-                        const CustomText("52 hrs 30m", fontSize: 16, fontWeight: FontWeight.bold),
+                        Icon(Icons.auto_awesome, color: Colors.blue, size: 16),
+                        SizedBox(width: 4),
+                        CustomText("52 hrs 30m", fontSize: 16, fontWeight: FontWeight.w600),
                       ],
                     ),
                   ],
@@ -158,10 +139,7 @@ class ActivityDesktopView extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.blue.shade50,
-                  shape: BoxShape.circle,
-                ),
+                decoration: BoxDecoration(color: Colors.blue.shade50, shape: BoxShape.circle),
                 child: const Icon(Icons.auto_awesome, color: Colors.blue, size: 24),
               ),
               const SizedBox(width: 16),
@@ -171,20 +149,12 @@ class ActivityDesktopView extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const CustomText("Generating Sparkle AI Replies", fontSize: 16, fontWeight: FontWeight.bold),
+                        const CustomText("Generating Sparkle AI Replies", fontSize: 16, fontWeight: FontWeight.w600),
                         const SizedBox(width: 12),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: Colors.blue.shade50,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const CustomText(
-                            "IN PROGRESS",
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue,
-                          ),
+                          decoration: BoxDecoration(color: Colors.blue.shade50, borderRadius: BorderRadius.circular(12)),
+                          child: const CustomText("IN PROGRESS", fontSize: 10, fontWeight: FontWeight.w600, color: Colors.blue),
                         ),
                       ],
                     ),
@@ -205,11 +175,11 @@ class ActivityDesktopView extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 32),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText("34 / 56 Replies Generated", fontSize: 14, fontWeight: FontWeight.w600),
-              const CustomText("60%", fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blue),
+              CustomText("34 / 56 Replies Generated", fontSize: 14, fontWeight: FontWeight.w600),
+              CustomText("60%", fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blue),
             ],
           ),
           const SizedBox(height: 12),
@@ -221,17 +191,17 @@ class ActivityDesktopView extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
           ),
           const SizedBox(height: 24),
-          Row(
+          const Row(
             children: [
-              const Icon(Icons.access_time, size: 16, color: AppColors.textSecondary),
-              const SizedBox(width: 4),
-              const CustomText("Estimated time remaining: ", fontSize: 13, isSecondary: true),
-              const CustomText("1m 12s", fontSize: 13, fontWeight: FontWeight.bold),
-              const SizedBox(width: 32),
-              const Icon(Icons.trending_up, size: 16, color: Colors.green),
-              const SizedBox(width: 4),
-              const CustomText("Projected time saved: ", fontSize: 13, color: Colors.green),
-              const CustomText("~4.5 hrs", fontSize: 13, fontWeight: FontWeight.bold, color: Colors.green),
+              Icon(Icons.access_time, size: 16, color: AppColors.textSecondary),
+              SizedBox(width: 4),
+              CustomText("Estimated time remaining: ", fontSize: 13, isSecondary: true),
+              CustomText("1m 12s", fontSize: 13, fontWeight: FontWeight.w600),
+              SizedBox(width: 32),
+              Icon(Icons.trending_up, size: 16, color: Colors.green),
+              SizedBox(width: 4),
+              CustomText("Projected time saved: ", fontSize: 13, color: Colors.green),
+              CustomText("~4.5 hrs", fontSize: 13, fontWeight: FontWeight.w600, color: Colors.green),
             ],
           ),
         ],
@@ -249,10 +219,7 @@ class ActivityDesktopView extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.green.shade50,
-              shape: BoxShape.circle,
-            ),
+            decoration: BoxDecoration(color: Colors.green.shade50, shape: BoxShape.circle),
             child: Icon(Icons.check, color: Colors.green.shade700, size: 20),
           ),
           const SizedBox(width: 16),
@@ -268,7 +235,11 @@ class ActivityDesktopView extends StatelessWidget {
                     const SizedBox(width: 4),
                     CustomText(date, fontSize: 12, isSecondary: true),
                     const SizedBox(width: 12),
-                    Container(width: 4, height: 4, decoration: const BoxDecoration(color: AppColors.customBorderColorGrey, shape: BoxShape.circle)),
+                    Container(
+                      width: 4,
+                      height: 4,
+                      decoration: const BoxDecoration(color: AppColors.customBorderColorGrey, shape: BoxShape.circle),
+                    ),
                     const SizedBox(width: 12),
                     CustomText(detail, fontSize: 12, isSecondary: true),
                   ],
@@ -281,7 +252,7 @@ class ActivityDesktopView extends StatelessWidget {
             children: [
               const CustomText("Time Saved", fontSize: 12, isSecondary: true),
               const SizedBox(height: 4),
-              CustomText(timeSaved, fontSize: 16, fontWeight: FontWeight.bold, color: Colors.green.shade700),
+              CustomText(timeSaved, fontSize: 16, fontWeight: FontWeight.w600, color: Colors.green.shade700),
             ],
           ),
         ],

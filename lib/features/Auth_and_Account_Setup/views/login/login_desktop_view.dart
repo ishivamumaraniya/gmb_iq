@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
 import 'package:gmb_iq/core/widgets/customLogo.dart';
@@ -12,8 +11,6 @@ import '../../../../../core/widgets/custom_image.dart';
 import '../../../../../core/widgets/custom_scaffold.dart';
 import '../../../../../core/widgets/custom_text.dart';
 import '../../../../core/widgets/custom_button.dart';
-import '../../cubit/auth_cubit.dart';
-import '../../cubit/auth_state.dart';
 
 class LoginDesktopView extends StatelessWidget {
   const LoginDesktopView({super.key});
@@ -94,12 +91,6 @@ class LoginDesktopView extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 40),
 
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        context.read<AuthCubit>().updateStep(AuthStep.scanning);
-                                      },
-                                      child: Text("data"),
-                                    ),
                                     const CustomGoogleButton(width: 300),
 
                                     const SizedBox(height: 24),

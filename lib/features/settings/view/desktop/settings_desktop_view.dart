@@ -4,6 +4,7 @@ import '../../../../core/widgets/custom_text.dart';
 import '../../../../core/widgets/CustomBorderContainers.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_text_button.dart';
 
 class SettingsDesktopView extends StatefulWidget {
   const SettingsDesktopView({super.key});
@@ -33,8 +34,8 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
         children: [
           // Sidebar
           Container(
-            width: 250,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+            width: 240,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             decoration: const BoxDecoration(
               border: Border(right: BorderSide(color: AppColors.customBorderColorGrey)),
             ),
@@ -81,7 +82,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                             decoration: BoxDecoration(color: Colors.blue.shade50, borderRadius: BorderRadius.circular(12)),
-                            child: const CustomText("V2", fontSize: 10, fontWeight: FontWeight.bold, color: Colors.blue),
+                            child: const CustomText("V2", fontSize: 10, fontWeight: FontWeight.w600, color: Colors.blue),
                           ),
                       ],
                     ),
@@ -93,7 +94,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
           // Content Area
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 48.0, vertical: 32.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 800), child: _buildContent()),
             ),
           ),
@@ -126,7 +127,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText("Profile", fontSize: 18, fontWeight: FontWeight.bold),
+              const CustomText("Profile", fontSize: 18, fontWeight: FontWeight.w600),
               const SizedBox(height: 8),
               const CustomText("Update your personal details and public profile.", fontSize: 14, isSecondary: true),
               const SizedBox(height: 24),
@@ -151,13 +152,10 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
                               side: const BorderSide(color: AppColors.customBorderColorGrey),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                             ),
-                            child: const CustomText("Change photo", fontSize: 13, color: Colors.blue, fontWeight: FontWeight.bold),
+                            child: const CustomText("Change photo", fontSize: 13, color: Colors.blue, fontWeight: FontWeight.w600),
                           ),
                           const SizedBox(width: 16),
-                          TextButton(
-                            onPressed: () {},
-                            child: const CustomText("Remove", fontSize: 13, color: Colors.red, fontWeight: FontWeight.bold),
-                          ),
+                          CustomTextButton(text: "Remove", onPressed: () {}, color: Colors.red, fontSize: 13, fontWeight: FontWeight.w600),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -189,7 +187,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText("Preferences", fontSize: 18, fontWeight: FontWeight.bold),
+              const CustomText("Preferences", fontSize: 18, fontWeight: FontWeight.w600),
               const SizedBox(height: 8),
               const CustomText("Adjust your regional settings and time format.", fontSize: 14, isSecondary: true),
               const SizedBox(height: 24),
@@ -207,10 +205,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            TextButton(
-              onPressed: () {},
-              child: const CustomText("Discard changes", fontSize: 14, color: Colors.blue, fontWeight: FontWeight.bold),
-            ),
+            CustomTextButton(text: "Discard changes", onPressed: () {}, color: Colors.blue, fontSize: 14, fontWeight: FontWeight.w600),
             const SizedBox(width: 16),
             ElevatedButton(
               onPressed: () {},
@@ -221,7 +216,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 elevation: 0,
               ),
-              child: const CustomText("Save changes", fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+              child: const CustomText("Save changes", fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white),
             ),
           ],
         ),
@@ -234,7 +229,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText("Danger Zone", fontSize: 18, fontWeight: FontWeight.bold),
+              const CustomText("Danger Zone", fontSize: 18, fontWeight: FontWeight.w600),
               const SizedBox(height: 8),
               const CustomText("Permanently remove your account and data.", fontSize: 14, isSecondary: true),
               const SizedBox(height: 24),
@@ -251,7 +246,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText("Delete account", fontSize: 16, fontWeight: FontWeight.bold, color: Colors.red.shade700),
+                        CustomText("Delete account", fontSize: 16, fontWeight: FontWeight.w600, color: Colors.red.shade700),
                         const SizedBox(height: 4),
                         CustomText("Once you delete your account, there is no going back.", fontSize: 13, color: Colors.red.shade700),
                       ],
@@ -265,7 +260,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
                         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         elevation: 0,
                       ),
-                      child: const CustomText("Delete account", fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+                      child: const CustomText("Delete account", fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white),
                     ),
                   ],
                 ),
@@ -288,7 +283,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText("Notification channels", fontSize: 18, fontWeight: FontWeight.bold),
+              const CustomText("Notification channels", fontSize: 18, fontWeight: FontWeight.w600),
               const SizedBox(height: 8),
               const CustomText("Choose where you want to receive alerts.", fontSize: 14, isSecondary: true),
               const SizedBox(height: 32),
@@ -306,7 +301,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText("What to notify me about", fontSize: 18, fontWeight: FontWeight.bold),
+              const CustomText("What to notify me about", fontSize: 18, fontWeight: FontWeight.w600),
               const SizedBox(height: 8),
               const CustomText("Pick which events trigger an alert.", fontSize: 14, isSecondary: true),
               const SizedBox(height: 32),
@@ -330,7 +325,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText("Quiet hours", fontSize: 18, fontWeight: FontWeight.bold),
+              const CustomText("Quiet hours", fontSize: 18, fontWeight: FontWeight.w600),
               const SizedBox(height: 8),
               const CustomText("Pause non-critical notifications during certain hours.", fontSize: 14, isSecondary: true),
               const SizedBox(height: 24),
@@ -356,7 +351,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const CustomText("Current plan", fontSize: 18, fontWeight: FontWeight.bold),
+                  const CustomText("Current plan", fontSize: 18, fontWeight: FontWeight.w600),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     decoration: BoxDecoration(
@@ -364,7 +359,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(color: Colors.green.shade200),
                     ),
-                    child: CustomText("Active", fontSize: 12, fontWeight: FontWeight.bold, color: Colors.green.shade700),
+                    child: CustomText("Active", fontSize: 12, fontWeight: FontWeight.w600, color: Colors.green.shade700),
                   ),
                 ],
               ),
@@ -391,7 +386,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                     ),
-                    child: const CustomText("Cancel subscription", fontSize: 14, color: Colors.blue, fontWeight: FontWeight.bold),
+                    child: const CustomText("Cancel subscription", fontSize: 14, color: Colors.blue, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(width: 16),
                   ElevatedButton(
@@ -403,7 +398,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
                       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                       elevation: 0,
                     ),
-                    child: const CustomText("Change plan", fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+                    child: const CustomText("Change plan", fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white),
                   ),
                 ],
               ),
@@ -418,7 +413,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText("Plan usage this month", fontSize: 18, fontWeight: FontWeight.bold),
+              const CustomText("Plan usage this month", fontSize: 18, fontWeight: FontWeight.w600),
               const SizedBox(height: 8),
               const CustomText("How much of your plan you're using.", fontSize: 14, isSecondary: true),
               const SizedBox(height: 32),
@@ -438,7 +433,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText("Payment method", fontSize: 18, fontWeight: FontWeight.bold),
+              const CustomText("Payment method", fontSize: 18, fontWeight: FontWeight.w600),
               const SizedBox(height: 8),
               const CustomText("Charged automatically each month.", fontSize: 14, isSecondary: true),
               const SizedBox(height: 24),
@@ -459,14 +454,14 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const CustomText("Invoice history", fontSize: 18, fontWeight: FontWeight.bold),
+                  const CustomText("Invoice history", fontSize: 18, fontWeight: FontWeight.w600),
                   OutlinedButton(
                     onPressed: () {},
                     style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: AppColors.customBorderColorGrey),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                     ),
-                    child: const CustomText("Download all", fontSize: 13, color: Colors.blue, fontWeight: FontWeight.bold),
+                    child: const CustomText("Download all", fontSize: 13, color: Colors.blue, fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
@@ -491,7 +486,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomText(label, fontSize: 12, fontWeight: FontWeight.bold, isSecondary: true),
+        CustomText(label, fontSize: 12, fontWeight: FontWeight.w600, isSecondary: true),
         const SizedBox(height: 8),
         TextField(
           controller: TextEditingController(text: value),
@@ -515,7 +510,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomText(label, fontSize: 12, fontWeight: FontWeight.bold, isSecondary: true),
+        CustomText(label, fontSize: 12, fontWeight: FontWeight.w600, isSecondary: true),
         const SizedBox(height: 8),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -546,13 +541,13 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
             children: [
               Row(
                 children: [
-                  CustomText(title, fontSize: 16, fontWeight: FontWeight.bold),
+                  CustomText(title, fontSize: 16, fontWeight: FontWeight.w600),
                   if (isV2) ...[
                     const SizedBox(width: 8),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(color: Colors.blue.shade50, borderRadius: BorderRadius.circular(12)),
-                      child: const CustomText("V2", fontSize: 10, fontWeight: FontWeight.bold, color: Colors.blue),
+                      child: const CustomText("V2", fontSize: 10, fontWeight: FontWeight.w600, color: Colors.blue),
                     ),
                   ],
                 ],
@@ -562,7 +557,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
             ],
           ),
         ),
-        Switch(value: value, onChanged: isV2 ? null : (val) {}, activeColor: Colors.white, activeTrackColor: Colors.blue),
+        Switch(value: value, onChanged: isV2 ? null : (val) {}, activeThumbColor: Colors.white, activeTrackColor: Colors.blue),
       ],
     );
   }
@@ -576,7 +571,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
             children: [
               Row(
                 children: [
-                  CustomText(title, fontSize: 16, fontWeight: FontWeight.bold),
+                  CustomText(title, fontSize: 16, fontWeight: FontWeight.w600),
                   if (isCritical) ...[const SizedBox(width: 8), const Icon(Icons.warning_amber_rounded, color: Colors.red, size: 16)],
                 ],
               ),
@@ -608,9 +603,9 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomText(title, fontSize: 10, fontWeight: FontWeight.bold, isSecondary: true),
+          CustomText(title, fontSize: 10, fontWeight: FontWeight.w600, isSecondary: true),
           const SizedBox(height: 8),
-          CustomText(value, fontSize: 20, fontWeight: FontWeight.bold),
+          CustomText(value, fontSize: 20, fontWeight: FontWeight.w600),
         ],
       ),
     );
@@ -670,7 +665,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(color: Colors.green.shade200),
                         ),
-                        child: CustomText("Primary", fontSize: 10, fontWeight: FontWeight.bold, color: Colors.green.shade700),
+                        child: CustomText("Primary", fontSize: 10, fontWeight: FontWeight.w600, color: Colors.green.shade700),
                       ),
                     ],
                   ],
@@ -686,7 +681,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
               side: const BorderSide(color: AppColors.customBorderColorGrey),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             ),
-            child: const CustomText("Update", fontSize: 13, color: Colors.blue, fontWeight: FontWeight.bold),
+            child: const CustomText("Update", fontSize: 13, color: Colors.blue, fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -707,7 +702,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
         ),
         Row(
           children: [
-            CustomText(amount, fontSize: 14, fontWeight: FontWeight.bold),
+            CustomText(amount, fontSize: 14, fontWeight: FontWeight.w600),
             const SizedBox(width: 16),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -716,7 +711,7 @@ class _SettingsDesktopViewState extends State<SettingsDesktopView> {
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.green.shade200),
               ),
-              child: CustomText("Paid", fontSize: 12, fontWeight: FontWeight.bold, color: Colors.green.shade700),
+              child: CustomText("Paid", fontSize: 12, fontWeight: FontWeight.w600, color: Colors.green.shade700),
             ),
             const SizedBox(width: 16),
             IconButton(

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/responsive/responsive_context.dart';
 import '../../../cubit/auth_cubit.dart';
 import '../../../cubit/auth_state.dart';
-import '../../../../../core/storage/hive_setup.dart';
 import 'found_accounts_state.dart';
 import 'found_desktop_view.dart';
 import 'found_mobile_view.dart';

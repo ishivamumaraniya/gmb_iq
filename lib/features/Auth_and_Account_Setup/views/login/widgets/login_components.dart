@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gmb_iq/core/responsive/responsive_context.dart';
-import 'package:gmb_iq/core/widgets/CustomBorderContainers.dart';
-import 'package:gmb_iq/core/widgets/custom_button.dart';
-import 'package:google_sign_in_web/google_sign_in_web.dart' as web;
-import 'package:google_sign_in_platform_interface/google_sign_in_platform_interface.dart';
 
 import '../../../../../core/constants/app_images.dart';
 import '../../../../../core/theme/app_colors.dart';

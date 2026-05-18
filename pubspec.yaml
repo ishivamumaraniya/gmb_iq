@@ -52,6 +52,8 @@ dependencies:
   equatable: ^2.0.8
   toastification: ^3.2.0
 
+  google_sign_in_web: any
+  google_sign_in_platform_interface: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

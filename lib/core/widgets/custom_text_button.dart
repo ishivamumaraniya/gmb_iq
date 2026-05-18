@@ -8,6 +8,8 @@ class CustomTextButton extends StatelessWidget {
   final Color? color;
   final FontWeight fontWeight;
   final EdgeInsetsGeometry padding;
+  final Widget? customIcon;
+  final IconAlignment alignment;
 
   const CustomTextButton({
     super.key,
@@ -17,16 +19,31 @@ class CustomTextButton extends StatelessWidget {
     this.color,
     this.fontWeight = FontWeight.w500,
     this.padding = EdgeInsets.zero,
+    this.customIcon,
+    this.alignment = IconAlignment.start,
   });
 
   @override
   Widget build(BuildContext context) {
+    if (customIcon != null) {
+      return TextButton.icon(
+        onPressed: onPressed,
+        style: TextButton.styleFrom(
+          splashFactory: NoSplash.splashFactory,
+        ),
+        icon: customIcon!,
+        label: CustomText(
+          text,
+          fontSize: fontSize,
+          color: color,
+          fontWeight: fontWeight,
+        ),
+        iconAlignment: alignment,
+      );
+    }
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        // padding: padding,
-        // minimumSize: Size.zero,
-        // tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         splashFactory: NoSplash.splashFactory,
       ),
       child: CustomText(

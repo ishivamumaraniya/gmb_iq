@@ -13,14 +13,11 @@ class AppTheme {
       primaryColor: AppColors.primary,
       cardColor: Colors.white,
       dividerTheme: const DividerThemeData(color: AppColors.customBorderColorGrey, thickness: 1),
-
       colorScheme: const ColorScheme.light(
         primary: AppColors.primary,
         surface: AppColors.scaffoldBackground,
         onSurface: AppColors.textPrimary,
-        // Sets default text color on surfaces
         onSurfaceVariant: AppColors.textSecondary,
-        // Secondary text color
         error: AppColors.redText,
       ),
 

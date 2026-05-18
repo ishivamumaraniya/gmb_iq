@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/custom_text.dart';
-import '../../../../core/widgets/custom_button.dart';
-import '../../../../core/widgets/CustomBorderContainers.dart';
 import '../../../../core/widgets/custom_scaffold.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_text_button.dart';
 
 class ManageReviewDesktopView extends StatefulWidget {
   const ManageReviewDesktopView({super.key});
@@ -494,13 +493,16 @@ class _ManageReviewDesktopViewState extends State<ManageReviewDesktopView> {
             label: const CustomText("Bulk IQ AI Reply", fontSize: 13, color: Colors.blue, fontWeight: FontWeight.bold),
           ),
           const SizedBox(width: 48),
-          TextButton(
+          CustomTextButton(
+            text: "Clear",
             onPressed: () {
               setState(() {
                 _checkedReviews.clear();
               });
             },
-            child: const CustomText("Clear", fontSize: 13, color: Colors.blue, fontWeight: FontWeight.bold),
+            color: Colors.blue,
+            fontSize: 13,
+            fontWeight: FontWeight.bold,
           ),
         ],
       ),

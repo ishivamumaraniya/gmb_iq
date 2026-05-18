@@ -17,18 +17,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     final borderColor = isDark ? AppColors.darkBorderColor : AppColors.customBorderColorGrey;
 
     return AppBar(
-      title: Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CustomText(title, fontSize: 22, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface),
-            if (subtitle != null) ...[
-              CustomText(subtitle!, fontSize: 13, isSecondary: true, color: isDark ? AppColors.darkTextSecondary : AppColors.textSecondary),
-            ],
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomText(title, fontSize: 22, fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.onSurface),
+          if (subtitle != null) ...[
+            CustomText(subtitle!, fontSize: 13, isSecondary: true, color: isDark ? AppColors.darkTextSecondary : AppColors.textSecondary),
           ],
-        ),
+        ],
       ),
       leading: IconButton(
         icon: const Icon(Icons.menu),
@@ -39,6 +36,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: false,
       elevation: 0,
+      surfaceTintColor: Colors.transparent,
+
       backgroundColor: Colors.transparent,
       actions: actions,
       bottom: PreferredSize(
@@ -49,5 +48,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + (subtitle != null ? 24 : 0) + 1);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
